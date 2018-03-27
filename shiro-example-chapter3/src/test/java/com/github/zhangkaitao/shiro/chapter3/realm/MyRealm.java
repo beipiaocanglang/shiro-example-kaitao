@@ -9,12 +9,18 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 /**
+ * 自定义realm
  * <p>User: Zhang Kaitao
  * <p>Date: 14-1-26
  * <p>Version: 1.0
  */
 public class MyRealm extends AuthorizingRealm {
 
+    /**
+     * 授权
+     * author : sunpanhu
+     * createTime : 2018/3/27 下午6:14
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
@@ -27,6 +33,11 @@ public class MyRealm extends AuthorizingRealm {
         return authorizationInfo;
     }
 
+    /**
+     * 认证
+     * author : sunpanhu
+     * createTime : 2018/3/27 下午6:14
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String username = (String)token.getPrincipal();  //得到用户名

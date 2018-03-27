@@ -5,10 +5,10 @@ import junit.framework.Assert;
 import org.apache.shiro.authz.Permission;
 
 /**
- *  规则
- *    +资源字符串+权限位+实例ID
- *
- *  以+开头 中间通过+分割
+ * BitPermission用于实现位移方式的权限
+ *  如规则：
+ *      +资源字符串+权限位+实例ID
+ *      以+开头 中间通过+分割
  *
  *  权限：
  *     0 表示所有权限
@@ -56,7 +56,6 @@ public class BitPermission implements Permission {
 
     }
 
-    @Override
     public boolean implies(Permission p) {
         if(!(p instanceof BitPermission)) {
             return false;
