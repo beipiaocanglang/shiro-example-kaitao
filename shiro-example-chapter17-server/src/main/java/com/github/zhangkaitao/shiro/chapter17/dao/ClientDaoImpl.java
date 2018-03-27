@@ -56,7 +56,6 @@ public class ClientDaoImpl implements ClientDao {
         jdbcTemplate.update(sql, clientId);
     }
 
-    
     public Client findOne(Long clientId) {
         String sql = "select id, client_name, client_id, client_secret from oauth2_client where id=?";
         List<Client> clientList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Client.class), clientId);
@@ -65,15 +64,12 @@ public class ClientDaoImpl implements ClientDao {
         }
         return clientList.get(0);
     }
-
     
     public List<Client> findAll() {
         String sql = "select id, client_name, client_id, client_secret from oauth2_client";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Client.class));
     }
 
-
-    
     public Client findByClientId(String clientId) {
         String sql = "select id, client_name, client_id, client_secret from oauth2_client where client_id=?";
         List<Client> clientList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Client.class), clientId);
@@ -83,8 +79,6 @@ public class ClientDaoImpl implements ClientDao {
         return clientList.get(0);
     }
 
-
-    
     public Client findByClientSecret(String clientSecret) {
         String sql = "select id, client_name, client_id, client_secret from oauth2_client where client_secret=?";
         List<Client> clientList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Client.class), clientSecret);
