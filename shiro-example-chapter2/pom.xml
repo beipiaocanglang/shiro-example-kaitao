@@ -6,10 +6,11 @@
         <artifactId>shiro-example</artifactId>
         <groupId>com.github.zhangkaitao</groupId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>shiro-example-chapter2</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -38,9 +39,5 @@
             <artifactId>druid</artifactId>
             <version>0.2.23</version>
         </dependency>
-
-
     </dependencies>
-
-
 </project>
