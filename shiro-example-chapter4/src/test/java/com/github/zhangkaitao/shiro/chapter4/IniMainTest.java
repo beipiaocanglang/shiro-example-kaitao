@@ -32,8 +32,5 @@ public class IniMainTest {
         subject.login(token);
 
         Assert.assertTrue(subject.isAuthenticated());
-
-
-
     }
 }

@@ -30,5 +30,4 @@ public class MyAuthenticator extends ModularRealmAuthenticator {
         System.out.println(maps);
         System.out.println(maps.get("1"));
     }
-
 }
