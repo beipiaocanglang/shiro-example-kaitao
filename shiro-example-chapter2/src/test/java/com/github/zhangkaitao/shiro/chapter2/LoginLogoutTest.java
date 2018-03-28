@@ -60,10 +60,10 @@ public class LoginLogoutTest {
     @Test
     public void testCustomRealm() {
         //1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager
-        Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-realm.ini");
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-realm.ini");
 
         //2、得到SecurityManager实例 并绑定给SecurityUtils
-        org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();
+        SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
 
         //3、得到Subject及创建用户名/密码身份验证Token（即用户身份/凭证）
@@ -95,10 +95,10 @@ public class LoginLogoutTest {
     @Test
     public void testCustomMultiRealm() {
         //1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager
-        Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-multi-realm.ini");
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-multi-realm.ini");
 
         //2、得到SecurityManager实例 并绑定给SecurityUtils
-        org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();
+        SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
 
         //3、得到Subject及创建用户名/密码身份验证Token（即用户身份/凭证）
@@ -127,10 +127,10 @@ public class LoginLogoutTest {
     @Test
     public void testJDBCRealm() {
         //1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager
-        Factory<org.apache.shiro.mgt.SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-jdbc-realm.ini");
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-jdbc-realm.ini");
 
         //2、得到SecurityManager实例 并绑定给SecurityUtils
-        org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();
+        SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
 
         //3、得到Subject及创建用户名/密码身份验证Token（即用户身份/凭证）

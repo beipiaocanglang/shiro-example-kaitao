@@ -1,6 +1,5 @@
 package com.github.zhangkaitao.shiro.chapter11;
 
-import com.github.zhangkaitao.shiro.chapter11.JdbcTemplateUtils;
 import com.github.zhangkaitao.shiro.chapter11.entity.Permission;
 import com.github.zhangkaitao.shiro.chapter11.entity.Role;
 import com.github.zhangkaitao.shiro.chapter11.entity.User;
@@ -8,6 +7,7 @@ import com.github.zhangkaitao.shiro.chapter11.service.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.config.IniSecurityManagerFactory;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 import org.apache.shiro.util.ThreadContext;
@@ -70,11 +70,10 @@ public abstract class BaseTest {
         userService.correlationRoles(u1.getId(), r1.getId());
 
         //1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager
-        Factory<org.apache.shiro.mgt.SecurityManager> factory =
-                new IniSecurityManagerFactory("classpath:shiro.ini");
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
 
         //2、得到SecurityManager实例 并绑定给SecurityUtils
-        org.apache.shiro.mgt.SecurityManager securityManager = factory.getInstance();
+        SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
 
     }
