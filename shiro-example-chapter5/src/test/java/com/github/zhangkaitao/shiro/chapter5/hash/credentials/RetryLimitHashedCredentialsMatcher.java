@@ -6,10 +6,7 @@ import net.sf.ehcache.Element;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
-
-import javax.security.auth.login.AccountLockedException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
