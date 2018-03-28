@@ -48,6 +48,16 @@ public class PermissionTest extends BaseTest {
     }
 
     /**
+     * 字符串通配符权限 - 性能问题
+     *      通配符匹配方式比字符串相等匹配来说是更复杂的，因此需要花费更长时间，
+     *      但是一般系统的权限不会太多，且可以配合缓存来提供其性能，
+     *      如果这样性能还达不到要求我们可以实现位操作算法实现性能更好的权限匹配。
+     *      另外实例级别的权限验证如果数据量太大也不建议使用，可能造成查询权限及匹配变慢。
+     *      可以考虑比如在sql查询时加上权限字符串之类的方式在查询时就完成了权限匹配。
+     * author : sunpanhu
+     * createTime : 2018/3/28 上午10:19
+     */
+    /**
      * 字符串通配符权限 - 单个资源 单个权限 和 多个权限(及简写)
      * author : sunpanhu
      * createTime : 2018/3/27 下午5:39
@@ -161,7 +171,7 @@ public class PermissionTest extends BaseTest {
     }
 
     /**
-     * 等价匹配
+     * 等价匹配 没有特殊要求 直接使用字符串比较方便
      * role81 和 role82
      * author : sunpanhu
      * createTime : 2018/3/27 下午6:00
