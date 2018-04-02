@@ -17,11 +17,13 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 
     private Ehcache passwordRetryCache;
 
+    //密码重试缓存
     public RetryLimitHashedCredentialsMatcher() {
         CacheManager cacheManager = CacheManager.newInstance(CacheManager.class.getClassLoader().getResource("ehcache.xml"));
         passwordRetryCache = cacheManager.getCache("passwordRetryCache");
     }
 
+    //
     @Override
     public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
         String username = (String)token.getPrincipal();
@@ -37,8 +39,9 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
             throw new ExcessiveAttemptsException();
         }
 
+        //校验用户输入的密码是否正确
         boolean matches = super.doCredentialsMatch(token, info);
-        if(matches) {
+        if(matches) {//密码正确  则登录成功  清楚缓存中的用户信息
             //clear retry count
             passwordRetryCache.remove(username);
         }

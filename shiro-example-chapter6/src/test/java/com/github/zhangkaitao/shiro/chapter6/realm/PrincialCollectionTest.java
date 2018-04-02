@@ -11,9 +11,7 @@ import java.util.Collection;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-29
- * <p>Version: 1.0
+ * 多Realm测试
  */
 public class PrincialCollectionTest extends BaseTest {
 
@@ -23,6 +21,13 @@ public class PrincialCollectionTest extends BaseTest {
         //因为Realm里没有进行验证，所以相当于每个Realm都身份验证成功了
         login("classpath:shiro-multirealm.ini", "zhang", "123");
         Subject subject = subject();
+
+        //如果结果是true 则说明是通过记住我功能登录的 不是通过login登录 与下面isAuthenticated 想法
+        boolean remembered = subject.isRemembered();
+        System.out.println(remembered);
+        boolean authenticated = subject.isAuthenticated();
+        System.out.println(authenticated);
+
         //获取Primary Principal（即第一个）
         Object primaryPrincipal1 = subject.getPrincipal();
         PrincipalCollection princialCollection = subject.getPrincipals();
@@ -32,15 +37,17 @@ public class PrincialCollectionTest extends BaseTest {
         Assert.assertEquals(primaryPrincipal1, primaryPrincipal2);
 
 
-        //返回 a b c
+        //获取所有身份验证成功的Realm名字  返回 a b c
         Set<String> realmNames = princialCollection.getRealmNames();
         System.out.println(realmNames);
 
         //因为MyRealm1和MyRealm2返回的凭据都是zhang，所以排重了
+        //将身份信息转换为Set/List，即使转换为List，也是先转换为Set再完成的
         Set<Object> principals = princialCollection.asSet(); //asList和asSet的结果一样
         System.out.println(principals);
 
         //根据Realm名字获取
+        //根据Realm名字获取身份，因为Realm名字可以重复，所以可能多个身份，建议Realm名字尽量不要重复。
         Collection<User> users = princialCollection.fromRealm("c");
         System.out.println(users);
     }

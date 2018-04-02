@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
     public void changePassword(Long userId, String newPassword) {
         User user =userDao.findOne(userId);
         user.setPassword(newPassword);
+        //加密密码
         passwordHelper.encryptPassword(user);
         userDao.updateUser(user);
     }

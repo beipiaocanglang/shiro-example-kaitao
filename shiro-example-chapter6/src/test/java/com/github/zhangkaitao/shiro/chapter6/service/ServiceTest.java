@@ -7,21 +7,18 @@ import org.junit.Test;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * service层的测试案例
  */
 public class ServiceTest extends BaseTest {
 
-
     @Test
     public void testUserRolePermissionRelation() {
-
-        //zhang
+        //根据用户名zhang查询用户对应的角色
         Set<String> roles = userService.findRoles(u1.getUsername());
         Assert.assertEquals(1, roles.size());
         Assert.assertTrue(roles.contains(r1.getRole()));
 
+        //根据用户查询用户对应的权限
         Set<String> permissions = userService.findPermissions(u1.getUsername());
         Assert.assertEquals(3, permissions.size());
         Assert.assertTrue(permissions.contains(p3.getPermission()));
@@ -49,8 +46,5 @@ public class ServiceTest extends BaseTest {
         userService.uncorrelationRoles(u1.getId(), r1.getId());
         roles = userService.findRoles(u1.getUsername());
         Assert.assertEquals(0, roles.size());
-
-
     }
-
 }

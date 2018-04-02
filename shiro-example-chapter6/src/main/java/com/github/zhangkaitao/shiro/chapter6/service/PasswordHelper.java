@@ -13,7 +13,9 @@ public class PasswordHelper {
 
     private RandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
 
+    //算法名称
     private String algorithmName = "md5";
+    //加盐次数
     private final int hashIterations = 2;
 
     public void encryptPassword(User user) {

@@ -5,9 +5,11 @@ import com.github.zhangkaitao.shiro.chapter6.entity.Permission;
 import com.github.zhangkaitao.shiro.chapter6.entity.Role;
 import com.github.zhangkaitao.shiro.chapter6.entity.User;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
 import org.apache.shiro.util.ThreadContext;
@@ -15,9 +17,7 @@ import org.junit.After;
 import org.junit.Before;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 用户 、 角色 、 权限代码操作的基本测试案例
  */
 public abstract class BaseTest {
 
@@ -44,7 +44,6 @@ public abstract class BaseTest {
         JdbcTemplateUtils.jdbcTemplate().update("delete from sys_permissions");
         JdbcTemplateUtils.jdbcTemplate().update("delete from sys_users_roles");
         JdbcTemplateUtils.jdbcTemplate().update("delete from sys_roles_permissions");
-
 
         //1、新增权限
         p1 = new Permission("user:create", "用户模块新增", Boolean.TRUE);
@@ -81,9 +80,6 @@ public abstract class BaseTest {
 
     }
 
-
-
-
     @After
     public void tearDown() throws Exception {
         ThreadContext.unbindSubject();//退出时请解除绑定Subject到线程 否则对下次测试造成影响
@@ -101,11 +97,17 @@ public abstract class BaseTest {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 
-        subject.login(token);
+        try {
+            subject.login(token);
+            Session session = subject.getSession();
+            System.out.println("认证通过");
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            System.out.println("认证失败");
+        }
     }
 
     public Subject subject() {
         return SecurityUtils.getSubject();
     }
-
 }
