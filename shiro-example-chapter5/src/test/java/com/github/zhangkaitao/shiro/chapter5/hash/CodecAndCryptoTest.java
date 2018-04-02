@@ -180,7 +180,8 @@ public class CodecAndCryptoTest {
         //生成随机数
         SecureRandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
         randomNumberGenerator.setSeed("123".getBytes());
-        System.out.println(randomNumberGenerator.nextBytes().toHex());
+        String randNum = randomNumberGenerator.nextBytes().toHex();
+        System.out.println(randNum);
     }
 
     /**

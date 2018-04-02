@@ -15,49 +15,90 @@ import org.junit.Test;
  */
 public class PasswordTest extends BaseTest {
 
+    /**
+     * DefaultPasswordService配合PasswordMatcher实现简单的密码加密与验证服务
+     * 本地测试
+     * author : sunpanhu
+     * createTime : 2018/4/2 上午10:31
+     */
     @Test
     public void testPasswordServiceWithMyRealm() {
-
         login("classpath:shiro-passwordservice.ini", "wu", "123");
     }
 
+    /**
+     * DefaultPasswordService配合PasswordMatcher实现简单的密码加密与验证服务
+     * 使用数据库数据
+     * author : sunpanhu
+     * createTime : 2018/4/2 上午10:31
+     */
     @Test
     public void testPasswordServiceWithJdbcRealm() {
-
-        login("classpath:shiro-jdbc-passwordservice.ini", "wu", "123");
+        login("classpath:shiro-jdbc-passwordservice.ini", "zhang", "123");
     }
 
+    /**
+     * HashedCredentialsMatcher实现密码验证服务
+     * 它只用于密码验证，且可以提供自己的盐，而不是随机生成盐，且生成密码散列值的算法需要自己写，因为能提供自己的盐。
+     *
+     * 生成密码散列值
+     *
+     * author : sunpanhu
+     * createTime : 2018/4/2 上午10:34
+     */
     @Test
     public void testGeneratePassword() {
+        //算法名称
         String algorithmName = "md5";
+        //用户名
         String username = "liu";
+        //密码
         String password = "123";
+
         String salt1 = username;
         String salt2 = new SecureRandomNumberGenerator().nextBytes().toHex();
+        System.out.println(salt2);
+
         int hashIterations = 2;
 
         SimpleHash hash = new SimpleHash(algorithmName, password, salt1 + salt2, hashIterations);
+
+        ///获取散列的值
         String encodedPassword = hash.toHex();
-        System.out.println(salt2);
         System.out.println(encodedPassword);
     }
 
+    /**
+     * 和上面的 testGeneratePassword  方法 生成的散列值 进行对比
+     * author : sunpanhu
+     * createTime : 2018/4/2 上午11:03
+     */
     @Test
     public void testHashedCredentialsMatcherWithMyRealm2() {
         //使用testGeneratePassword生成的散列密码
         login("classpath:shiro-hashedCredentialsMatcher.ini", "liu", "123");
     }
 
+    /**
+     * 使用数据库  和上面的 testGeneratePassword  方法 生成的散列值 进行对比
+     * author : sunpanhu
+     * createTime : 2018/4/2 上午11:03
+     */
     @Test
     public void testHashedCredentialsMatcherWithJdbcRealm() {
 
+        //Shiro默认使用了apache commons BeanUtils，默认是不进行Enum类型转型的，此时需要自己注册一个Enum转换器
         BeanUtilsBean.getInstance().getConvertUtils().register(new EnumConverter(), JdbcRealm.SaltStyle.class);
 
         //使用testGeneratePassword生成的散列密码
         login("classpath:shiro-jdbc-hashedCredentialsMatcher.ini", "liu", "123");
     }
 
-
+    /**
+     * Enum转换器
+     * author : sunpanhu
+     * createTime : 2018/4/2 上午11:03
+     */
     private class EnumConverter extends AbstractConverter {
         @Override
         protected String convertToString(final Object value) throws Throwable {
@@ -75,6 +116,11 @@ public class PasswordTest extends BaseTest {
 
     }
 
+    /**
+     * 如果密码输入正确清除cache中的记录；否则cache中的重试次数+1，如果超出5次那么抛出异常表示超出重试次数了。
+     * author : sunpanhu
+     * createTime : 2018/4/2 上午11:11
+     */
     @Test(expected = ExcessiveAttemptsException.class)
     public void testRetryLimitHashedCredentialsMatcherWithMyRealm() {
         for(int i = 1; i <= 5; i++) {
