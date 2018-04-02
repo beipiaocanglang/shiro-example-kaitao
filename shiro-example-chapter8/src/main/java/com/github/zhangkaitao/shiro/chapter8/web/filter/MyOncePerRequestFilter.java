@@ -9,9 +9,10 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-3
- * <p>Version: 1.0
+ * OncePerRequestFilter用于防止多次执行Filter的；
+ * 也就是说一次请求只会走一次拦截器链；
+ * 另外提供enabled属性，表示是否开启该拦截器实例，默认enabled=true表示开启，
+ * 如果不想让某个拦截器工作，可以设置为false即可。
  */
 public class MyOncePerRequestFilter extends OncePerRequestFilter {
     @Override
