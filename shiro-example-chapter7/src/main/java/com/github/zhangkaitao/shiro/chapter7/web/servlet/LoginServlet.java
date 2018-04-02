@@ -15,26 +15,45 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-29
- * <p>Version: 1.0
+ * 初级用户登录测试
+ * 当前实现的一个缺点就是，永远返回到同一个成功页面（比如首页），
+ * 在实际项目中比如支付时如果没有登录将跳转到登录页面，登录成功后再跳回到支付页面；对于这种功能大家可以在登录时把当前请求保存下来，
+ * 然后登录成功后再重定向到该请求即可。
  */
 @WebServlet(name = "loginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
+    /**
+     * 1、doGet请求时展示登录页面；
+     * 2、doPost时进行登录，登录时收集username/password参数，然后提交给Subject进行登录。
+     *      如果有错误再返回到登录页面；
+     *      否则跳转到登录成功页面（此处应该返回到访问登录页面之前的那个页面，或者没有上一个页面时访问主页）。
+     * 3、JSP页面请参考源码。
+     * author : sunpanhu
+     * createTime : 2018/4/2 下午3:45
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
     }
 
+    /**
+     * 用户登录servlet
+     * author : sunpanhu
+     * createTime : 2018/4/2 下午3:46
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String error = null;
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+
         Subject subject = SecurityUtils.getSubject();
+
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+        //设置记住我选项
         token.setRememberMe(true);
+
         try {
             subject.login(token);
         } catch (UnknownAccountException e) {

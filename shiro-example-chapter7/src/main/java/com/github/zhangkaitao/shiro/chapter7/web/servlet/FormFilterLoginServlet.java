@@ -1,13 +1,7 @@
 package com.github.zhangkaitao.shiro.chapter7.web.servlet;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
-import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,18 +10,28 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-29
- * <p>Version: 1.0
+ * 基于表单的拦截器身份验证
+ * http://localhost:8080/chapter7/formfilterlogin
+ * 如果访问此请求  如果在这之前操作过需要清缓存
  */
 @WebServlet(name = "formFilterLoginServlet", urlPatterns = "/formfilterlogin")
 public class FormFilterLoginServlet extends HttpServlet {
 
+    /**
+     * 访问http://localhost:8080/chapter7/formfilterlogin时走doGet
+     * author : sunpanhu
+     * createTime : 2018/4/2 下午4:31
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
     }
 
+    /**
+     * 基于form表单的用户登录
+     * author : sunpanhu
+     * createTime : 2018/4/2 下午4:31
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String errorClassName = (String)req.getAttribute("shiroLoginFailure");

@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-29
- * <p>Version: 1.0
+ * 退出请求
  */
 @WebServlet(name = "logoutServlet", urlPatterns = "/logout")
 public class LogoutServlet extends HttpServlet {
@@ -27,5 +25,4 @@ public class LogoutServlet extends HttpServlet {
         SecurityUtils.getSubject().logout();
         req.getRequestDispatcher("/WEB-INF/jsp/logoutSuccess.jsp").forward(req, resp);
     }
-
 }

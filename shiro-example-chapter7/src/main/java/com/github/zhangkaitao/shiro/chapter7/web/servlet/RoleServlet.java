@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-29
- * <p>Version: 1.0
+ * 基于Basic的拦截器身份验证
+ * 通过ini配置成功、失败、没有权限、没有角色的跳转
  */
 @WebServlet(name = "roleServlet", urlPatterns = "/role")
 public class RoleServlet extends HttpServlet {

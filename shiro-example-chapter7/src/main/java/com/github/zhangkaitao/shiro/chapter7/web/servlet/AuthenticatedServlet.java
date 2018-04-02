@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-29
- * <p>Version: 1.0
+ * 获取当前用户的认证情况
  */
 @WebServlet(name = "authenticatedServlet", urlPatterns = "/authenticated")
 public class AuthenticatedServlet extends HttpServlet {
@@ -27,6 +25,4 @@ public class AuthenticatedServlet extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
         }
     }
-
-
 }

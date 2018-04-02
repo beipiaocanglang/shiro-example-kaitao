@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-29
- * <p>Version: 1.0
+ * 获取用户权限的请求
  */
 @WebServlet(name = "permissionServlet", urlPatterns = "/permission")
 public class PermissionServlet extends HttpServlet {
