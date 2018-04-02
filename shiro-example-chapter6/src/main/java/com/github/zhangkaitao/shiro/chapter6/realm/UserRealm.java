@@ -11,14 +11,17 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 用户认证  授权 Realm
  */
 public class UserRealm extends AuthorizingRealm {
 
     private UserService userService = new UserServiceImpl();
 
+    /**
+     * 用户授权
+     * author : sunpanhu
+     * createTime : 2018/4/2 下午1:05
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String)principals.getPrimaryPrincipal();
@@ -30,6 +33,11 @@ public class UserRealm extends AuthorizingRealm {
         return authorizationInfo;
     }
 
+    /**
+     * 用户认证
+     * author : sunpanhu
+     * createTime : 2018/4/2 下午1:05
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 

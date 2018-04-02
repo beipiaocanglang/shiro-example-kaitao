@@ -11,9 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * Dao层 - 角色接口
  */
 public class RoleDaoImpl implements RoleDao {
 
@@ -24,7 +22,7 @@ public class RoleDaoImpl implements RoleDao {
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
+            
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement psst = connection.prepareStatement(sql, new String[] { "id" });
                 psst.setString(1, Role.getRole());
@@ -47,7 +45,6 @@ public class RoleDaoImpl implements RoleDao {
         jdbcTemplate.update(sql, roleId);
     }
 
-    @Override
     public void correlationPermissions(Long roleId, Long... permissionIds) {
         if(permissionIds == null || permissionIds.length == 0) {
             return;
@@ -59,9 +56,7 @@ public class RoleDaoImpl implements RoleDao {
             }
         }
     }
-
-
-    @Override
+    
     public void uncorrelationPermissions(Long roleId, Long... permissionIds) {
         if(permissionIds == null || permissionIds.length == 0) {
             return;
@@ -78,5 +73,4 @@ public class RoleDaoImpl implements RoleDao {
         String sql = "select count(1) from sys_roles_permissions where role_id=? and permission_id=?";
         return jdbcTemplate.queryForObject(sql, Integer.class, roleId, permissionId) != 0;
     }
-
 }

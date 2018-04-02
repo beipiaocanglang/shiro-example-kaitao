@@ -47,7 +47,6 @@ public class UserServiceImpl implements UserService {
         userDao.correlationRoles(userId, roleIds);
     }
 
-
     /**
      * 移除用户-角色关系
      * @param userId
@@ -83,5 +82,4 @@ public class UserServiceImpl implements UserService {
     public Set<String> findPermissions(String username) {
         return userDao.findPermissions(username);
     }
-
 }

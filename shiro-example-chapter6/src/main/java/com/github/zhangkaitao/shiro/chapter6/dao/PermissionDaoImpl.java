@@ -11,9 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * Dao层 - 权限接口实现类
  */
 public class PermissionDaoImpl implements PermissionDao {
 
@@ -24,7 +22,6 @@ public class PermissionDaoImpl implements PermissionDao {
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement psst = connection.prepareStatement(sql,  new String[] { "id" });
                 psst.setString(1, permission.getPermission());
@@ -46,5 +43,4 @@ public class PermissionDaoImpl implements PermissionDao {
         sql = "delete from sys_permissions where id=?";
         jdbcTemplate.update(sql, permissionId);
     }
-
 }

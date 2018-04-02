@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ehcache name="es">
 
+    <!-- 缓存存放目录 这个是默认的  可以修改 -->
     <diskStore path="java.io.tmpdir"/>
 
-
-
-    <!-- 登录记录缓存 锁定10分钟 -->
+    <!-- 登录记录缓存 锁定10分钟 使用时会用到name取值-->
     <cache name="passwordRetryCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
@@ -14,5 +13,4 @@
            overflowToDisk="false"
            statistics="true">
     </cache>
-
 </ehcache>

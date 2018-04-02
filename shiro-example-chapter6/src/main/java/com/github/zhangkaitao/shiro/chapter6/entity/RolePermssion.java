@@ -3,20 +3,22 @@ package com.github.zhangkaitao.shiro.chapter6.entity;
 import java.io.Serializable;
 
 /**
- * 用户角色关系
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 角色 权限 关系pojo
  */
 public class RolePermssion implements Serializable {
 
+    /**
+     * 角色ID
+     */
     private Long roleId;
+    /**
+     * 权限ID
+     */
     private Long permissionId;
 
     public Long getRoleId() {
         return roleId;
     }
-
     public void setRoleId(Long roleId) {
         this.roleId = roleId;
     }
@@ -24,7 +26,6 @@ public class RolePermssion implements Serializable {
     public Long getPermissionId() {
         return permissionId;
     }
-
     public void setPermissionId(Long permissionId) {
         this.permissionId = permissionId;
     }
@@ -51,9 +52,6 @@ public class RolePermssion implements Serializable {
 
     @Override
     public String toString() {
-        return "RolePermssion{" +
-                "roleId=" + roleId +
-                ", permissionId=" + permissionId +
-                '}';
+        return "RolePermssion{" + "roleId=" + roleId + ", permissionId=" + permissionId + '}';
     }
 }
