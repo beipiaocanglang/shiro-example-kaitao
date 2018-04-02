@@ -5,9 +5,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  * jdbc模板工具类 连接数据库
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
  */
 public class JdbcTemplateUtils {
 

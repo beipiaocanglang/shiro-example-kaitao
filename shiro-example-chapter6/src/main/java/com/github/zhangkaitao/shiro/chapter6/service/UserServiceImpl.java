@@ -7,9 +7,7 @@ import com.github.zhangkaitao.shiro.chapter6.entity.User;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * service层 - 用户接口实现类
  */
 public class UserServiceImpl implements UserService {
 

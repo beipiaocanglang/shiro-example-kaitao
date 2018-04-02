@@ -23,7 +23,8 @@ public class User implements Serializable {
      */
     private String salt;
     /**
-     *
+     * 是否锁定
+     * 是否锁定用于封禁用户使用，其实最好使用Enum字段存储，可以实现更复杂的用户状态实现。
      */
     private Boolean locked = Boolean.FALSE;
 
