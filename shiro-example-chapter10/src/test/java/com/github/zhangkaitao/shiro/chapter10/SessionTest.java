@@ -3,7 +3,6 @@ package com.github.zhangkaitao.shiro.chapter10;
 import junit.framework.Assert;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.Subject;
 import org.junit.Test;
 
@@ -25,15 +24,14 @@ public class SessionTest extends BaseTest {
         System.out.println(session.getTimeout());//获取超时时间
         System.out.println(session.getStartTimestamp()); //获取会话创建时间
         System.out.println(session.getLastAccessTime()); //获取最后访问时间
+
         Thread.sleep(1000L);
         session.touch();//更新会话最后访问时间
         System.out.println(session.getLastAccessTime());
-
 
         //会话属性操作
         session.setAttribute("key", "123");
         Assert.assertEquals("123", session.getAttribute("key"));
         session.removeAttribute("key");
     }
-
 }

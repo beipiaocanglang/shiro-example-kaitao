@@ -29,5 +29,4 @@ public class JdbcTemplateUtils {
 
         return new JdbcTemplate(ds);
     }
-
 }

@@ -11,5 +11,4 @@
            timeToLiveSeconds="0"
            timeToIdleSeconds="0"
            statistics="true"/>
-
 </ehcache>
