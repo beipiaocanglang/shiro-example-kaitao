@@ -20,7 +20,7 @@ public class MyAccessControlFilter extends AccessControlFilter {
         return true;
     }
     /**
-     * 表示当访问拒绝时是否已经处理了；如果返回true表示需要继续处理；如果返回false表示该拦截器实例已经处理了，将直接返回即可。
+     * 表示当访问拒绝时是否已经处理了；如果返回true表示需要继续处理；如果返回false表示该拦截器实例已经处理了，将直接返回即可，（比如重定向到另一个页面）
      * author : sunpanhu
      * createTime : 2018/4/2 下午5:19
      */

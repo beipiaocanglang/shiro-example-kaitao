@@ -10,9 +10,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-4
- * <p>Version: 1.0
+ * 任意角色授权拦截器
+ * Shiro提供roles拦截器，其验证用户拥有所有角色，没有提供验证用户拥有任意角色的拦截器。
+ * 流程：
+ *      1、首先判断用户有没有任意角色，如果没有返回false，将到onAccessDenied进行处理；
+ *      2、如果用户没有角色，接着判断用户有没有登录，如果没有登录先重定向到登录；
+ *      3、如果用户没有角色且设置了未授权页面（unauthorizedUrl），那么重定向到未授权页面；否则直接返回401未授权错误码。
  */
 public class AnyRolesFilter extends AccessControlFilter {
 

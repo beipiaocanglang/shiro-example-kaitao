@@ -7,6 +7,8 @@ import javax.servlet.ServletResponse;
 import java.util.Arrays;
 
 /**
+ * PathMatchingFilter 继承了 AdviceFilter
+ * 提供了url模式过滤的功能，如果需要对指定的请求进行处理
  * 提供了基于Ant风格的请求路径匹配功能及拦截器参数解析的功能，
  * 如：
  *      “roles[admin,user]”自动根据“，”分割解析到一个路径参数配置并绑定到相应的路径

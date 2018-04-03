@@ -10,6 +10,7 @@
     <listener>
         <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
     </listener>
+    <!--、自定义FilterChainResolver-->
     <context-param>
         <param-name>shiroEnvironmentClass</param-name>
         <param-value>org.apache.shiro.web.env.IniWebEnvironment</param-value>

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 /**
  * OncePerRequestFilter用于防止多次执行Filter的；
- * 也就是说一次请求只会走一次拦截器链；
+ * 也就是说一次请求只会走一次拦截器链；即如内部的forward不会再多执行一次doFilterInternal：需要在shiro.ini中配置
  * 另外提供enabled属性，表示是否开启该拦截器实例，默认enabled=true表示开启，
  * 如果不想让某个拦截器工作，可以设置为false即可。
  */

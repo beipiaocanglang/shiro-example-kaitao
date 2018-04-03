@@ -12,14 +12,13 @@ import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
 import javax.servlet.Filter;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-3
- * <p>Version: 1.0
+ * 自定义FilterChainResolver，实现WebEnvironment接口完成
  */
 public class MyIniWebEnvironment extends IniWebEnvironment {
     @Override
     protected FilterChainResolver createFilterChainResolver() {
         //在此处扩展自己的FilterChainResolver
+        //例如以下扩展功能：动态实现url-拦截器的注册，实现此处的FilterChainResolver来完成
         //1、创建FilterChainResolver
         PathMatchingFilterChainResolver filterChainResolver = new PathMatchingFilterChainResolver();
         //2、创建FilterChainManager
