@@ -35,7 +35,6 @@
             <version>1.2.2</version>
         </dependency>
 
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -63,8 +62,6 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -88,11 +85,7 @@
                 <configuration>
                     <path>/${project.build.finalName}</path>
                 </configuration>
-
             </plugin>
         </plugins>
-
-
     </build>
-
 </project>
