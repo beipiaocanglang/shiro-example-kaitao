@@ -23,9 +23,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import javax.sql.DataSource;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-12
- * <p>Version: 1.0
+ * 普通JavaSE独立应用 测试案例
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-beans.xml", "classpath:spring-shiro.xml"})
@@ -38,17 +36,13 @@ public class ShiroTest {
     protected RoleService roleService;
     @Autowired
     protected UserService userService;
-
     @Autowired
     private UserRealm userRealm;
-
-    
     protected JdbcTemplate jdbcTemplate;
     @Autowired
     private void setDataSource(DataSource ds) {
         jdbcTemplate = new JdbcTemplate(ds);    
     }
-
 
     protected String password = "123";
 
@@ -61,7 +55,8 @@ public class ShiroTest {
     protected User u2;
     protected User u3;
     protected User u4;
-    
+
+    //初始化数据
     @Before
     public void setUp() {
         jdbcTemplate.update("delete from sys_users");
@@ -69,7 +64,6 @@ public class ShiroTest {
         jdbcTemplate.update("delete from sys_permissions");
         jdbcTemplate.update("delete from sys_users_roles");
         jdbcTemplate.update("delete from sys_roles_permissions");
-
 
         //1、新增权限
         p1 = new Permission("user:create", "用户模块新增", Boolean.TRUE);
@@ -103,28 +97,33 @@ public class ShiroTest {
         userService.createUser(u4);
         //5、关联用户-角色
         userService.correlationRoles(u1.getId(), r1.getId());
-
     }
 
+    /**
+     * JavaSE独立的应用测试
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午3:20
+     */
     @Test
     public void test() {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(u1.getUsername(), password);
+
+        //登录
         subject.login(token);
 
         Assert.assertTrue(subject.isAuthenticated());
+        //判断角色和权限
         subject.checkRole("admin");
         subject.checkPermission("user:create");
 
+        //更改密码
         userService.changePassword(u1.getId(), password + "1");
+        //清理缓存
         userRealm.clearCache(subject.getPrincipals());
 
         token = new UsernamePasswordToken(u1.getUsername(), password + "1");
+        //登录
         subject.login(token);
-
-
-
-
     }
-
 }

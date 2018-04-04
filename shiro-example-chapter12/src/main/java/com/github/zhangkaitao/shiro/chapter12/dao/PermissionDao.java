@@ -3,14 +3,21 @@ package com.github.zhangkaitao.shiro.chapter12.dao;
 import com.github.zhangkaitao.shiro.chapter12.entity.Permission;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * DAO层 - 权限接口
  */
 public interface PermissionDao {
 
-    public Permission createPermission(Permission permission);
+    /**
+     * 创建权限
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午3:47
+     */
+    Permission createPermission(Permission permission);
 
-    public void deletePermission(Long permissionId);
-
+    /**
+     * 删除权限
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午3:48
+     */
+    void deletePermission(Long permissionId);
 }

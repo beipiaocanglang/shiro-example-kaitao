@@ -6,19 +6,17 @@ import com.github.zhangkaitao.shiro.chapter12.entity.User;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * Service层 - 角色接口实现类
  */
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
 
+    private PasswordHelper passwordHelper;
+
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
-
-    private PasswordHelper passwordHelper;
 
     public void setPasswordHelper(PasswordHelper passwordHelper) {
         this.passwordHelper = passwordHelper;
@@ -27,6 +25,8 @@ public class UserServiceImpl implements UserService {
     /**
      * 创建用户
      * @param user
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      */
     public User createUser(User user) {
         //加密密码
@@ -38,6 +38,8 @@ public class UserServiceImpl implements UserService {
      * 修改密码
      * @param userId
      * @param newPassword
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      */
     public void changePassword(Long userId, String newPassword) {
         User user =userDao.findOne(userId);
@@ -50,16 +52,19 @@ public class UserServiceImpl implements UserService {
      * 添加用户-角色关系
      * @param userId
      * @param roleIds
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      */
     public void correlationRoles(Long userId, Long... roleIds) {
         userDao.correlationRoles(userId, roleIds);
     }
 
-
     /**
      * 移除用户-角色关系
      * @param userId
      * @param roleIds
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      */
     public void uncorrelationRoles(Long userId, Long... roleIds) {
         userDao.uncorrelationRoles(userId, roleIds);
@@ -68,6 +73,8 @@ public class UserServiceImpl implements UserService {
     /**
      * 根据用户名查找用户
      * @param username
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      * @return
      */
     public User findByUsername(String username) {
@@ -77,6 +84,8 @@ public class UserServiceImpl implements UserService {
     /**
      * 根据用户名查找其角色
      * @param username
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      * @return
      */
     public Set<String> findRoles(String username) {
@@ -86,10 +95,11 @@ public class UserServiceImpl implements UserService {
     /**
      * 根据用户名查找其权限
      * @param username
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      * @return
      */
     public Set<String> findPermissions(String username) {
         return userDao.findPermissions(username);
     }
-
 }

@@ -10,18 +10,20 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * DAO层 - 权限接口实现类
  */
 public class PermissionDaoImpl extends JdbcDaoSupport implements PermissionDao {
 
+    /**
+     * 创建权限
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午3:47
+     */
     public Permission createPermission(final Permission permission) {
         final String sql = "insert into sys_permissions(permission, description, available) values(?,?,?)";
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         getJdbcTemplate().update(new PreparedStatementCreator() {
-            @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
                 psst.setString(1, permission.getPermission());
@@ -35,6 +37,11 @@ public class PermissionDaoImpl extends JdbcDaoSupport implements PermissionDao {
         return permission;
     }
 
+    /**
+     * 删除权限
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午3:48
+     */
     public void deletePermission(Long permissionId) {
         //首先把与permission关联的相关表的数据删掉
         String sql = "delete from sys_roles_permissions where permission_id=?";
@@ -43,5 +50,4 @@ public class PermissionDaoImpl extends JdbcDaoSupport implements PermissionDao {
         sql = "delete from sys_permissions where id=?";
         getJdbcTemplate().update(sql, permissionId);
     }
-
 }

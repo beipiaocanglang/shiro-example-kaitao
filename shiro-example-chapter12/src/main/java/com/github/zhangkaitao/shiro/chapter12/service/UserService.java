@@ -5,59 +5,70 @@ import com.github.zhangkaitao.shiro.chapter12.entity.User;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * Service层 - 角色接口
  */
 public interface UserService {
-
     /**
      * 创建用户
      * @param user
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      */
-    public User createUser(User user);
+    User createUser(User user);
 
     /**
      * 修改密码
      * @param userId
      * @param newPassword
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      */
-    public void changePassword(Long userId, String newPassword);
+    void changePassword(Long userId, String newPassword);
 
     /**
      * 添加用户-角色关系
      * @param userId
      * @param roleIds
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      */
-    public void correlationRoles(Long userId, Long... roleIds);
+    void correlationRoles(Long userId, Long... roleIds);
 
 
     /**
      * 移除用户-角色关系
      * @param userId
      * @param roleIds
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      */
-    public void uncorrelationRoles(Long userId, Long... roleIds);
+    void uncorrelationRoles(Long userId, Long... roleIds);
 
     /**
      * 根据用户名查找用户
      * @param username
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      * @return
      */
-    public User findByUsername(String username);
+    User findByUsername(String username);
 
     /**
      * 根据用户名查找其角色
      * @param username
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      * @return
      */
-    public Set<String> findRoles(String username);
+    Set<String> findRoles(String username);
 
     /**
      * 根据用户名查找其权限
      * @param username
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午4:26
      * @return
      */
-    public Set<String> findPermissions(String username);
+    Set<String> findPermissions(String username);
 
 }
