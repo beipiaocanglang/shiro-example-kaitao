@@ -11,11 +11,13 @@ import org.apache.shiro.web.session.mgt.WebSessionContext;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 创建自定义的session，
- * 添加一些自定义的数据
- * 如 用户登录到的系统ip
- * 用户状态（在线 隐身 强制退出）
- * 等 比如当前所在系统等
+ * sessionFactory是创建会话的工厂，根据相应的Subject上下文信息来创建会话；默认提供了SimpleSessionFactory用来创建SimpleSession会话。
+ * 接着自定义SessionFactory：，添加一些自定义的数据
+ * 根据会话上下文创建相应的OnlineSession。
+ * 如
+ *      用户登录到的系统ip
+ *      用户状态（在线 隐身 强制退出）
+ *      比如当前所在系统等
  * <p>User: Zhang Kaitao
  * <p>Date: 13-3-20 下午2:33
  * <p>Version: 1.0

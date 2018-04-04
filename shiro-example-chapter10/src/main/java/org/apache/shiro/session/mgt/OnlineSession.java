@@ -10,9 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 13-3-20 下午2:29
- * <p>Version: 1.0
+ * O用于保存当前登录用户的在线状态，支持如离线等状态的控制。
  */
 public class OnlineSession extends SimpleSession {
 
@@ -44,21 +42,21 @@ public class OnlineSession extends SimpleSession {
      * 用户浏览器类型
      */
     private String userAgent;
-
     /**
      * 在线状态
      */
     private OnlineStatus status = OnlineStatus.on_line;
-
     /**
      * 用户登录时系统IP
      */
     private String systemHost;
 
+    /**
+     * 构造方法
+     */
     public OnlineSession() {
         super();
     }
-
     public OnlineSession(String host) {
         super(host);
     }
@@ -67,7 +65,6 @@ public class OnlineSession extends SimpleSession {
     public String getUserAgent() {
         return userAgent;
     }
-
     public void setUserAgent(String userAgent) {
         this.userAgent = userAgent;
     }
@@ -75,7 +72,6 @@ public class OnlineSession extends SimpleSession {
     public OnlineStatus getStatus() {
         return status;
     }
-
     public void setStatus(OnlineStatus status) {
         this.status = status;
     }
@@ -83,7 +79,6 @@ public class OnlineSession extends SimpleSession {
     public String getSystemHost() {
         return systemHost;
     }
-
     public void setSystemHost(String systemHost) {
         this.systemHost = systemHost;
     }
@@ -110,12 +105,10 @@ public class OnlineSession extends SimpleSession {
         super.setAttribute(key, value);
     }
 
-
     @Override
     public Object removeAttribute(Object key) {
         return super.removeAttribute(key);
     }
-
 
     /**
      * Serializes this object to the specified output stream for JDK Serialization.
@@ -134,7 +127,6 @@ public class OnlineSession extends SimpleSession {
         if (status != null) {
             out.writeObject(status);
         }
-
     }
 
     /**

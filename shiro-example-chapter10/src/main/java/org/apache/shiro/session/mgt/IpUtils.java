@@ -2,6 +2,11 @@ package org.apache.shiro.session.mgt;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 获取ID
+ * author : sunpanhu
+ * createTime : 2018/4/4 上午11:20
+ */
 public class IpUtils {
     private IpUtils() {
     }

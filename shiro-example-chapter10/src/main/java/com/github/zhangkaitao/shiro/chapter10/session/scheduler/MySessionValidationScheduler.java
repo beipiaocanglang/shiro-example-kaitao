@@ -41,7 +41,6 @@ public class MySessionValidationScheduler implements SessionValidationScheduler,
     public ValidatingSessionManager getSessionManager() {
         return sessionManager;
     }
-
     public void setSessionManager(ValidatingSessionManager sessionManager) {
         this.sessionManager = sessionManager;
     }
@@ -49,7 +48,6 @@ public class MySessionValidationScheduler implements SessionValidationScheduler,
     public long getInterval() {
         return interval;
     }
-
     public void setInterval(long interval) {
         this.interval = interval;
     }
@@ -78,6 +76,14 @@ public class MySessionValidationScheduler implements SessionValidationScheduler,
         }
     }
 
+    /**
+     * 如上会话验证调度器实现都是直接调用AbstractValidatingSessionManager 的validateSessions方法进行验证，
+     * 其直接调用SessionDAO的getActiveSessions方法获取所有会话进行验证，如果会话比较多，会影响性能；
+     * 可以考虑如分页获取会话并进行验证
+     * 验证的核心代码，可以根据自己的需求改造此验证调度器器；ini的配置和之前的类似。
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午1:26
+     */
     public void run() {
         if (log.isDebugEnabled()) {
             log.debug("Executing session validation...");
