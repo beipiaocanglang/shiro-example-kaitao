@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Dao层 - 角色接口
+ * Dao层 - 角色接口实现类
  */
 public class RoleDaoImpl implements RoleDao {
 

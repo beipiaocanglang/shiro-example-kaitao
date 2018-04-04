@@ -3,21 +3,36 @@ package com.github.zhangkaitao.shiro.chapter11.entity;
 import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 用户pojo
  */
 public class User implements Serializable {
+    /**
+     * 用户ID
+     */
     private Long id;
+    /**
+     * 用户名
+     */
     private String username;
+    /**
+     * 密码
+     */
     private String password;
+    /**
+     * 密码加密时的盐
+     */
     private String salt;
-
+    /**
+     * 是否锁定
+     * 是否锁定用于封禁用户使用，其实最好使用Enum字段存储，可以实现更复杂的用户状态实现。
+     */
     private Boolean locked = Boolean.FALSE;
 
-    public User() {
-    }
 
+    //无惨构造
+    public User() {}
+
+    //带参构造
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -26,7 +41,6 @@ public class User implements Serializable {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -34,7 +48,6 @@ public class User implements Serializable {
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -42,7 +55,6 @@ public class User implements Serializable {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -50,7 +62,6 @@ public class User implements Serializable {
     public String getSalt() {
         return salt;
     }
-
     public void setSalt(String salt) {
         this.salt = salt;
     }
@@ -62,36 +73,49 @@ public class User implements Serializable {
     public Boolean getLocked() {
         return locked;
     }
-
     public void setLocked(Boolean locked) {
         this.locked = locked;
     }
 
+    /**
+     * 重写equals方法
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o){
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         User user = (User) o;
 
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (id != null ? !id.equals(user.id) : user.id != null) {
+            return false;
+        }
 
         return true;
     }
 
+    /**
+     * 重写hashCode方法
+     * @return
+     */
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
     }
 
+    /**
+     * 重写toString方法
+     * @return
+     */
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", salt='" + salt + '\'' +
-                ", locked=" + locked +
-                '}';
+        return "User{" + "id=" + id + ", username='" + username + '\'' + ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' + ", locked=" + locked + '}';
     }
 }

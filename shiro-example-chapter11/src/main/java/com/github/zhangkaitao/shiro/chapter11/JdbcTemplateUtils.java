@@ -4,9 +4,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * JDBC模板
  */
 public class JdbcTemplateUtils {
 
@@ -29,5 +27,4 @@ public class JdbcTemplateUtils {
 
         return new JdbcTemplate(ds);
     }
-
 }

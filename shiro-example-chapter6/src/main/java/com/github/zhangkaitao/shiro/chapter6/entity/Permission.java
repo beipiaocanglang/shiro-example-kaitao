@@ -23,8 +23,7 @@ public class Permission implements Serializable {
      */
     private Boolean available = Boolean.FALSE;
 
-    public Permission() {
-    }
+    public Permission() {}
     public Permission(String permission, String description, Boolean available) {
         this.permission = permission;
         this.description = description;

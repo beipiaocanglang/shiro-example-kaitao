@@ -17,6 +17,11 @@ public class PermissionDaoImpl implements PermissionDao {
 
     private JdbcTemplate jdbcTemplate = JdbcTemplateUtils.jdbcTemplate();
 
+    /**
+     * 创建权限
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午2:25
+     */
     public Permission createPermission(final Permission permission) {
         final String sql = "insert into sys_permissions(permission, description, available) values(?,?,?)";
 
@@ -35,6 +40,11 @@ public class PermissionDaoImpl implements PermissionDao {
         return permission;
     }
 
+    /**
+     * 删除权限
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午2:25
+     */
     public void deletePermission(Long permissionId) {
         //首先把与permission关联的相关表的数据删掉
         String sql = "delete from sys_roles_permissions where permission_id=?";

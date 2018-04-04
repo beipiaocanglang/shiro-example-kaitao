@@ -57,5 +57,4 @@ public interface UserService {
      * @return
      */
     Set<String> findPermissions(String username);
-
 }

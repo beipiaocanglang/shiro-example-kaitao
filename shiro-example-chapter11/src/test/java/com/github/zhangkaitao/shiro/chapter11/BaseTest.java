@@ -15,9 +15,10 @@ import org.junit.After;
 import org.junit.Before;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 初始化数据
+ * 创建Subject
+ * 登录
+ * 退出时请解除绑定Subject到线程
  */
 public abstract class BaseTest {
 
@@ -34,14 +35,17 @@ public abstract class BaseTest {
     protected Role r2;
     protected User u1;
 
+    //初始化数据
     @Before
     public void setUp() {
+        /*
+            清空数据库表中现有的数据
+         */
         JdbcTemplateUtils.jdbcTemplate().update("delete from sys_users");
         JdbcTemplateUtils.jdbcTemplate().update("delete from sys_roles");
         JdbcTemplateUtils.jdbcTemplate().update("delete from sys_permissions");
         JdbcTemplateUtils.jdbcTemplate().update("delete from sys_users_roles");
         JdbcTemplateUtils.jdbcTemplate().update("delete from sys_roles_permissions");
-
 
         //1、新增权限
         p1 = new Permission("user:create", "用户模块新增", Boolean.TRUE);
@@ -75,16 +79,16 @@ public abstract class BaseTest {
         //2、得到SecurityManager实例 并绑定给SecurityUtils
         SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
-
     }
 
+    //退出时请解除绑定Subject到线程 否则对下次测试造成影响
     @After
     public void tearDown() throws Exception {
-        ThreadContext.unbindSubject();//退出时请解除绑定Subject到线程 否则对下次测试造成影响
+        ThreadContext.unbindSubject();
     }
 
+    //登录
     protected void login(String username, String password) {
-
         //3、得到Subject及创建用户名/密码身份验证Token（即用户身份/凭证）
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -95,5 +99,4 @@ public abstract class BaseTest {
     public Subject subject() {
         return SecurityUtils.getSubject();
     }
-
 }

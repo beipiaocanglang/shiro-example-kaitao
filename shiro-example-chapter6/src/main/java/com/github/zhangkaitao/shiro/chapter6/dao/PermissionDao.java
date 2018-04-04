@@ -7,7 +7,17 @@ import com.github.zhangkaitao.shiro.chapter6.entity.Permission;
  */
 public interface PermissionDao {
 
+    /**
+     * 创建权限
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午2:25
+     */
     Permission createPermission(Permission permission);
 
+    /**
+     * 删除权限
+     * author : sunpanhu
+     * createTime : 2018/4/4 下午2:25
+     */
     void deletePermission(Long permissionId);
 }

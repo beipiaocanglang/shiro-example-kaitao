@@ -12,6 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 校验密码输入错误的次数
+ * 校验加密、机密对比
  */
 public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher {
 

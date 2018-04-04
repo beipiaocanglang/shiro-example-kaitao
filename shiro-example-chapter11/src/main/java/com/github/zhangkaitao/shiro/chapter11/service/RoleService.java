@@ -3,28 +3,35 @@ package com.github.zhangkaitao.shiro.chapter11.service;
 import com.github.zhangkaitao.shiro.chapter11.entity.Role;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * service层 - 角色接口
  */
 public interface RoleService {
 
+    /**
+     * 创建角色
+     * author : sunpanhu
+     * createTime : 2018/4/2 下午1:16
+     */
+    Role createRole(Role role);
 
-    public Role createRole(Role role);
-    public void deleteRole(Long roleId);
+    /**
+     * 删除角色
+     * author : sunpanhu
+     * createTime : 2018/4/2 下午1:17
+     */
+    void deleteRole(Long roleId);
 
     /**
      * 添加角色-权限之间关系
      * @param roleId
      * @param permissionIds
      */
-    public void correlationPermissions(Long roleId, Long... permissionIds);
+    void correlationPermissions(Long roleId, Long... permissionIds);
 
     /**
      * 移除角色-权限之间关系
      * @param roleId
      * @param permissionIds
      */
-    public void uncorrelationPermissions(Long roleId, Long... permissionIds);
-
+    void uncorrelationPermissions(Long roleId, Long... permissionIds);
 }

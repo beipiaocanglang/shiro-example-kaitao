@@ -5,19 +5,26 @@ import com.github.zhangkaitao.shiro.chapter11.dao.RoleDaoImpl;
 import com.github.zhangkaitao.shiro.chapter11.entity.Role;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * service层 - 角色接口实现类
  */
 public class RoleServiceImpl implements RoleService {
 
     private RoleDao roleDao = new RoleDaoImpl();
 
-
+    /**
+     * 创建角色
+     * author : sunpanhu
+     * createTime : 2018/4/2 下午1:16
+     */
     public Role createRole(Role role) {
         return roleDao.createRole(role);
     }
 
+    /**
+     * 删除角色
+     * author : sunpanhu
+     * createTime : 2018/4/2 下午1:17
+     */
     public void deleteRole(Long roleId) {
         roleDao.deleteRole(roleId);
     }
@@ -39,5 +46,4 @@ public class RoleServiceImpl implements RoleService {
     public void uncorrelationPermissions(Long roleId, Long... permissionIds) {
         roleDao.uncorrelationPermissions(roleId, permissionIds);
     }
-
 }

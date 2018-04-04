@@ -7,9 +7,7 @@ import com.github.zhangkaitao.shiro.chapter11.entity.User;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * service层 - 用户接口实现类
  */
 public class UserServiceImpl implements UserService {
 
@@ -34,6 +32,7 @@ public class UserServiceImpl implements UserService {
     public void changePassword(Long userId, String newPassword) {
         User user =userDao.findOne(userId);
         user.setPassword(newPassword);
+        //加密密码
         passwordHelper.encryptPassword(user);
         userDao.updateUser(user);
     }
@@ -46,7 +45,6 @@ public class UserServiceImpl implements UserService {
     public void correlationRoles(Long userId, Long... roleIds) {
         userDao.correlationRoles(userId, roleIds);
     }
-
 
     /**
      * 移除用户-角色关系
@@ -83,5 +81,4 @@ public class UserServiceImpl implements UserService {
     public Set<String> findPermissions(String username) {
         return userDao.findPermissions(username);
     }
-
 }

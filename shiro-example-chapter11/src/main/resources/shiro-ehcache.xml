@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ehcache name="shirocache">
 
+    <!--缓存临时目录-->
     <diskStore path="java.io.tmpdir"/>
 
+    <!--授权缓存-->
     <cache name="authorizationCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
@@ -12,6 +14,7 @@
            statistics="true">
     </cache>
 
+    <!--认证缓存-->
     <cache name="authenticationCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
@@ -29,5 +32,4 @@
            overflowToDisk="false"
            statistics="true">
     </cache>
-
 </ehcache>
