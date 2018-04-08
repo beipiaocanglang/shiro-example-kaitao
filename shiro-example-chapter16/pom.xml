@@ -11,7 +11,6 @@
     <name>shiro-example-chapter16</name>
     <url>http://maven.apache.org</url>
 
-
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -120,8 +119,6 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -138,7 +135,6 @@
                 </configuration>
             </plugin>
 
-
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -146,11 +142,7 @@
                 <configuration>
                     <path>/${project.build.finalName}</path>
                 </configuration>
-
             </plugin>
         </plugins>
-
-
     </build>
-
 </project>

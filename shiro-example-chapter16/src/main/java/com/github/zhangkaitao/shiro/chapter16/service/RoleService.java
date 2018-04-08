@@ -6,19 +6,19 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 角色service - 接口
  */
 public interface RoleService {
 
+    Role createRole(Role role);
 
-    public Role createRole(Role role);
-    public Role updateRole(Role role);
-    public void deleteRole(Long roleId);
+    Role updateRole(Role role);
 
-    public Role findOne(Long roleId);
-    public List<Role> findAll();
+    void deleteRole(Long roleId);
+
+    Role findOne(Long roleId);
+
+    List<Role> findAll();
 
     /**
      * 根据角色编号得到角色标识符列表

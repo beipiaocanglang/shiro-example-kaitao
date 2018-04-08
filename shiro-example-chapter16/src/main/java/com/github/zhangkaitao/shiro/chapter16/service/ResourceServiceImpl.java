@@ -13,9 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-14
- * <p>Version: 1.0
+ * 资源service - 接口实现了
  */
 @Service
 
@@ -24,32 +22,26 @@ public class ResourceServiceImpl implements ResourceService {
     @Autowired
     private ResourceDao resourceDao;
 
-    @Override
     public Resource createResource(Resource resource) {
         return resourceDao.createResource(resource);
     }
 
-    @Override
     public Resource updateResource(Resource resource) {
         return resourceDao.updateResource(resource);
     }
 
-    @Override
     public void deleteResource(Long resourceId) {
         resourceDao.deleteResource(resourceId);
     }
 
-    @Override
     public Resource findOne(Long resourceId) {
         return resourceDao.findOne(resourceId);
     }
 
-    @Override
     public List<Resource> findAll() {
         return resourceDao.findAll();
     }
 
-    @Override
     public Set<String> findPermissions(Set<Long> resourceIds) {
         Set<String> permissions = new HashSet<String>();
         for(Long resourceId : resourceIds) {
@@ -61,7 +53,6 @@ public class ResourceServiceImpl implements ResourceService {
         return permissions;
     }
 
-    @Override
     public List<Resource> findMenus(Set<String> permissions) {
         List<Resource> allResources = findAll();
         List<Resource> menus = new ArrayList<Resource>();

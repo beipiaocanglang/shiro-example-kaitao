@@ -53,6 +53,4 @@
         <function-class>com.github.zhangkaitao.shiro.chapter16.web.taglib.Functions</function-class>
         <function-signature>java.lang.String resourceNames(java.util.Collection)</function-signature>
     </function>
-
-
 </taglib>

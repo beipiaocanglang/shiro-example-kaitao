@@ -5,16 +5,17 @@ import com.github.zhangkaitao.shiro.chapter16.entity.Role;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 角色DAO - 接口
  */
 public interface RoleDao {
 
-    public Role createRole(Role role);
-    public Role updateRole(Role role);
-    public void deleteRole(Long roleId);
+    Role createRole(Role role);
 
-    public Role findOne(Long roleId);
-    public List<Role> findAll();
+    Role updateRole(Role role);
+
+    void deleteRole(Long roleId);
+
+    Role findOne(Long roleId);
+
+    List<Role> findAll();
 }

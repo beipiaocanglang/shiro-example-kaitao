@@ -14,9 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * <p>Role: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 角色DAO - 接口实现类
  */
 @Repository
 public class RoleDaoImpl implements RoleDao {
@@ -29,7 +27,6 @@ public class RoleDaoImpl implements RoleDao {
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
                 int count = 1;
@@ -44,7 +41,6 @@ public class RoleDaoImpl implements RoleDao {
         return role;
     }
 
-    @Override
     public Role updateRole(Role role) {
         final String sql = "update sys_role set role=?, description=?, resource_ids=?, available=? where id=?";
         jdbcTemplate.update(
@@ -58,8 +54,6 @@ public class RoleDaoImpl implements RoleDao {
         jdbcTemplate.update(sql, roleId);
     }
 
-
-    @Override
     public Role findOne(Long roleId) {
         final String sql = "select id, role, description, resource_ids as resourceIdsStr, available from sys_role where id=?";
         List<Role> roleList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Role.class), roleId);
@@ -69,10 +63,8 @@ public class RoleDaoImpl implements RoleDao {
         return roleList.get(0);
     }
 
-    @Override
     public List<Role> findAll() {
         final String sql = "select id, role, description, resource_ids as resourceIdsStr, available from sys_role";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Role.class));
     }
-
 }

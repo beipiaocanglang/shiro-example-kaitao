@@ -3,9 +3,7 @@ package com.github.zhangkaitao.shiro.chapter16.entity;
 import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 组织机构pojo
  */
 public class Organization implements Serializable {
     private Long id; //编号

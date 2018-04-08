@@ -16,9 +16,6 @@ import java.util.*;
 
 /**
  * 包装Spring cache抽象
- * <p>User: Zhang Kaitao
- * <p>Date: 13-3-23 上午8:26
- * <p>Version: 1.0
  */
 public class SpringCacheManagerWrapper implements CacheManager {
 
@@ -33,7 +30,7 @@ public class SpringCacheManagerWrapper implements CacheManager {
         this.cacheManager = cacheManager;
     }
 
-    @Override
+    
     public <K, V> Cache<K, V> getCache(String name) throws CacheException {
         org.springframework.cache.Cache springCache = cacheManager.getCache(name);
         return new SpringCacheWrapper(springCache);
@@ -46,7 +43,7 @@ public class SpringCacheManagerWrapper implements CacheManager {
             this.springCache = springCache;
         }
 
-        @Override
+        
         public Object get(Object key) throws CacheException {
             Object value = springCache.get(key);
             if (value instanceof SimpleValueWrapper) {
@@ -55,24 +52,20 @@ public class SpringCacheManagerWrapper implements CacheManager {
             return value;
         }
 
-        @Override
         public Object put(Object key, Object value) throws CacheException {
             springCache.put(key, value);
             return value;
         }
 
-        @Override
         public Object remove(Object key) throws CacheException {
             springCache.evict(key);
             return null;
         }
 
-        @Override
         public void clear() throws CacheException {
             springCache.clear();
         }
 
-        @Override
         public int size() {
             if(springCache.getNativeCache() instanceof Ehcache) {
                 Ehcache ehcache = (Ehcache) springCache.getNativeCache();
@@ -81,7 +74,6 @@ public class SpringCacheManagerWrapper implements CacheManager {
             throw new UnsupportedOperationException("invoke spring cache abstract size method not supported");
         }
 
-        @Override
         public Set keys() {
             if(springCache.getNativeCache() instanceof Ehcache) {
                 Ehcache ehcache = (Ehcache) springCache.getNativeCache();
@@ -90,7 +82,6 @@ public class SpringCacheManagerWrapper implements CacheManager {
             throw new UnsupportedOperationException("invoke spring cache abstract keys method not supported");
         }
 
-        @Override
         public Collection values() {
             if(springCache.getNativeCache() instanceof Ehcache) {
                 Ehcache ehcache = (Ehcache) springCache.getNativeCache();

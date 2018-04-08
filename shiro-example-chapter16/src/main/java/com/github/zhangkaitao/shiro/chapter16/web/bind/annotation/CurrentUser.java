@@ -21,10 +21,8 @@ import com.github.zhangkaitao.shiro.chapter16.Constants;
 import java.lang.annotation.*;
 
 /**
- * <p>绑定当前登录的用户</p>
- * <p>不同于@ModelAttribute</p>
- *
- * @author Zhang Kaitao
+ * 绑定当前登录的用户
+ * 不同于@ModelAttribute
  */
 @Target({ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
@@ -37,5 +35,4 @@ public @interface CurrentUser {
      * @return
      */
     String value() default Constants.CURRENT_USER;
-
 }

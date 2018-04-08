@@ -14,9 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * <p>Resource: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 资源DAO - 接口实现类
  */
 @Repository
 public class ResourceDaoImpl implements ResourceDao {
@@ -28,7 +26,6 @@ public class ResourceDaoImpl implements ResourceDao {
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
                 int count = 1;
@@ -46,7 +43,6 @@ public class ResourceDaoImpl implements ResourceDao {
         return resource;
     }
 
-    @Override
     public Resource updateResource(Resource resource) {
         final String sql = "update sys_resource set name=?, type=?, url=?, permission=?, parent_id=?, parent_ids=?, available=? where id=?";
         jdbcTemplate.update(
@@ -63,8 +59,6 @@ public class ResourceDaoImpl implements ResourceDao {
         jdbcTemplate.update(deleteDescendantsSql, resource.makeSelfAsParentIds() + "%");
     }
 
-
-    @Override
     public Resource findOne(Long resourceId) {
         final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource where id=?";
         List<Resource> resourceList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Resource.class), resourceId);
@@ -74,10 +68,8 @@ public class ResourceDaoImpl implements ResourceDao {
         return resourceList.get(0);
     }
 
-    @Override
     public List<Resource> findAll() {
         final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource order by concat(parent_ids, id) asc";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Resource.class));
     }
-
 }

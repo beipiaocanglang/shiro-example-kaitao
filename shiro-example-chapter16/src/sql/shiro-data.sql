@@ -5,10 +5,7 @@ delete from sys_resource;
 delete from sys_organization;
 
 insert into sys_user values(1,1,'admin','d3c59d25033dbf980d29554025c23a75','8d78869f470951332959580424d4bf4f', '1', false);
-insert into sys_organization values(1, '总公司', 0, '0/', true);
-insert into sys_organization values(2, '分公司1', 1, '0/1/', true);
-insert into sys_organization values(3, '分公司2', 1, '0/1/', true);
-insert into sys_organization values(4, '分公司11', 2, '0/1/2/', true);
+insert into sys_organization values(1, '总公司', 0, '0/', true),(2, '分公司1', 1, '0/1/', true),(3, '分公司2', 1, '0/1/', true),(4, '分公司11', 2, '0/1/2/', true);
 
 insert into sys_resource values(1, '资源', 'menu', '', 0, '0/', '', true);
 
@@ -37,3 +34,5 @@ insert into sys_resource values(44, '角色删除', 'button', '', 41, '0/1/41/',
 insert into sys_resource values(45, '角色查看', 'button', '', 41, '0/1/41/', 'role:view', true);
 
 insert into sys_role values(1, 'admin', '超级管理员', '11,21,31,41', true);
+
+COMMIT ;

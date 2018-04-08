@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 用户pojo
  */
 public class User implements Serializable {
     private Long id; //编号
