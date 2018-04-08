@@ -3,9 +3,7 @@ package com.github.zhangkaitao.shiro.chapter13.entity;
 import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 用户pojo
  */
 public class User implements Serializable {
     private Long id;
@@ -15,8 +13,7 @@ public class User implements Serializable {
 
     private Boolean locked = Boolean.FALSE;
 
-    public User() {
-    }
+    public User() {}
 
     public User(String username, String password) {
         this.username = username;

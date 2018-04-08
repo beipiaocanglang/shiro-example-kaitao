@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
@@ -30,15 +31,15 @@
         <property name="roleDao" ref="roleDao"/>
     </bean>
 
+    <!--密码加密 算法  加密次数-->
     <bean id="passwordHelper" class="com.github.zhangkaitao.shiro.chapter13.service.PasswordHelper">
         <property name="algorithmName" value="md5"/>
         <property name="hashIterations" value="2"/>
     </bean>
 
+    <!--密码的加密/解密/5次密码错误处理-->
     <bean id="userService" class="com.github.zhangkaitao.shiro.chapter13.service.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
         <property name="passwordHelper" ref="passwordHelper"/>
     </bean>
-
-
 </beans>

@@ -3,10 +3,7 @@ package com.github.zhangkaitao.shiro.chapter13.entity;
 import java.io.Serializable;
 
 /**
- * 用户角色关系
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 权限 角色 关系 pojo
  */
 public class RolePermssion implements Serializable {
 

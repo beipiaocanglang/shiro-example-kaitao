@@ -3,9 +3,7 @@ package com.github.zhangkaitao.shiro.chapter13.entity;
 import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 角色pojo
  */
 public class Role implements Serializable {
     private Long id;
@@ -13,8 +11,7 @@ public class Role implements Serializable {
     private String description; //角色描述,UI界面显示使用
     private Boolean available = Boolean.FALSE; //是否可用,如果不可用将不会添加给用户
 
-    public Role() {
-    }
+    public Role() {}
 
     public Role(String role, String description, Boolean available) {
         this.role = role;

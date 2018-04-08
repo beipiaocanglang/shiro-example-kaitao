@@ -3,9 +3,7 @@ package com.github.zhangkaitao.shiro.chapter13.entity;
 import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 权限pojo
  */
 public class Permission implements Serializable {
     private Long id;
@@ -13,8 +11,7 @@ public class Permission implements Serializable {
     private String description; //权限描述,UI界面显示使用
     private Boolean available = Boolean.FALSE; //是否可用,如果不可用将不会添加给用户
 
-    public Permission() {
-    }
+    public Permission() {}
 
     public Permission(String permission, String description, Boolean available) {
         this.permission = permission;

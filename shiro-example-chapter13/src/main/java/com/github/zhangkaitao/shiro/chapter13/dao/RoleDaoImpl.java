@@ -10,9 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 角色dao - 接口
  */
 public class RoleDaoImpl extends JdbcDaoSupport implements RoleDao {
 
@@ -21,7 +19,6 @@ public class RoleDaoImpl extends JdbcDaoSupport implements RoleDao {
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         getJdbcTemplate().update(new PreparedStatementCreator() {
-            @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
                 psst.setString(1, Role.getRole());
@@ -44,7 +41,6 @@ public class RoleDaoImpl extends JdbcDaoSupport implements RoleDao {
         getJdbcTemplate().update(sql, roleId);
     }
 
-    @Override
     public void correlationPermissions(Long roleId, Long... permissionIds) {
         if(permissionIds == null || permissionIds.length == 0) {
             return;
@@ -57,8 +53,6 @@ public class RoleDaoImpl extends JdbcDaoSupport implements RoleDao {
         }
     }
 
-
-    @Override
     public void uncorrelationPermissions(Long roleId, Long... permissionIds) {
         if(permissionIds == null || permissionIds.length == 0) {
             return;
@@ -75,5 +69,4 @@ public class RoleDaoImpl extends JdbcDaoSupport implements RoleDao {
         String sql = "select count(1) from sys_roles_permissions where role_id=? and permission_id=?";
         return getJdbcTemplate().queryForObject(sql, Integer.class, roleId, permissionId) != 0;
     }
-
 }
