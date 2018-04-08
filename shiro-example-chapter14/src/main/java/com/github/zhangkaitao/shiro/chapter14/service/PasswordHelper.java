@@ -7,9 +7,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 密码加密、解密、输入5次错误提示
  */
 public class PasswordHelper {
 

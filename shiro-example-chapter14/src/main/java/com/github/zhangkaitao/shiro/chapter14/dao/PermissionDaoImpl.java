@@ -10,9 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 权限DAO - 接口实现类
  */
 public class PermissionDaoImpl extends JdbcDaoSupport implements PermissionDao {
 
@@ -21,7 +19,6 @@ public class PermissionDaoImpl extends JdbcDaoSupport implements PermissionDao {
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         getJdbcTemplate().update(new PreparedStatementCreator() {
-            @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
                 psst.setString(1, permission.getPermission());
@@ -43,5 +40,4 @@ public class PermissionDaoImpl extends JdbcDaoSupport implements PermissionDao {
         sql = "delete from sys_permissions where id=?";
         getJdbcTemplate().update(sql, permissionId);
     }
-
 }

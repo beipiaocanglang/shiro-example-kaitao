@@ -6,9 +6,7 @@ import com.github.zhangkaitao.shiro.chapter14.entity.User;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 用户service - 接口实现类
  */
 public class UserServiceImpl implements UserService {
 
@@ -91,5 +89,4 @@ public class UserServiceImpl implements UserService {
     public Set<String> findPermissions(String username) {
         return userDao.findPermissions(username);
     }
-
 }

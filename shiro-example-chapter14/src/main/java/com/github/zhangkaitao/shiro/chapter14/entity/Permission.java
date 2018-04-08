@@ -3,9 +3,7 @@ package com.github.zhangkaitao.shiro.chapter14.entity;
 import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 权限pojo
  */
 public class Permission implements Serializable {
     private Long id;
