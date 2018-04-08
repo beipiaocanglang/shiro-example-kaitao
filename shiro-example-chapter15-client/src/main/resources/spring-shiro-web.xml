@@ -2,9 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util
+                           http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!-- 缓存管理器 使用Ehcache实现 -->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
@@ -27,20 +28,32 @@
         <property name="authenticationCacheName" value="authenticationCache"/>
         <property name="authorizationCachingEnabled" value="true"/>
         <property name="authorizationCacheName" value="authorizationCache"/>
-        <property name="casServerUrlPrefix" value="https://localhost:8443/chapter14-server"/>
-        <property name="casService" value="https://localhost:9443/chapter14-client/cas"/>
+        <!--是CAS Server服务器端地址-->
+        <property name="casServerUrlPrefix" value="https://localhost:8443/chapter15-server"/>
+        <!--是当前应用CAS服务URL，即用于接收并处理登录成功后的Ticket的-->
+        <property name="casService" value="https://localhost:9443/chapter15-client/cas"/>
     </bean>
 
+    <!--如果角色/权限信息是由服务器端提供的话，我们可以直接使用CasRealm：-->
     <!--<bean id="casRealm" class="org.apache.shiro.cas.CasRealm">-->
         <!--<property name="cachingEnabled" value="true"/>-->
         <!--<property name="authenticationCachingEnabled" value="true"/>-->
         <!--<property name="authenticationCacheName" value="authenticationCache"/>-->
         <!--<property name="authorizationCachingEnabled" value="true"/>-->
         <!--<property name="authorizationCacheName" value="authorizationCache"/>-->
+        <!--默认添加给所有CAS登录成功用户的角色和权限信息-->
         <!--<property name="defaultRoles" value="admin,user"/>-->
         <!--<property name="defaultPermissions" value="user:create,user:update"/>-->
+
+        <!--
+            角色属性/权限属性名称，如果用户的角色/权限信息是从服务器端返回的
+            （即返回的CAS Principal中除了Principal之外还有如一些Attributes），
+            此时可以使用roleAttributeNames/ permissionAttributeNames得到Attributes中的角色/权限数据；
+            请自行查询CAS获取用户更多信息。
+        -->
         <!--<property name="roleAttributeNames" value="roles"/>-->
         <!--<property name="permissionAttributeNames" value="permissions"/>-->
+
         <!--<property name="casServerUrlPrefix" value="https://localhost:8443/chapter14-server"/>-->
         <!--<property name="casService" value="https://localhost:9443/chapter14-client/cas"/>-->
     <!--</bean>-->
@@ -110,6 +123,7 @@
         <property name="arguments" ref="securityManager"/>
     </bean>
 
+    <!--CasFilter类似于FormAuthenticationFilter，只不过其验证服务器端返回的CAS Service Ticket-->
     <bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
         <property name="failureUrl" value="/casFailure.jsp"/>
     </bean>
@@ -117,7 +131,8 @@
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
-        <property name="loginUrl" value="https://localhost:8443/chapter14-server/login?service=https://localhost:9443/chapter14-client/cas"/>
+        <!--loginUrl：https://localhost:8443/chapter15-server/login表示服务端端登录地址，登录成功后跳转到?service参数对于的地址进行客户端验证及登录；-->
+        <property name="loginUrl" value="https://localhost:8443/chapter15-server/login?service=https://localhost:9443/chapter15-client/cas"/>
         <property name="successUrl" value="/"/>
         <property name="filters">
             <util:map>
@@ -127,6 +142,7 @@
         <property name="filterChainDefinitions">
             <value>
                 /casFailure.jsp = anon
+                <!--即/cas地址是服务器端回调地址，使用CasFilter获取Ticket进行登录-->
                 /cas = cas
                 /logout = logout
                 /** = user

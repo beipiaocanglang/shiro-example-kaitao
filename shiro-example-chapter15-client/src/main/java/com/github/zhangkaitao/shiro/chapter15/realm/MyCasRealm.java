@@ -7,9 +7,7 @@ import org.apache.shiro.cas.CasRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-13
- * <p>Version: 1.0
+ * 自定义Realm
  */
 public class MyCasRealm extends CasRealm {
 
