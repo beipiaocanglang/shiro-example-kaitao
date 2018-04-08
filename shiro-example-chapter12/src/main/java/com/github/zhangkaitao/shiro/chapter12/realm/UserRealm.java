@@ -10,11 +10,14 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
+import javax.annotation.Resource;
+
 /**
  * 缓存的 自定义realm
  */
 public class UserRealm extends AuthorizingRealm {
 
+    @Resource
     private UserService userService;
 
     /**
@@ -118,5 +121,13 @@ public class UserRealm extends AuthorizingRealm {
     public void clearAllCache() {
         clearAllCachedAuthenticationInfo();
         clearAllCachedAuthorizationInfo();
+    }
+
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }
