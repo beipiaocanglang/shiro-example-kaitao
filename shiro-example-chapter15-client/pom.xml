@@ -169,8 +169,8 @@
                             <port>9443</port>
                             <maxIdleTime>60000</maxIdleTime>
                             <keystore>${project.basedir}/localhost.keystore</keystore>
-                            <password>123456</password>
-                            <keyPassword>123456</keyPassword>
+                            <password>canglang</password>
+                            <keyPassword>canglang</keyPassword>
                         </connector>
                     </connectors>
                 </configuration>
