@@ -43,6 +43,7 @@ public class UserRealm extends AuthorizingRealm {
 
         String username = (String)token.getPrincipal();
 
+        //根据用户名查询用户信息
         User user = userService.findByUsername(username);
 
         if(user == null) {
@@ -54,6 +55,7 @@ public class UserRealm extends AuthorizingRealm {
         }
 
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
+        //第一个参数是 放入session中的名字
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUsername(), //用户名
                 user.getPassword(), //密码

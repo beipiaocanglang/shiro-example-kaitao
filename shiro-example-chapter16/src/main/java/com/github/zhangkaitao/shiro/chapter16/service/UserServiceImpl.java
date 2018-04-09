@@ -53,13 +53,21 @@ public class UserServiceImpl implements UserService {
     public User findOne(Long userId) {
         return userDao.findOne(userId);
     }
-    
+
+    /**
+     * 无条件查询所有用户 - 用户管理
+     * author : sunpanhu
+     * createTime : 2018/4/9 下午12:17
+     * @return
+     */
     public List<User> findAll() {
         return userDao.findAll();
     }
 
     /**
      * 根据用户名查找用户
+     * author : sunpanhu
+     * createTime : 2018/4/9 下午12:24
      * @param username
      * @return
      */

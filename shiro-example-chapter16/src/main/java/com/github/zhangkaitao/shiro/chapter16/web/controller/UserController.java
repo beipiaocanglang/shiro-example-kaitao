@@ -15,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 关于用户操作
+ * author : sunpanhu
+ * createTime : 2018/4/9 上午11:37
  */
 @Controller
 @RequestMapping("/user")
@@ -22,12 +24,19 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private OrganizationService organizationService;
     @Autowired
     private RoleService roleService;
 
+    /**
+     * 拥有user:view权限的用户才能访问次请求
+     * 无条件查询所有用户 - 用户管理
+     * author : sunpanhu
+     * createTime : 2018/4/9 上午11:31
+     * @param model
+     * @return
+     */
     @RequiresPermissions("user:view")
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
@@ -85,7 +94,6 @@ public class UserController {
         redirectAttributes.addFlashAttribute("msg", "删除成功");
         return "redirect:/user";
     }
-
 
     @RequiresPermissions("user:update")
     @RequestMapping(value = "/{id}/changePassword", method = RequestMethod.GET)

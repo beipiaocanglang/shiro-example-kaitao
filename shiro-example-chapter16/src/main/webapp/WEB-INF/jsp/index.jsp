@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/layout-default-latest.css">
     </head>
     <body>
-
         <iframe name="content" class="ui-layout-center" src="${pageContext.request.contextPath}/welcome" frameborder="0" scrolling="auto"></iframe>
         <div class="ui-layout-north">欢迎[<shiro:principal/>]学习Shiro综合案例，
             <a href="${pageContext.request.contextPath}/logout">退出</a>

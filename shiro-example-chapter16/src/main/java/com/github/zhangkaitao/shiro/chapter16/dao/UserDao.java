@@ -17,7 +17,20 @@ public interface UserDao {
 
     User findOne(Long userId);
 
+    /**
+     * 无条件查询所有用户 - 用户管理
+     * author : sunpanhu
+     * createTime : 2018/4/9 下午12:17
+     * @return
+     */
     List<User> findAll();
 
+    /**
+     * 根据用户名查询用户信息
+     * author : sunpanhu
+     * createTime : 2018/4/9 下午12:24
+     * @param username
+     * @return
+     */
     User findByUsername(String username);
 }

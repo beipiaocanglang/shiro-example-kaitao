@@ -10,7 +10,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- * 用户权限拦截器
+ * 用于根据当前登录用户身份获取User信息放入request；然后就可以通过request获取User
+ * author : sunpanhu
+ * createTime : 2018/4/9 上午10:11
  */
 public class SysUserFilter extends PathMatchingFilter {
 

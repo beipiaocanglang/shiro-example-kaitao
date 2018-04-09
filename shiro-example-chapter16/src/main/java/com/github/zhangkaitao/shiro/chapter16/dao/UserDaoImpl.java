@@ -66,11 +66,24 @@ public class UserDaoImpl implements UserDao {
         return userList.get(0);
     }
 
+    /**
+     * 无条件查询所有用户 - 用户管理
+     * author : sunpanhu
+     * createTime : 2018/4/9 下午12:17
+     * @return
+     */
     public List<User> findAll() {
         String sql = "select id, organization_id, username, password, salt, role_ids as roleIdsStr, locked from sys_user";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class));
     }
 
+    /**
+     * 根据用户名查询用户信息
+     * author : sunpanhu
+     * createTime : 2018/4/9 下午12:24
+     * @param username
+     * @return
+     */
     public User findByUsername(String username) {
         String sql = "select id, organization_id, username, password, salt, role_ids as roleIdsStr, locked from sys_user where username=?";
         List<User> userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class), username);

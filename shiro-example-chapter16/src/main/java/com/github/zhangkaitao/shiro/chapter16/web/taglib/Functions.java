@@ -12,12 +12,20 @@ import org.springframework.util.CollectionUtils;
 import java.util.Collection;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-15
- * <p>Version: 1.0
+ * Web层标签库
+ * 提供了函数标签实现，有根据编号显示资源/角色/组织机构名称，其定义放在src/main/webapp/tld/zhang-functions.tld。
  */
 public class Functions {
 
+    /**
+     * obj in collection
+     * 和src/main/webapp/tld/zhang-functions.tld文件内容对应
+     * @param iterable
+     * @param element
+     * @return
+     * author : sunpanhu
+     * createTime : 2018/4/9 上午10:08
+     */
     public static boolean in(Iterable iterable, Object element) {
         if(iterable == null) {
             return false;
@@ -25,6 +33,14 @@ public class Functions {
         return CollectionUtils.contains(iterable.iterator(), element);
     }
 
+    /**
+     * 根据id显示组织机构名称
+     * 和src/main/webapp/tld/zhang-functions.tld文件内容对应
+     * @param organizationId
+     * @return
+     * author : sunpanhu
+     * createTime : 2018/4/9 上午10:08
+     */
     public static String organizationName(Long organizationId) {
         Organization organization = getOrganizationService().findOne(organizationId);
         if(organization == null) {
@@ -33,6 +49,14 @@ public class Functions {
         return organization.getName();
     }
 
+    /**
+     * 根据id列表显示多个组织机构名称
+     * 和src/main/webapp/tld/zhang-functions.tld文件内容对应
+     * @param organizationIds
+     * @return
+     * author : sunpanhu
+     * createTime : 2018/4/9 上午10:08
+     */
     public static String organizationNames(Collection<Long> organizationIds) {
         if(CollectionUtils.isEmpty(organizationIds)) {
             return "";
@@ -54,6 +78,15 @@ public class Functions {
 
         return s.toString();
     }
+
+    /**
+     * 根据id显示角色名称
+     * 和src/main/webapp/tld/zhang-functions.tld文件内容对应
+     * @param roleId
+     * @return
+     * author : sunpanhu
+     * createTime : 2018/4/9 上午10:08
+     */
     public static String roleName(Long roleId) {
         Role role = getRoleService().findOne(roleId);
         if(role == null) {
@@ -62,6 +95,14 @@ public class Functions {
         return role.getDescription();
     }
 
+    /**
+     * 根据id列表显示多个角色名称
+     * 和src/main/webapp/tld/zhang-functions.tld文件内容对应
+     * @param roleIds
+     * @return
+     * author : sunpanhu
+     * createTime : 2018/4/9 上午10:08
+     */
     public static String roleNames(Collection<Long> roleIds) {
         if(CollectionUtils.isEmpty(roleIds)) {
             return "";
@@ -83,6 +124,15 @@ public class Functions {
 
         return s.toString();
     }
+
+    /**
+     * 根据id显示资源名称
+     * 和src/main/webapp/tld/zhang-functions.tld文件内容对应
+     * @param resourceId
+     * @return
+     * author : sunpanhu
+     * createTime : 2018/4/9 上午10:08
+     */
     public static String resourceName(Long resourceId) {
         Resource resource = getResourceService().findOne(resourceId);
         if(resource == null) {
@@ -90,6 +140,15 @@ public class Functions {
         }
         return resource.getName();
     }
+
+    /**
+     * 根据id列表显示多个资源名称
+     * 和src/main/webapp/tld/zhang-functions.tld文件内容对应
+     * @param resourceIds
+     * @return
+     * author : sunpanhu
+     * createTime : 2018/4/9 上午10:08
+     */
     public static String resourceNames(Collection<Long> resourceIds) {
         if(CollectionUtils.isEmpty(resourceIds)) {
             return "";
@@ -116,6 +175,7 @@ public class Functions {
     private static RoleService roleService;
     private static ResourceService resourceService;
 
+    //上面调用
     public static OrganizationService getOrganizationService() {
         if(organizationService == null) {
             organizationService = SpringUtils.getBean(OrganizationService.class);
@@ -123,6 +183,7 @@ public class Functions {
         return organizationService;
     }
 
+    //上面调用
     public static RoleService getRoleService() {
         if(roleService == null) {
             roleService = SpringUtils.getBean(RoleService.class);
@@ -130,6 +191,7 @@ public class Functions {
         return roleService;
     }
 
+    //上面调用
     public static ResourceService getResourceService() {
         if(resourceService == null) {
             resourceService = SpringUtils.getBean(ResourceService.class);

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController {
 
     @RequestMapping(value = "/login"    )
-    public String showLoginForm(HttpServletRequest req, Model model) {
+    public String showLoginForm(HttpServletRequest req, Model model){
         String exceptionClassName = (String)req.getAttribute("shiroLoginFailure");
         String error = null;
         if(UnknownAccountException.class.getName().equals(exceptionClassName)) {
