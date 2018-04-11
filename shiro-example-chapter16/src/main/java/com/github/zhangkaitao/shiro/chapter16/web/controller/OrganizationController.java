@@ -21,13 +21,24 @@ public class OrganizationController {
 
     @Autowired
     private OrganizationService organizationService;
-
+    /**
+     * 组织结构首页
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午5:18
+     * @return
+     */
     @RequiresPermissions("organization:view")
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
         return "organization/index";
     }
 
+    /**
+     * 默认加载右侧组织结构首页时发送请求加载对应的数据
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午5:20
+     * @return
+     */
     @RequiresPermissions("organization:view")
     @RequestMapping(value = "/tree", method = RequestMethod.GET)
     public String showTree(Model model) {
@@ -35,26 +46,13 @@ public class OrganizationController {
         return "organization/tree";
     }
 
-    @RequiresPermissions("organization:create")
-    @RequestMapping(value = "/{parentId}/appendChild", method = RequestMethod.GET)
-    public String showAppendChildForm(@PathVariable("parentId") Long parentId, Model model) {
-        Organization parent = organizationService.findOne(parentId);
-        model.addAttribute("parent", parent);
-        Organization child = new Organization();
-        child.setParentId(parentId);
-        child.setParentIds(parent.makeSelfAsParentIds());
-        model.addAttribute("child", child);
-        model.addAttribute("op", "新增");
-        return "organization/appendChild";
-    }
-
-    @RequiresPermissions("organization:create")
-    @RequestMapping(value = "/{parentId}/appendChild", method = RequestMethod.POST)
-    public String create(Organization organization) {
-        organizationService.createOrganization(organization);
-        return "redirect:/organization/success";
-    }
-
+    /**
+     * 点击节点时根据组织id查询组织数据 获取节点详细信息 最右侧组织节点详细信息
+     * 刷新树形
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午5:07
+     * @return
+     */
     @RequiresPermissions("organization:update")
     @RequestMapping(value = "/{id}/maintain", method = RequestMethod.GET)
     public String showMaintainForm(@PathVariable("id") Long id, Model model) {
@@ -62,11 +60,52 @@ public class OrganizationController {
         return "organization/maintain";
     }
 
+    /**
+     * 添加组织结构的子节点 点击"添加子节点"时
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午5:20
+     * @return
+     */
+    @RequiresPermissions("organization:create")
+    @RequestMapping(value = "/{parentId}/appendChild", method = RequestMethod.GET)
+    public String showAppendChildForm(@PathVariable("parentId") Long parentId, Model model) {
+        //根据当前节点的父节点id查询节点信息
+        Organization parent = organizationService.findOne(parentId);
+        model.addAttribute("parent", parent);
+        Organization child = new Organization();
+        child.setParentId(parentId);
+        child.setParentIds(parent.makeSelfAsParentIds());
+        model.addAttribute("child", child);
+        model.addAttribute("op", "新增");
+        //跳转到新增页面
+        return "organization/appendChild";
+    }
+    /**
+     * 添加组织结构的子节点 新增子节点页面的 点击 "新增子节点(保存)" 时
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午5:30
+     * @return
+     */
+    @RequiresPermissions("organization:create")
+    @RequestMapping(value = "/{parentId}/appendChild", method = RequestMethod.POST)
+    public String create(Organization organization) {
+        organizationService.createOrganization(organization);
+        //重定向到本类中的成功请求中(最下面)
+        return "redirect:/organization/success";
+    }
+
+    /**
+     * 修改组织结构子节点名称
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午5:30
+     * @return
+     */
     @RequiresPermissions("organization:update")
     @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
     public String update(Organization organization, RedirectAttributes redirectAttributes) {
         organizationService.updateOrganization(organization);
         redirectAttributes.addFlashAttribute("msg", "修改成功");
+        //重定向到本类中的成功请求中(最下面)
         return "redirect:/organization/success";
     }
 
@@ -97,6 +136,12 @@ public class OrganizationController {
         return "redirect:/organization/success";
     }
 
+    /**
+     * 跳转到成功页面
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午5:34
+     * @return
+     */
     @RequiresPermissions("organization:view")
     @RequestMapping(value = "/success", method = RequestMethod.GET)
     public String success() {

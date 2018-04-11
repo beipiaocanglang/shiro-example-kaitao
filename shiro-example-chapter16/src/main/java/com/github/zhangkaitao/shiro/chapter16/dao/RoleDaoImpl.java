@@ -54,6 +54,12 @@ public class RoleDaoImpl implements RoleDao {
         jdbcTemplate.update(sql, roleId);
     }
 
+    /**
+     * 根据角色id查询角色信息
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午5:00
+     * @return
+     */
     public Role findOne(Long roleId) {
         final String sql = "select id, role, description, resource_ids as resourceIdsStr, available from sys_role where id=?";
         List<Role> roleList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Role.class), roleId);

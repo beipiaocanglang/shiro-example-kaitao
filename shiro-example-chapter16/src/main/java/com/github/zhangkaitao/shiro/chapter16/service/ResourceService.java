@@ -9,15 +9,45 @@ import java.util.Set;
  * 资源service - 接口
  */
 public interface ResourceService {
-
+    /**
+     * 创建资源
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:16
+     * @param resource
+     * @return
+     */
     Resource createResource(Resource resource);
-
+    /**
+     * 更新资源
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:16
+     * @param resource
+     * @return
+     */
     Resource updateResource(Resource resource);
-
+    /**
+     * 根据资源id删除资源
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:16
+     * @param resourceId
+     * @return
+     */
     void deleteResource(Long resourceId);
-
+    /**
+     * 根据资源id查找资源
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:16
+     * @param resourceId
+     * @return
+     */
     Resource findOne(Long resourceId);
-
+    /**
+     * 查询所有资源
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:17
+     * @param null
+     * @return
+     */
     List<Resource> findAll();
 
     /**

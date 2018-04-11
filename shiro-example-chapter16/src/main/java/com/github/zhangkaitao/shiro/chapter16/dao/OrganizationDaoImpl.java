@@ -57,6 +57,12 @@ public class OrganizationDaoImpl implements OrganizationDao {
         jdbcTemplate.update(deleteDescendantsSql, organization.makeSelfAsParentIds() + "%");
     }
 
+    /**
+     * 根据组织id查询组织数据
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午5:07
+     * @return
+     */
     public Organization findOne(Long organizationId) {
         final String sql = "select id, name, parent_id, parent_ids, available from sys_organization where id=?";
         List<Organization> organizationList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Organization.class), organizationId);
@@ -66,6 +72,12 @@ public class OrganizationDaoImpl implements OrganizationDao {
         return organizationList.get(0);
     }
 
+    /**
+     * 查询所有组织机构
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:53
+     * @return
+     */
     public List<Organization> findAll() {
         final String sql = "select id, name, parent_id, parent_ids, available from sys_organization";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Organization.class));

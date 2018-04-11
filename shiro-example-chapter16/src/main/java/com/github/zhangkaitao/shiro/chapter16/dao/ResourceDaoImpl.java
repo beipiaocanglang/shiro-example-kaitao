@@ -20,7 +20,13 @@ import java.util.List;
 public class ResourceDaoImpl implements ResourceDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    
+
+    /**
+     * 创建资源
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:10
+     * @return
+     */
     public Resource createResource(final Resource resource) {
         final String sql = "insert into sys_resource(name, type, url, permission, parent_id, parent_ids, available) values(?,?,?,?,?,?,?)";
 
@@ -43,6 +49,12 @@ public class ResourceDaoImpl implements ResourceDao {
         return resource;
     }
 
+    /**
+     * 根据资源id更新资源信息
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:10
+     * @return
+     */
     public Resource updateResource(Resource resource) {
         final String sql = "update sys_resource set name=?, type=?, url=?, permission=?, parent_id=?, parent_ids=?, available=? where id=?";
         jdbcTemplate.update(
@@ -51,6 +63,12 @@ public class ResourceDaoImpl implements ResourceDao {
         return resource;
     }
 
+    /**
+     * 根据资源id删除资源数据
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:10
+     * @return
+     */
     public void deleteResource(Long resourceId) {
         Resource resource = findOne(resourceId);
         final String deleteSelfSql = "delete from sys_resource where id=?";
@@ -59,6 +77,12 @@ public class ResourceDaoImpl implements ResourceDao {
         jdbcTemplate.update(deleteDescendantsSql, resource.makeSelfAsParentIds() + "%");
     }
 
+    /**
+     * 根据资源id查询资源数据
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:10
+     * @return
+     */
     public Resource findOne(Long resourceId) {
         final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource where id=?";
         List<Resource> resourceList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Resource.class), resourceId);
@@ -68,6 +92,12 @@ public class ResourceDaoImpl implements ResourceDao {
         return resourceList.get(0);
     }
 
+    /**
+     * 查询所有资源
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:10
+     * @return
+     */
     public List<Resource> findAll() {
         final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource order by concat(parent_ids, id) asc";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Resource.class));

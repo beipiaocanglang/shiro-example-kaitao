@@ -14,9 +14,19 @@ public interface OrganizationService {
     Organization updateOrganization(Organization organization);
 
     void deleteOrganization(Long organizationId);
-
+    /**
+     * 根据组织id查询组织数据
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午5:07
+     * @return
+     */
     Organization findOne(Long organizationId);
-
+    /**
+     * 查询所有组织机构
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:53
+     * @return
+     */
     List<Organization> findAll();
 
     Object findAllWithExclude(Organization excludeOraganization);

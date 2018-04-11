@@ -7,7 +7,7 @@
     <body>
 
         <iframe name="content" class="ui-layout-center" src="" frameborder="0" scrolling="auto"></iframe>
-
+        <%--默认加载右侧组织结构首页时发送请求加载对应的数据--%>
         <iframe name="tree" class="ui-layout-west" src="${pageContext.request.contextPath}/organization/tree" frameborder="0" scrolling="auto"></iframe>
 
         <script src="${pageContext.request.contextPath}/static/js/jquery-1.11.0.min.js"></script>

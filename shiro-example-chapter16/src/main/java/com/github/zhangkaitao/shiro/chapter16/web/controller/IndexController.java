@@ -36,6 +36,7 @@ public class IndexController {
     @RequestMapping("/")
     public String index(@CurrentUser User loginUser, Model model) {
         /*
+         * 获取该用户的权限、角色、资源以及资源对应的菜单
          * 查询流程：
          *      使用自定义注解 @CurrentUser User loginUser  可以拿到用户信息
          *      1、根据用户名查找用户信息
@@ -50,12 +51,18 @@ public class IndexController {
          *      6、放入Model中
          */
         Set<String> permissions = userService.findPermissions(loginUser.getUsername());
+        //根据权限查询权限对应的资源
         List<Resource> menus = resourceService.findMenus(permissions);
 
         model.addAttribute("menus", menus);
         return "index";
     }
-
+    /**
+     * 项目登录成功后 右侧显示的欢迎页信息
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午5:15
+     * @return
+     */
     @RequestMapping("/welcome")
     public String welcome() {
         return "welcome";

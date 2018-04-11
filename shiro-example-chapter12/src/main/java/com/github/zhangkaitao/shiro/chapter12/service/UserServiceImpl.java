@@ -2,12 +2,14 @@ package com.github.zhangkaitao.shiro.chapter12.service;
 
 import com.github.zhangkaitao.shiro.chapter12.dao.UserDao;
 import com.github.zhangkaitao.shiro.chapter12.entity.User;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 /**
  * Service层 - 角色接口实现类
  */
+@Service
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;

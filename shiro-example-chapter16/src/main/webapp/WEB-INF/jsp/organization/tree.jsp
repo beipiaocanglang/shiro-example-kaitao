@@ -2,6 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
+        <title>组织结构 树形菜单</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/JQuery zTree v3.5.15/css/zTreeStyle/zTreeStyle.css">
     </head>
     <body>

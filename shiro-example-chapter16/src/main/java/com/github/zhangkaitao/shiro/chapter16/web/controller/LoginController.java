@@ -16,6 +16,8 @@ public class LoginController {
 
     @RequestMapping(value = "/login"    )
     public String showLoginForm(HttpServletRequest req, Model model){
+        //指定登录失败时的request属性key（默认shiroLoginFailure）；这样可以在登录表单得到该错误key显示相应的错误消息；
+        //authc.failureKeyAttribute=shiroLoginFailure
         String exceptionClassName = (String)req.getAttribute("shiroLoginFailure");
         String error = null;
         if(UnknownAccountException.class.getName().equals(exceptionClassName)) {

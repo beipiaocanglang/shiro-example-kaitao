@@ -28,10 +28,21 @@ public class OrganizationServiceImpl implements OrganizationService {
         organizationDao.deleteOrganization(organizationId);
     }
 
+    /**
+     * 根据组织id查询组织数据
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午5:07
+     * @return
+     */
     public Organization findOne(Long organizationId) {
         return organizationDao.findOne(organizationId);
     }
-    
+    /**
+     * 查询所有组织机构
+     * author : sunpanhu
+     * createTime : 2018/4/11 下午4:53
+     * @return
+     */
     public List<Organization> findAll() {
         return organizationDao.findAll();
     }
