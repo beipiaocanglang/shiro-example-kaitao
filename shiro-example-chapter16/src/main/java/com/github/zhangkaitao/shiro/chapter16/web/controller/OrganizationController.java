@@ -34,7 +34,7 @@ public class OrganizationController {
     }
 
     /**
-     * 默认加载右侧组织结构首页时发送请求加载对应的数据
+     * 默认加载右侧组织结构首页时 发送请求加载对应的数据
      * author : sunpanhu
      * createTime : 2018/4/11 下午5:20
      * @return
@@ -61,7 +61,7 @@ public class OrganizationController {
     }
 
     /**
-     * 添加组织结构的子节点 点击"添加子节点"时
+     * 添加组织结构的子节点 点击"添加子节点"时 获取当前节点信息
      * author : sunpanhu
      * createTime : 2018/4/11 下午5:20
      * @return
@@ -72,9 +72,11 @@ public class OrganizationController {
         //根据当前节点的父节点id查询节点信息
         Organization parent = organizationService.findOne(parentId);
         model.addAttribute("parent", parent);
+
         Organization child = new Organization();
         child.setParentId(parentId);
         child.setParentIds(parent.makeSelfAsParentIds());
+
         model.addAttribute("child", child);
         model.addAttribute("op", "新增");
         //跳转到新增页面
@@ -89,13 +91,14 @@ public class OrganizationController {
     @RequiresPermissions("organization:create")
     @RequestMapping(value = "/{parentId}/appendChild", method = RequestMethod.POST)
     public String create(Organization organization) {
+        //添加子节点
         organizationService.createOrganization(organization);
         //重定向到本类中的成功请求中(最下面)
         return "redirect:/organization/success";
     }
 
     /**
-     * 修改组织结构子节点名称
+     * 修改组织结构节点名称
      * author : sunpanhu
      * createTime : 2018/4/11 下午5:30
      * @return
@@ -103,12 +106,19 @@ public class OrganizationController {
     @RequiresPermissions("organization:update")
     @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
     public String update(Organization organization, RedirectAttributes redirectAttributes) {
+        //更新节点信息
         organizationService.updateOrganization(organization);
         redirectAttributes.addFlashAttribute("msg", "修改成功");
         //重定向到本类中的成功请求中(最下面)
         return "redirect:/organization/success";
     }
 
+    /**
+     * 删除子节点
+     * author : sunpanhu
+     * createTime : 2018/4/12 上午10:33
+     * @return
+     */
     @RequiresPermissions("organization:delete")
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
     public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
@@ -117,21 +127,36 @@ public class OrganizationController {
         return "redirect:/organization/success";
     }
 
-
+    /**
+     * 点击节点详情中的『移动节点』
+     * author : sunpanhu
+     * createTime : 2018/4/12 上午10:53
+     * @return
+     */
     @RequiresPermissions("organization:update")
     @RequestMapping(value = "/{sourceId}/move", method = RequestMethod.GET)
     public String showMoveForm(@PathVariable("sourceId") Long sourceId, Model model) {
+        //根据id获取组织信息
         Organization source = organizationService.findOne(sourceId);
         model.addAttribute("source", source);
+        //查询所有不包含当前组织信息的其他所有组织信息 用于在move页面中回显要移动到的节点
         model.addAttribute("targetList", organizationService.findAllWithExclude(source));
         return "organization/move";
     }
-
+    /**
+     * 执行移动页面的中的"移动"按钮
+     * author : sunpanhu
+     * createTime : 2018/4/12 上午11:08
+     * @return
+     */
     @RequiresPermissions("organization:update")
     @RequestMapping(value = "/{sourceId}/move", method = RequestMethod.POST)
     public String move(@PathVariable("sourceId") Long sourceId, @RequestParam("targetId") Long targetId) {
+        //获取当前组织信息
         Organization source = organizationService.findOne(sourceId);
+        //获取要移动到的组织信息
         Organization target = organizationService.findOne(targetId);
+        //执行移动操作
         organizationService.move(source, target);
         return "redirect:/organization/success";
     }
