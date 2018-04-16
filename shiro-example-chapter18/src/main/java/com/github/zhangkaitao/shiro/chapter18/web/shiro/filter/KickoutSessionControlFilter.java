@@ -16,9 +16,9 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-18
- * <p>Version: 1.0
+ * 用于控制并发登录人数的
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午5:39
  */
 public class KickoutSessionControlFilter extends AccessControlFilter {
 
