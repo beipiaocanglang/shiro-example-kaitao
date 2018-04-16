@@ -23,9 +23,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-16
- * <p>Version: 1.0
+ * 资源控制器
+ * 作用：
+ *      1、首先通过如http://localhost:8080/chapter17-server/userInfo? access_token=828beda907066d058584f37bcfd597b6进行访问；
+ *      2、该控制器会验证access token的有效性；如果无效了将返回相应的错误，客户端再重新进行授权；
+ *      3、如果有效，则返回当前登录用户的用户名。
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:26
  */
 @RestController
 public class UserInfoController {
@@ -33,6 +37,12 @@ public class UserInfoController {
     @Autowired
     private OAuthService oAuthService;
 
+    /**
+     * 获取 校验用户信息
+     * author : sunpanhu
+     * createTime : 2018/4/16 下午5:16
+     * @return
+     */
     @RequestMapping("/userInfo")
     public HttpEntity userInfo(HttpServletRequest request) throws OAuthSystemException {
         try {
@@ -52,11 +62,13 @@ public class UserInfoController {
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.add(OAuth.HeaderType.WWW_AUTHENTICATE, oauthResponse.getHeader(OAuth.HeaderType.WWW_AUTHENTICATE));
-                return new ResponseEntity(headers, HttpStatus.UNAUTHORIZED);
+                ResponseEntity responseEntity = new ResponseEntity(headers, HttpStatus.UNAUTHORIZED);
+                return responseEntity;
             }
             //返回用户名
             String username = oAuthService.getUsernameByAccessToken(accessToken);
-            return new ResponseEntity(username, HttpStatus.OK);
+            ResponseEntity responseEntity = new ResponseEntity(username, HttpStatus.OK);
+            return responseEntity;
         } catch (OAuthProblemException e) {
             //检查是否设置了错误码
             String errorCode = e.getError();
@@ -68,7 +80,8 @@ public class UserInfoController {
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.add(OAuth.HeaderType.WWW_AUTHENTICATE, oauthResponse.getHeader(OAuth.HeaderType.WWW_AUTHENTICATE));
-                return new ResponseEntity(headers, HttpStatus.UNAUTHORIZED);
+                ResponseEntity responseEntity = new ResponseEntity(headers, HttpStatus.UNAUTHORIZED);
+                return responseEntity;
             }
 
             OAuthResponse oauthResponse = OAuthRSResponse
@@ -81,7 +94,8 @@ public class UserInfoController {
 
             HttpHeaders headers = new HttpHeaders();
             headers.add(OAuth.HeaderType.WWW_AUTHENTICATE, oauthResponse.getHeader(OAuth.HeaderType.WWW_AUTHENTICATE));
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            ResponseEntity responseEntity = new ResponseEntity(HttpStatus.BAD_REQUEST);
+            return responseEntity;
         }
     }
 }

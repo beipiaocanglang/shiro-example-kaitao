@@ -11,15 +11,16 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 自定义Realm
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:29
  */
 public class UserRealm extends AuthorizingRealm {
 
     @Autowired
     private UserService userService;
 
+    //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String)principals.getPrimaryPrincipal();
@@ -29,6 +30,7 @@ public class UserRealm extends AuthorizingRealm {
         return authorizationInfo;
     }
 
+    //认证
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 

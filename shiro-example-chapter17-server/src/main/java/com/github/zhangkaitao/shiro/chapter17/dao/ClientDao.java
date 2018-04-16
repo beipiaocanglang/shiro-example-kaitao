@@ -5,9 +5,9 @@ import com.github.zhangkaitao.shiro.chapter17.entity.Client;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 客户端 DAO 接口
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:11
  */
 public interface ClientDao {
     Client createClient(Client client);

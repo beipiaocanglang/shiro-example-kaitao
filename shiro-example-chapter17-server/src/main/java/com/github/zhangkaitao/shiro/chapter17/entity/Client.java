@@ -3,15 +3,19 @@ package com.github.zhangkaitao.shiro.chapter17.entity;
 import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-17
- * <p>Version: 1.0
+ * 客户端pojo
+ * 存储客户端的的客户端id及客户端安全key；在进行授权时使用。
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:06
  */
 public class Client implements Serializable {
-
+    //主键id
     private Long id;
+    //客户端名称
     private String clientName;
+    //客户端id
     private String clientId;
+    //客户端安全key
     private String clientSecret;
 
     public Long getId() {
@@ -44,12 +48,18 @@ public class Client implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Client client = (Client) o;
 
-        if (id != null ? !id.equals(client.id) : client.id != null) return false;
+        if (id != null ? !id.equals(client.id) : client.id != null) {
+            return false;
+        }
 
         return true;
     }

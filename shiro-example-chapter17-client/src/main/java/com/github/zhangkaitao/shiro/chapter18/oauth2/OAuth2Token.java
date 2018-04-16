@@ -3,18 +3,19 @@ package com.github.zhangkaitao.shiro.chapter18.oauth2;
 import org.apache.shiro.authc.AuthenticationToken;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-18
- * <p>Version: 1.0
+ * 类似于UsernamePasswordToken和CasToken；用于存储oauth2服务端返回的auth code。
+ * 在自定义Realm中会用到这个
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:30
  */
 public class OAuth2Token implements AuthenticationToken {
+
+    private String authCode;
+    private String principal;
 
     public OAuth2Token(String authCode) {
         this.authCode = authCode;
     }
-
-    private String authCode;
-    private String principal;
 
     public String getAuthCode() {
         return authCode;

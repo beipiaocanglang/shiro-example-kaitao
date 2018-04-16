@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-15
- * <p>Version: 1.0
+ * 后端数据维护控制器 - 登录
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:21
  */
 @Controller
 public class LoginController {

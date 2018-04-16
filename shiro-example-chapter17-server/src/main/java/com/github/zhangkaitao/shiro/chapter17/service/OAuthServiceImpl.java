@@ -6,9 +6,8 @@ import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-17
- * <p>Version: 1.0
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:14
  */
 @Service
 public class OAuthServiceImpl implements OAuthService {

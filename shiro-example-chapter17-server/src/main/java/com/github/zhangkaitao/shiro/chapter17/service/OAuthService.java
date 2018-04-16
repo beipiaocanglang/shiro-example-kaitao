@@ -1,9 +1,8 @@
 package com.github.zhangkaitao.shiro.chapter17.service;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-17
- * <p>Version: 1.0
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:14
  */
 public interface OAuthService {
     //添加 auth code
@@ -27,5 +26,6 @@ public interface OAuthService {
 
     boolean checkClientId(String clientId);
 
+    // 检查客户端安全KEY是否正确
     boolean checkClientSecret(String clientSecret);
 }

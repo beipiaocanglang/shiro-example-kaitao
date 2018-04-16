@@ -14,16 +14,20 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 用户端 DAO 接口实现类
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:12
  */
 @Repository
 public class UserDaoImpl implements UserDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    
+
+    /**
+     * 创建用户
+     * @param user
+     */
     public User createUser(final User user) {
         final String sql = "insert into oauth2_user(username, password, salt) values(?,?,?)";
 
@@ -42,7 +46,11 @@ public class UserDaoImpl implements UserDao {
         user.setId(keyHolder.getKey().longValue());
         return user;
     }
-
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
     public User updateUser(User user) {
         String sql = "update oauth2_user set username=?, password=?, salt=? where id=?";
         jdbcTemplate.update(
@@ -50,12 +58,19 @@ public class UserDaoImpl implements UserDao {
                 user.getUsername(), user.getPassword(), user.getSalt(), user.getId());
         return user;
     }
-
+    /**
+     * 删除用户
+     * @param userId
+     */
     public void deleteUser(Long userId) {
         String sql = "delete from oauth2_user where id=?";
         jdbcTemplate.update(sql, userId);
     }
-
+    /**
+     * 根据用户id查找用户
+     * @param userId
+     * @return
+     */
     public User findOne(Long userId) {
         String sql = "select id, username, password, salt from oauth2_user where id=?";
         List<User> userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class), userId);
@@ -64,12 +79,19 @@ public class UserDaoImpl implements UserDao {
         }
         return userList.get(0);
     }
-
+    /**
+     * 查询所有用户列表
+     * @return
+     */
     public List<User> findAll() {
         String sql = "select id, username, password, salt from oauth2_user";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class));
     }
-
+    /**
+     * 根据用户名查找用户
+     * @param username
+     * @return
+     */
     public User findByUsername(String username) {
         String sql = "select id, username, password, salt from oauth2_user where username=?";
         List<User> userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class), username);

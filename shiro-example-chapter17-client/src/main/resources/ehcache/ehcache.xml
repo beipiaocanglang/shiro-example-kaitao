@@ -12,7 +12,7 @@
            overflowToDisk="false"
            statistics="true">
     </cache>
-
+    <!--授权-->
     <cache name="authorizationCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
@@ -21,7 +21,7 @@
            overflowToDisk="false"
            statistics="true">
     </cache>
-
+    <!--认证-->
     <cache name="authenticationCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
@@ -30,7 +30,7 @@
            overflowToDisk="false"
            statistics="true">
     </cache>
-
+    <!--session管理器-->
     <cache name="shiro-activeSessionCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
@@ -48,5 +48,4 @@
            overflowToDisk="false"
            statistics="true">
     </cache>
-
 </ehcache>

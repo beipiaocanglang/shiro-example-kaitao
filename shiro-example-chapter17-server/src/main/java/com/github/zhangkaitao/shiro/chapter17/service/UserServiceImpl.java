@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-17
- * <p>Version: 1.0
+ * 用户端 SERVICE 接口实现类
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:14
  */
 @Transactional
 @Service
@@ -30,15 +30,21 @@ public class UserServiceImpl implements UserService {
         passwordHelper.encryptPassword(user);
         return userDao.createUser(user);
     }
-
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
     public User updateUser(User user) {
         return userDao.updateUser(user);
     }
-
+    /**
+     * 删除用户
+     * @param userId
+     */
     public void deleteUser(Long userId) {
         userDao.deleteUser(userId);
     }
-
     /**
      * 修改密码
      * @param userId
@@ -50,15 +56,21 @@ public class UserServiceImpl implements UserService {
         passwordHelper.encryptPassword(user);
         userDao.updateUser(user);
     }
-
+    /**
+     * 根据用户id查找用户
+     * @param userId
+     * @return
+     */
     public User findOne(Long userId) {
         return userDao.findOne(userId);
     }
-    
+    /**
+     * 查询所有用户列表
+     * @return
+     */
     public List<User> findAll() {
         return userDao.findAll();
     }
-
     /**
      * 根据用户名查找用户
      * @param username

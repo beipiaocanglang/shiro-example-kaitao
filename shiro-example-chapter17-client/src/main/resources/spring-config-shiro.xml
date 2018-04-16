@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:util="http://www.springframework.org/schema/util"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/util
-                           http://www.springframework.org/schema/util/spring-util.xsd
-                           http://www.springframework.org/schema/aop
-                           http://www.springframework.org/schema/aop/spring-aop.xsd">
+                           http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!-- 缓存管理器 -->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
         <property name="cacheManagerConfigFile" value="classpath:ehcache/ehcache.xml"/>
     </bean>
 
-    <!-- Realm实现 -->
+    <!--
+        Realm实现
+        此OAuth2Realm需要配置在服务端申请的clientId和clientSecret；
+        及用于根据auth code换取access token的accessTokenUrl地址；
+        及用于根据access token换取用户信息（受保护资源）的userInfoUrl地址。
+    -->
     <bean id="oAuth2Realm" class="com.github.zhangkaitao.shiro.chapter18.oauth2.OAuth2Realm">
         <property name="cachingEnabled" value="true"/>
         <property name="authenticationCachingEnabled" value="true"/>
@@ -90,15 +92,23 @@
         <property name="arguments" ref="securityManager"/>
     </bean>
 
-    <!-- OAuth2身份验证过滤器 -->
+    <!--
+        OAuth2身份验证过滤器
+        用于拦截服务端重定向回来的auth code。
+    -->
     <bean id="oAuth2AuthenticationFilter" class="com.github.zhangkaitao.shiro.chapter18.oauth2.OAuth2AuthenticationFilter">
         <property name="authcCodeParam" value="code"/>
+        <!--失败时跳转到失败页面-->
         <property name="failureUrl" value="/oauth2Failure.jsp"/>
     </bean>
 
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
+        <!--
+            此处设置loginUrl 其会自动设置到所有的AccessControlFilter，如oAuth2AuthenticationFilter；
+            点击 "点击登录" 如果用户没有身份验证，且没有auth code，则重定向到服务端以下地址进行授权
+        -->
         <property name="loginUrl" value="http://localhost:8080/chapter17-server/authorize?client_id=c1ebe466-1cdc-4bd3-ab69-77c3561b9dee&amp;response_type=code&amp;redirect_uri=http://localhost:9080/chapter17-client/oauth2-login"/>
         <property name="successUrl" value="/"/>
         <property name="filters">
@@ -110,6 +120,7 @@
             <value>
                 / = anon
                 /oauth2Failure.jsp = anon
+                <!--表示/oauth2-login地址使用 oauth2Authc(<util:map>标签的value值) 拦截器拦截并进行oauth2客户端授权。-->
                 /oauth2-login = oauth2Authc
                 /logout = logout
                 /** = user

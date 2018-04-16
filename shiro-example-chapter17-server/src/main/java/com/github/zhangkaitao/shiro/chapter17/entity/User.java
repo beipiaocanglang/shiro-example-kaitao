@@ -3,9 +3,10 @@ package com.github.zhangkaitao.shiro.chapter17.entity;
 import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-17
- * <p>Version: 1.0
+ * 用户pojo
+ * 存储着认证/资源服务器的用户信息，即资源拥有者；比如用户名/密码
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:09
  */
 public class User implements Serializable {
     private Long id; //编号
@@ -47,12 +48,18 @@ public class User implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         User user = (User) o;
 
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (id != null ? !id.equals(user.id) : user.id != null) {
+            return false;
+        }
 
         return true;
     }

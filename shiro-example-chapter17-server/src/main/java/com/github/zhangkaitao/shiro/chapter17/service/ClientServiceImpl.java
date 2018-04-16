@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-17
- * <p>Version: 1.0
+ * 客户端 SERVICE 接口实现类
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:14
  */
 @Transactional
 @Service

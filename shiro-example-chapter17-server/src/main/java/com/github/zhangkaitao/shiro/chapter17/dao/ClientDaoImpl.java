@@ -14,9 +14,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 客户端 DAO 接口实现类
+ * author : sunpanhu
+ * createTime : 2018/4/16 下午2:11
  */
 @Repository
 public class ClientDaoImpl implements ClientDao {
