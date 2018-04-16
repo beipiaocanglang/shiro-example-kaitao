@@ -21,7 +21,13 @@ public class RoleDaoImpl implements RoleDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    
+
+    /**
+     * 创建角色
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午10:53
+     * @return
+     */
     public Role createRole(final Role role) {
         final String sql = "insert into sys_role(role, description, resource_ids, available) values(?,?,?,?)";
 
@@ -41,6 +47,12 @@ public class RoleDaoImpl implements RoleDao {
         return role;
     }
 
+    /**
+     * 修改角色
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午10:53
+     * @return
+     */
     public Role updateRole(Role role) {
         final String sql = "update sys_role set role=?, description=?, resource_ids=?, available=? where id=?";
         jdbcTemplate.update(
@@ -49,6 +61,12 @@ public class RoleDaoImpl implements RoleDao {
         return role;
     }
 
+    /**
+     * 根据角色id删除角色信息
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午10:53
+     * @return
+     */
     public void deleteRole(Long roleId) {
         final String sql = "delete from sys_role where id=?";
         jdbcTemplate.update(sql, roleId);
@@ -69,6 +87,12 @@ public class RoleDaoImpl implements RoleDao {
         return roleList.get(0);
     }
 
+    /**
+     * 查询所有角色
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午10:53
+     * @return
+     */
     public List<Role> findAll() {
         final String sql = "select id, role, description, resource_ids as resourceIdsStr, available from sys_role";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Role.class));

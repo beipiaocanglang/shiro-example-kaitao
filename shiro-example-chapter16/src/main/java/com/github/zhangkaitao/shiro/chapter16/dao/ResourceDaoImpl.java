@@ -71,8 +71,10 @@ public class ResourceDaoImpl implements ResourceDao {
      */
     public void deleteResource(Long resourceId) {
         Resource resource = findOne(resourceId);
+        //根据资源id删除资源
         final String deleteSelfSql = "delete from sys_resource where id=?";
         jdbcTemplate.update(deleteSelfSql, resourceId);
+        //如果有子 资源也一起删掉
         final String deleteDescendantsSql = "delete from sys_resource where parent_ids like ?";
         jdbcTemplate.update(deleteDescendantsSql, resource.makeSelfAsParentIds() + "%");
     }

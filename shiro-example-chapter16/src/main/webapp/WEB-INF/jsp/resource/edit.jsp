@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
-        <title></title>
+        <title>资源编辑页面</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/css.css">
     </head>
     <body>
@@ -13,6 +13,7 @@
             <form:hidden path="parentId"/>
             <form:hidden path="parentIds"/>
 
+            <%--父节点信息不为空的情况下--%>
             <c:if test="${not empty parent}">
                 <div class="form-group">
                     <label>父节点名称：</label>
@@ -21,7 +22,10 @@
             </c:if>
 
             <div class="form-group">
-                <form:label path="name"><c:if test="${not empty parent}">子</c:if>名称：</form:label>
+                <form:label path="name">
+                    <c:if test="${not empty parent}">子</c:if>
+                    名称：
+                </form:label>
                 <form:input path="name"/>
             </div>
             <div class="form-group">

@@ -20,15 +20,30 @@ public class RoleServiceImpl implements RoleService {
     private RoleDao roleDao;
     @Autowired
     private ResourceService resourceService;
-
+    /**
+     * 创建角色
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午10:53
+     * @return
+     */
     public Role createRole(Role role) {
         return roleDao.createRole(role);
     }
-
+    /**
+     * 修改角色
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午10:53
+     * @return
+     */
     public Role updateRole(Role role) {
         return roleDao.updateRole(role);
     }
-
+    /**
+     * 根据角色id删除角色信息
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午10:53
+     * @return
+     */
     public void deleteRole(Long roleId) {
         roleDao.deleteRole(roleId);
     }

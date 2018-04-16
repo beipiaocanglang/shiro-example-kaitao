@@ -21,7 +21,13 @@ public class UserDaoImpl implements UserDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    
+
+    /**
+     * 新增用户
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午11:36
+     * @return
+     */
     public User createUser(final User user) {
         final String sql = "insert into sys_user(organization_id, username, password, salt, role_ids, locked) values(?,?,?,?,?,?)";
 
@@ -44,6 +50,12 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    /**
+     * 修改用户信息
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午11:37
+     * @return
+     */
     public User updateUser(User user) {
         String sql = "update sys_user set organization_id=?,username=?, password=?, salt=?, role_ids=?, locked=? where id=?";
         jdbcTemplate.update(
@@ -52,11 +64,23 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    /**
+     * 删除用户
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午11:37
+     * @return
+     */
     public void deleteUser(Long userId) {
         String sql = "delete from sys_user where id=?";
         jdbcTemplate.update(sql, userId);
     }
 
+    /**
+     * 根据用户id 查询用户信息
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午11:37
+     * @return
+     */
     public User findOne(Long userId) {
         String sql = "select id, organization_id, username, password, salt, role_ids as roleIdsStr, locked from sys_user where id=?";
         List<User> userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class), userId);

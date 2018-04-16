@@ -30,6 +30,7 @@ public class UserController {
     private RoleService roleService;
 
     /**
+     * 点击 左侧 用户管理 获取用户列表
      * 拥有user:view权限的用户才能访问次请求
      * 无条件查询所有用户 - 用户管理
      * author : sunpanhu
@@ -44,15 +45,28 @@ public class UserController {
         return "user/list";
     }
 
+    /**
+     * 用户新增 跳到新增页面
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午11:32
+     * @return 
+     */
     @RequiresPermissions("user:create")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String showCreateForm(Model model) {
+        //查询所有组织结构 和 所有角色列表
         setCommonData(model);
         model.addAttribute("user", new User());
         model.addAttribute("op", "新增");
         return "user/edit";
     }
 
+    /**
+     * 新增用户 新增页面的 新增按钮
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午11:35
+     * @return
+     */
     @RequiresPermissions("user:create")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(User user, RedirectAttributes redirectAttributes) {
@@ -61,15 +75,28 @@ public class UserController {
         return "redirect:/user";
     }
 
+    /**
+     * 修改用户信息 获取用户信息跳转编辑页面
+     * author : sunpanhu
+     * createTime : 2018/4/16 下午12:17
+     * @return
+     */
     @RequiresPermissions("user:update")
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+        //查询所有组织结构 和 所有角色列表
         setCommonData(model);
         model.addAttribute("user", userService.findOne(id));
         model.addAttribute("op", "修改");
         return "user/edit";
     }
 
+    /**
+     * 修改用户信息 点击 修改
+     * author : sunpanhu
+     * createTime : 2018/4/16 下午12:17
+     * @return
+     */
     @RequiresPermissions("user:update")
     @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
     public String update(User user, RedirectAttributes redirectAttributes) {
@@ -78,15 +105,28 @@ public class UserController {
         return "redirect:/user";
     }
 
+    /**
+     * 删除用户 获取用户信息 跳转到删除页面
+     * author : sunpanhu
+     * createTime : 2018/4/16 下午12:18
+     * @return
+     */
     @RequiresPermissions("user:delete")
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public String showDeleteForm(@PathVariable("id") Long id, Model model) {
+        //查询所有组织结构 和 所有角色列表
         setCommonData(model);
         model.addAttribute("user", userService.findOne(id));
         model.addAttribute("op", "删除");
         return "user/edit";
     }
 
+    /**
+     * 删除用户 点击 删除 按钮
+     * author : sunpanhu
+     * createTime : 2018/4/16 下午12:18
+     * @return
+     */
     @RequiresPermissions("user:delete")
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
     public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
@@ -95,6 +135,12 @@ public class UserController {
         return "redirect:/user";
     }
 
+    /**
+     * 修改用户密码 点击 改密 获取当前用户信息
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午11:27
+     * @return
+     */
     @RequiresPermissions("user:update")
     @RequestMapping(value = "/{id}/changePassword", method = RequestMethod.GET)
     public String showChangePasswordForm(@PathVariable("id") Long id, Model model) {
@@ -103,6 +149,12 @@ public class UserController {
         return "user/changePassword";
     }
 
+    /**
+     * 修改密码页面 点击 修改密码 提交
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午11:28
+     * @return
+     */
     @RequiresPermissions("user:update")
     @RequestMapping(value = "/{id}/changePassword", method = RequestMethod.POST)
     public String changePassword(@PathVariable("id") Long id, String newPassword, RedirectAttributes redirectAttributes) {
@@ -111,6 +163,7 @@ public class UserController {
         return "redirect:/user";
     }
 
+    //查询所有组织结构 和 所有角色列表
     private void setCommonData(Model model) {
         model.addAttribute("organizationList", organizationService.findAll());
         model.addAttribute("roleList", roleService.findAll());

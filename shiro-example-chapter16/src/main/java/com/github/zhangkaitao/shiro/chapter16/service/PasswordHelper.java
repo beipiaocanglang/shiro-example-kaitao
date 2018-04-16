@@ -33,6 +33,7 @@ public class PasswordHelper {
         this.hashIterations = hashIterations;
     }
 
+    //密码加密
     public void encryptPassword(User user) {
 
         user.setSalt(randomNumberGenerator.nextBytes().toHex());

@@ -30,10 +30,22 @@ public class UserServiceImpl implements UserService {
         return userDao.createUser(user);
     }
 
+    /**
+     * 修改用户信息
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午11:37
+     * @return
+     */
     public User updateUser(User user) {
         return userDao.updateUser(user);
     }
 
+    /**
+     * 删除用户
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午11:37
+     * @return
+     */
     public void deleteUser(Long userId) {
         userDao.deleteUser(userId);
     }
@@ -50,6 +62,12 @@ public class UserServiceImpl implements UserService {
         userDao.updateUser(user);
     }
 
+    /**
+     * 根据用户id 查询用户信息
+     * author : sunpanhu
+     * createTime : 2018/4/16 上午11:37
+     * @return
+     */
     public User findOne(Long userId) {
         return userDao.findOne(userId);
     }
