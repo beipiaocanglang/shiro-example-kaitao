@@ -3,9 +3,7 @@ package com.github.zhangkaitao.shiro.chapter18.oauth2;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.filter.authc.AuthenticatingFilter;
-import org.apache.shiro.web.filter.authc.AuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.util.StringUtils;
 
@@ -66,8 +64,6 @@ public class OAuth2AuthenticationFilter extends AuthenticatingFilter {
 
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
-
-
         String error = request.getParameter("error");
         String errorDescription = request.getParameter("error_description");
         if(!StringUtils.isEmpty(error)) {//如果服务端返回了错误
@@ -83,13 +79,11 @@ public class OAuth2AuthenticationFilter extends AuthenticatingFilter {
                 return false;
             }
         }
-
         return executeLogin(request, response);
     }
 
     @Override
-    protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request,
-                                     ServletResponse response) throws Exception {
+    protected boolean onLoginSuccess(AuthenticationToken token, Subject subject, ServletRequest request, ServletResponse response) throws Exception {
         issueSuccessRedirect(request, response);
         return false;
     }
@@ -113,5 +107,4 @@ public class OAuth2AuthenticationFilter extends AuthenticatingFilter {
         }
         return false;
     }
-
 }

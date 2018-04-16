@@ -5,7 +5,6 @@ import org.apache.oltu.oauth2.client.URLConnectionClient;
 import org.apache.oltu.oauth2.client.request.OAuthBearerClientRequest;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.client.response.OAuthAccessTokenResponse;
-import org.apache.oltu.oauth2.client.response.OAuthJSONAccessTokenResponse;
 import org.apache.oltu.oauth2.client.response.OAuthResourceResponse;
 import org.apache.oltu.oauth2.common.OAuth;
 import org.apache.oltu.oauth2.common.message.types.GrantType;
@@ -71,7 +70,6 @@ public class OAuth2Realm extends AuthorizingRealm {
     }
 
     private String extractUsername(String code) {
-
         try {
             OAuthClient oAuthClient = new OAuthClient(new URLConnectionClient());
 

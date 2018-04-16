@@ -84,5 +84,4 @@ public class UserController {
         redirectAttributes.addFlashAttribute("msg", "修改密码成功");
         return "redirect:/user";
     }
-
 }

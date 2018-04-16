@@ -18,3 +18,4 @@ create table oauth2_client (
   constraint pk_oauth2_client primary key(id)
 ) charset=utf8 ENGINE=InnoDB;
 create index idx_oauth2_client_client_id on oauth2_client(client_id);
+COMMIT ;

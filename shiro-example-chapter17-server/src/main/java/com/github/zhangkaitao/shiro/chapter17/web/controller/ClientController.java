@@ -69,5 +69,4 @@ public class ClientController {
         redirectAttributes.addFlashAttribute("msg", "删除成功");
         return "redirect:/client";
     }
-
 }

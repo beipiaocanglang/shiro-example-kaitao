@@ -10,16 +10,17 @@ import java.util.List;
  * <p>Version: 1.0
  */
 public interface ClientService {
+    Client createClient(Client client);
 
-    public Client createClient(Client client);
-    public Client updateClient(Client client);
-    public void deleteClient(Long clientId);
+    Client updateClient(Client client);
+
+    void deleteClient(Long clientId);
 
     Client findOne(Long clientId);
 
     List<Client> findAll();
 
     Client findByClientId(String clientId);
-    Client findByClientSecret(String clientSecret);
 
+    Client findByClientSecret(String clientSecret);
 }

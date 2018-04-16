@@ -1,5 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                            http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>shiro-example</artifactId>
         <groupId>com.github.zhangkaitao</groupId>
@@ -10,6 +12,7 @@
     <packaging>war</packaging>
     <name>shiro-example-chapter17-client</name>
     <url>http://maven.apache.org</url>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -24,13 +27,11 @@
             <version>3.2.1</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.apache.oltu.oauth2</groupId>
             <artifactId>org.apache.oltu.oauth2.client</artifactId>
             <version>0.31</version>
         </dependency>
-
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -48,7 +49,6 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -152,8 +152,6 @@
                     </connectors>
                 </configuration>
             </plugin>
-
-
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -162,10 +160,7 @@
                     <path>/${project.build.finalName}</path>
                     <httpPort>9080</httpPort>
                 </configuration>
-
             </plugin>
         </plugins>
-
-
     </build>
 </project>

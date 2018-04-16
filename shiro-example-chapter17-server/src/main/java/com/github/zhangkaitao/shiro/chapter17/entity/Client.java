@@ -17,7 +17,6 @@ public class Client implements Serializable {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -25,7 +24,6 @@ public class Client implements Serializable {
     public String getClientName() {
         return clientName;
     }
-
     public void setClientName(String clientName) {
         this.clientName = clientName;
     }
@@ -33,7 +31,6 @@ public class Client implements Serializable {
     public String getClientId() {
         return clientId;
     }
-
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
@@ -41,7 +38,6 @@ public class Client implements Serializable {
     public String getClientSecret() {
         return clientSecret;
     }
-
     public void setClientSecret(String clientSecret) {
         this.clientSecret = clientSecret;
     }

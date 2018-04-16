@@ -14,7 +14,6 @@ public final class SpringUtils implements BeanFactoryPostProcessor {
 
     private static ConfigurableListableBeanFactory beanFactory; // Spring应用上下文环境
 
-    @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         SpringUtils.beanFactory = beanFactory;
     }
@@ -89,5 +88,4 @@ public final class SpringUtils implements BeanFactoryPostProcessor {
     public static String[] getAliases(String name) throws NoSuchBeanDefinitionException {
         return beanFactory.getAliases(name);
     }
-
 }

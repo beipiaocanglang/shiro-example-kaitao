@@ -31,12 +31,10 @@ public class UserServiceImpl implements UserService {
         return userDao.createUser(user);
     }
 
-    @Override
     public User updateUser(User user) {
         return userDao.updateUser(user);
     }
 
-    @Override
     public void deleteUser(Long userId) {
         userDao.deleteUser(userId);
     }
@@ -53,12 +51,10 @@ public class UserServiceImpl implements UserService {
         userDao.updateUser(user);
     }
 
-    @Override
     public User findOne(Long userId) {
         return userDao.findOne(userId);
     }
-
-    @Override
+    
     public List<User> findAll() {
         return userDao.findAll();
     }
@@ -71,6 +67,4 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
-
-
 }

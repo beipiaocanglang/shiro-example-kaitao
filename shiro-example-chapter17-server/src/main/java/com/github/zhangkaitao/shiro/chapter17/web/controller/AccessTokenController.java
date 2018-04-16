@@ -14,7 +14,6 @@ import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 import org.apache.oltu.oauth2.common.message.OAuthResponse;
 import org.apache.oltu.oauth2.common.message.types.GrantType;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -41,8 +40,7 @@ public class AccessTokenController {
     private UserService userService;
 
     @RequestMapping("/accessToken")
-    public HttpEntity token(HttpServletRequest request)
-            throws URISyntaxException, OAuthSystemException {
+    public HttpEntity token(HttpServletRequest request) throws URISyntaxException, OAuthSystemException {
 
         try {
             //构建OAuth请求
@@ -104,5 +102,4 @@ public class AccessTokenController {
             return new ResponseEntity(res.getBody(), HttpStatus.valueOf(res.getResponseStatus()));
         }
     }
-
 }

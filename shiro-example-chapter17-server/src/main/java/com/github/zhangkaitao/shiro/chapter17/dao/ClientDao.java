@@ -10,9 +10,10 @@ import java.util.List;
  * <p>Version: 1.0
  */
 public interface ClientDao {
-
     Client createClient(Client client);
+
     Client updateClient(Client client);
+
     void deleteClient(Long clientId);
 
     Client findOne(Long clientId);
@@ -20,6 +21,6 @@ public interface ClientDao {
     List<Client> findAll();
 
     Client findByClientId(String clientId);
-    Client findByClientSecret(String clientSecret);
 
+    Client findByClientSecret(String clientSecret);
 }
