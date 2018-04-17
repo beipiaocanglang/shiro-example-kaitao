@@ -3,9 +3,9 @@ package com.github.zhangkaitao.shiro.chapter19.entity;
 import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 组织结构 pojo
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午2:33
  */
 public class Organization implements Serializable {
     private Long id; //编号
@@ -18,7 +18,6 @@ public class Organization implements Serializable {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -26,7 +25,6 @@ public class Organization implements Serializable {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -34,7 +32,6 @@ public class Organization implements Serializable {
     public Long getParentId() {
         return parentId;
     }
-
     public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
@@ -42,7 +39,6 @@ public class Organization implements Serializable {
     public String getParentIds() {
         return parentIds;
     }
-
     public void setParentIds(String parentIds) {
         this.parentIds = parentIds;
     }
@@ -50,7 +46,6 @@ public class Organization implements Serializable {
     public Boolean getAvailable() {
         return available;
     }
-
     public void setAvailable(Boolean available) {
         this.available = available;
     }

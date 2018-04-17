@@ -24,7 +24,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private OrganizationService organizationService;
     @Autowired

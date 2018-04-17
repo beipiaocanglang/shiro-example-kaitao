@@ -11,11 +11,13 @@ import java.util.List;
  * <p>Version: 1.0
  */
 public interface RoleDao {
+    Role createRole(Role role);
 
-    public Role createRole(Role role);
-    public Role updateRole(Role role);
-    public void deleteRole(Long roleId);
+    Role updateRole(Role role);
 
-    public Role findOne(Long roleId);
-    public List<Role> findAll();
+    void deleteRole(Long roleId);
+
+    Role findOne(Long roleId);
+
+    List<Role> findAll();
 }

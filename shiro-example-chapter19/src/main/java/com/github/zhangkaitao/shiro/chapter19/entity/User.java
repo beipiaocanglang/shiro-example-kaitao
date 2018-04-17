@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 用户 pojo
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午2:34
  */
 public class User implements Serializable {
     private Long id; //编号
@@ -32,7 +32,6 @@ public class User implements Serializable {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -40,7 +39,6 @@ public class User implements Serializable {
     public Long getOrganizationId() {
         return organizationId;
     }
-
     public void setOrganizationId(Long organizationId) {
         this.organizationId = organizationId;
     }
@@ -48,7 +46,6 @@ public class User implements Serializable {
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -56,7 +53,6 @@ public class User implements Serializable {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -64,7 +60,6 @@ public class User implements Serializable {
     public String getSalt() {
         return salt;
     }
-
     public void setSalt(String salt) {
         this.salt = salt;
     }
@@ -79,11 +74,9 @@ public class User implements Serializable {
         }
         return roleIds;
     }
-
     public void setRoleIds(List<Long> roleIds) {
         this.roleIds = roleIds;
     }
-
 
     public String getRoleIdsStr() {
         if(CollectionUtils.isEmpty(roleIds)) {
@@ -96,7 +89,6 @@ public class User implements Serializable {
         }
         return s.toString();
     }
-
     public void setRoleIdsStr(String roleIdsStr) {
         if(StringUtils.isEmpty(roleIdsStr)) {
             return;
@@ -113,7 +105,6 @@ public class User implements Serializable {
     public Boolean getLocked() {
         return locked;
     }
-
     public void setLocked(Boolean locked) {
         this.locked = locked;
     }

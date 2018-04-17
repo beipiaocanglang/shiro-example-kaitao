@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 角色 pojo
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午2:34
  */
 public class Role implements Serializable {
     private Long id; //编号
@@ -31,7 +31,6 @@ public class Role implements Serializable {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -39,7 +38,6 @@ public class Role implements Serializable {
     public String getRole() {
         return role;
     }
-
     public void setRole(String role) {
         this.role = role;
     }
@@ -47,7 +45,6 @@ public class Role implements Serializable {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }

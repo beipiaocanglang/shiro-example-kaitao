@@ -22,7 +22,6 @@ public class RoleController {
 
     @Autowired
     private RoleService roleService;
-
     @Autowired
     private ResourceService resourceService;
 
@@ -80,5 +79,4 @@ public class RoleController {
     private void setCommonData(Model model) {
         model.addAttribute("resourceList", resourceService.findAll());
     }
-
 }

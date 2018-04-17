@@ -49,8 +49,5 @@ public class ShiroFilerChainManager {
                 filterChainManager.addToChain(url, "perms", urlFilter.getPermissions());
             }
         }
-
-
     }
-
 }

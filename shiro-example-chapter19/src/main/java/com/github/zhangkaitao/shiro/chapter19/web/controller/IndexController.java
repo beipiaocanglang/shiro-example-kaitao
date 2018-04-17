@@ -38,6 +38,4 @@ public class IndexController {
     public String welcome() {
         return "welcome";
     }
-
-
 }

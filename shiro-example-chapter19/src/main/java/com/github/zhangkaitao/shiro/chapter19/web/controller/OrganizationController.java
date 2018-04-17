@@ -96,6 +96,4 @@ public class OrganizationController {
     public String success() {
         return "organization/success";
     }
-
-
 }

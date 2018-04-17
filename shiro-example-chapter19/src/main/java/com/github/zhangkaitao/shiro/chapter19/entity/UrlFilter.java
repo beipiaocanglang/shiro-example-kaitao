@@ -3,9 +3,9 @@ package com.github.zhangkaitao.shiro.chapter19.entity;
 import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-25
- * <p>Version: 1.0
+ * url动态权限 pojo
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午2:06
  */
 public class UrlFilter implements Serializable {
     private Long id;
@@ -17,7 +17,6 @@ public class UrlFilter implements Serializable {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -25,7 +24,6 @@ public class UrlFilter implements Serializable {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -33,7 +31,6 @@ public class UrlFilter implements Serializable {
     public String getUrl() {
         return url;
     }
-
     public void setUrl(String url) {
         this.url = url;
     }
@@ -41,7 +38,6 @@ public class UrlFilter implements Serializable {
     public String getRoles() {
         return roles;
     }
-
     public void setRoles(String roles) {
         this.roles = roles;
     }
@@ -49,7 +45,6 @@ public class UrlFilter implements Serializable {
     public String getPermissions() {
         return permissions;
     }
-
     public void setPermissions(String permissions) {
         this.permissions = permissions;
     }

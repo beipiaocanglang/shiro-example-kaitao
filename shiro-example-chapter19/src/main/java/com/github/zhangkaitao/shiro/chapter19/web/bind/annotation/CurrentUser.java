@@ -37,5 +37,4 @@ public @interface CurrentUser {
      * @return
      */
     String value() default Constants.CURRENT_USER;
-
 }

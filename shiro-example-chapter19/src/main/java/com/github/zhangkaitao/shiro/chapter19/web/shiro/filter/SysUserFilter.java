@@ -24,6 +24,7 @@ public class SysUserFilter extends PathMatchingFilter {
 
         String username = (String)SecurityUtils.getSubject().getPrincipal();
         request.setAttribute(Constants.CURRENT_USER, userService.findByUsername(username));
+
         return true;
     }
 }

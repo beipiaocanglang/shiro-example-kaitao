@@ -45,7 +45,7 @@ public class CustomPathMatchingFilterChainResolver extends PathMatchingFilterCha
         if(chainNames.size() == 0) {
             return null;
         }
-
-        return customDefaultFilterChainManager.proxy(originalChain, chainNames);
+        FilterChain filterChain = customDefaultFilterChainManager.proxy(originalChain, chainNames);
+        return filterChain;
     }
 }

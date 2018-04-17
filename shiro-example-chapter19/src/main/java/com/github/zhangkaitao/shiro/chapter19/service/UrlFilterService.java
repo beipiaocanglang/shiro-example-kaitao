@@ -5,16 +5,19 @@ import com.github.zhangkaitao.shiro.chapter19.entity.UrlFilter;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 动态URL权限控制service - 接口
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午2:01
  */
 public interface UrlFilterService {
 
-    public UrlFilter createUrlFilter(UrlFilter urlFilter);
-    public UrlFilter updateUrlFilter(UrlFilter urlFilter);
-    public void deleteUrlFilter(Long urlFilterId);
+    UrlFilter createUrlFilter(UrlFilter urlFilter);
 
-    public UrlFilter findOne(Long urlFilterId);
-    public List<UrlFilter> findAll();
+    UrlFilter updateUrlFilter(UrlFilter urlFilter);
+
+    void deleteUrlFilter(Long urlFilterId);
+
+    UrlFilter findOne(Long urlFilterId);
+
+    List<UrlFilter> findAll();
 }

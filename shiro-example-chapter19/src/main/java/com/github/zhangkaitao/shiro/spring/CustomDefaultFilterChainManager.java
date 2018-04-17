@@ -27,7 +27,6 @@ import java.util.Map;
 public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
 
     private Map<String, String> filterChainDefinitionMap = null;
-
     private String loginUrl;
     private String successUrl;
     private String unauthorizedUrl;
@@ -41,7 +40,6 @@ public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
     public Map<String, String> getFilterChainDefinitionMap() {
         return filterChainDefinitionMap;
     }
-
     public void setFilterChainDefinitionMap(Map<String, String> filterChainDefinitionMap) {
         this.filterChainDefinitionMap = filterChainDefinitionMap;
     }
@@ -51,7 +49,6 @@ public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
             addFilter(entry.getKey(), entry.getValue(), false);
         }
     }
-
 
     public void setDefaultFilterChainDefinitions(String definitions) {
         Ini ini = new Ini();
@@ -69,7 +66,6 @@ public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
     public String getLoginUrl() {
         return loginUrl;
     }
-
     public void setLoginUrl(String loginUrl) {
         this.loginUrl = loginUrl;
     }
@@ -77,7 +73,6 @@ public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
     public String getSuccessUrl() {
         return successUrl;
     }
-
     public void setSuccessUrl(String successUrl) {
         this.successUrl = successUrl;
     }
@@ -85,7 +80,6 @@ public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
     public String getUnauthorizedUrl() {
         return unauthorizedUrl;
     }
-
     public void setUnauthorizedUrl(String unauthorizedUrl) {
         this.unauthorizedUrl = unauthorizedUrl;
     }

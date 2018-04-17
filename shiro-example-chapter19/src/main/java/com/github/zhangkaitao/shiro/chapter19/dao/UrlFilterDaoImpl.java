@@ -14,9 +14,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 动态URL权限控制DAO - 接口实现类
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午2:02
  */
 @Repository
 public class UrlFilterDaoImpl implements UrlFilterDao {
@@ -29,7 +29,7 @@ public class UrlFilterDaoImpl implements UrlFilterDao {
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
+            
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement psst = connection.prepareStatement(sql, new String[]{"id"});
                 int count = 1;
@@ -43,8 +43,7 @@ public class UrlFilterDaoImpl implements UrlFilterDao {
         urlFilter.setId(keyHolder.getKey().longValue());
         return urlFilter;
     }
-
-    @Override
+    
     public UrlFilter updateUrlFilter(UrlFilter urlFilter) {
         final String sql = "update sys_url_filter set name=?,url=?,roles=?,permissions=? where id=?";
         jdbcTemplate.update(
@@ -58,8 +57,6 @@ public class UrlFilterDaoImpl implements UrlFilterDao {
         jdbcTemplate.update(sql, urlFilterId);
     }
 
-
-    @Override
     public UrlFilter findOne(Long urlFilterId) {
         final String sql = "select id, name, url, roles, permissions from sys_url_filter where id=?";
         List<UrlFilter> urlFilterList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(UrlFilter.class), urlFilterId);
@@ -68,8 +65,7 @@ public class UrlFilterDaoImpl implements UrlFilterDao {
         }
         return urlFilterList.get(0);
     }
-
-    @Override
+    
     public List<UrlFilter> findAll() {
         final String sql = "select id, name, url, roles, permissions from sys_url_filter";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(UrlFilter.class));
