@@ -5,9 +5,10 @@ import org.apache.shiro.authc.AuthenticationToken;
 import java.util.Map;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-26
- * <p>Version: 1.0
+ * 用户身份即用户名；
+ * 凭证即客户端传入的消息摘要
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午4:45
  */
 public class StatelessToken implements AuthenticationToken {
 
@@ -24,7 +25,6 @@ public class StatelessToken implements AuthenticationToken {
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -32,7 +32,6 @@ public class StatelessToken implements AuthenticationToken {
     public  Map<String, ?> getParams() {
         return params;
     }
-
     public void setParams( Map<String, ?> params) {
         this.params = params;
     }
@@ -40,7 +39,6 @@ public class StatelessToken implements AuthenticationToken {
     public String getClientDigest() {
         return clientDigest;
     }
-
     public void setClientDigest(String clientDigest) {
         this.clientDigest = clientDigest;
     }

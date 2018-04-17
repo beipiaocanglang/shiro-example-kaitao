@@ -12,9 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-26
- * <p>Version: 1.0
+ * 类似于FormAuthenticationFilter，但是根据当前请求上下文信息每次请求时都要登录的认证过滤器。
+ *
+ * 获取客户端传入的用户名、请求参数、消息摘要，生成StatelessToken；然后交给相应的Realm进行认证
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午4:42
  */
 public class StatelessAuthcFilter extends AccessControlFilter {
 
@@ -30,7 +32,8 @@ public class StatelessAuthcFilter extends AccessControlFilter {
         //2、客户端传入的用户身份
         String username = request.getParameter(Constants.PARAM_USERNAME);
         //3、客户端请求的参数列表
-        Map<String, String[]> params = new HashMap<String, String[]>(request.getParameterMap());
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        Map<String, String[]> params = new HashMap<String, String[]>(parameterMap);
         params.remove(Constants.PARAM_DIGEST);
 
         //4、生成无状态Token

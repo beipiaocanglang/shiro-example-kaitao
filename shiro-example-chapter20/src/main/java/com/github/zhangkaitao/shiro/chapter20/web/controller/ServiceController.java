@@ -4,15 +4,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-26
- * <p>Version: 1.0
+ * 模拟服务控制器
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午4:38
  */
 @RestController
 public class ServiceController {
 
+    //当访问/hello服务时，需要传入param1、param2两个请求参数
     @RequestMapping("/hello")
     public String hello1(String[] param1, String param2) {
-        return "hello" + param1[0] + param1[1] + param2;
+        String hello = "hello" + param1[0] + param1[1] + param2;
+        return hello;
     }
 }

@@ -24,11 +24,11 @@ public class ClientTest {
     private static Server server;
     private RestTemplate restTemplate = new RestTemplate();
 
-
+    //在整个测试开始之前开启服务器，整个测试结束时关闭服务器
     @BeforeClass
     public static void beforeClass() throws Exception {
         //创建一个server
-        server = new Server(8080);
+        server = new Server(8081);
         WebAppContext context = new WebAppContext();
         String webapp = "shiro-example-chapter20/src/main/webapp";
         context.setDescriptor(webapp + "/WEB-INF/web.xml");  //指定web.xml配置文件
@@ -40,6 +40,12 @@ public class ClientTest {
         server.start();
     }
 
+    /**
+     * 测试成功情况
+     * 对请求参数生成消息摘要后带到参数中传递给服务器端，服务器端验证通过后访问相应服务，然后返回数据。
+     * author : sunpanhu
+     * createTime : 2018/4/17 下午4:53
+     */
     @Test
     public void testServiceHelloSuccess() {
         String username = "admin";
@@ -52,16 +58,22 @@ public class ClientTest {
         params.add("param1", param11);
         params.add("param1", param12);
         params.add("param2", param2);
-        params.add(Constants.PARAM_DIGEST, HmacSHA256Utils.digest(key, params));
+        params.add(Constants.PARAM_DIGEST, HmacSHA256Utils.digest(key, params));//编码
 
-        String url = UriComponentsBuilder
-                .fromHttpUrl("http://localhost:8080/hello")
-                .queryParams(params).build().toUriString();
+        String url = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/chapter20/hello").queryParams(params).build().toUriString();
 
         ResponseEntity responseEntity = restTemplate.getForEntity(url, String.class);
+        String a = "hello" + param11 + param12 + param2;
+        Object body = responseEntity.getBody();
         Assert.assertEquals("hello" + param11 + param12 + param2, responseEntity.getBody());
     }
 
+    /**
+     * 测试失败情况
+     * 在生成请求参数消息摘要后，篡改了参数内容，服务器端接收后进行重新生成消息摘要发现不一样，报401错误状态码。
+     * author : sunpanhu
+     * createTime : 2018/4/17 下午4:53
+     */
     @Test
     public void testServiceHelloFail() {
         String username = "admin";
@@ -77,9 +89,7 @@ public class ClientTest {
         params.add(Constants.PARAM_DIGEST, HmacSHA256Utils.digest(key, params));
         params.set("param2", param2 + "1");
 
-        String url = UriComponentsBuilder
-                .fromHttpUrl("http://localhost:8080/hello")
-                .queryParams(params).build().toUriString();
+        String url = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/chapter20/hello").queryParams(params).build().toUriString();
 
         try {
             ResponseEntity responseEntity = restTemplate.getForEntity(url, String.class);
@@ -89,6 +99,7 @@ public class ClientTest {
         }
     }
 
+    //在整个测试开始之前开启服务器，整个测试结束时关闭服务器
     @AfterClass
     public static void afterClass() throws Exception {
         server.stop(); //当测试结束时停止服务器

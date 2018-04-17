@@ -9,9 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-26
- * <p>Version: 1.0
+ * 加密工具
+ * 对Map生成消息摘要主要用于对客户端/服务器端来回传递的参数生成消息摘要。
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午4:38
  */
 public class HmacSHA256Utils {
 
@@ -47,7 +48,8 @@ public class HmacSHA256Utils {
                 s.append(values);
             }
         }
-        return digest(key, s.toString());
+        //调用上面的方法
+        String digest = digest(key, s.toString());
+        return digest;
     }
-
 }

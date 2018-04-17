@@ -5,16 +5,19 @@ import org.apache.shiro.subject.SubjectContext;
 import org.apache.shiro.web.mgt.DefaultWebSubjectFactory;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-26
- * <p>Version: 1.0
+ * Subject工厂
+ * 通过调用context.setSessionCreationEnabled(false)表示不创建会话；
+ * 如果之后调用Subject.getSession()将抛出DisabledSessionException异常。
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午4:41
  */
 public class StatelessDefaultSubjectFactory extends DefaultWebSubjectFactory {
 
     @Override
     public Subject createSubject(SubjectContext context) {
-        //不创建session
+        //不创建session(会话)
         context.setSessionCreationEnabled(false);
-        return super.createSubject(context);
+        Subject subject = super.createSubject(context);
+        return subject;
     }
 }
