@@ -20,15 +20,25 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-25
- * <p>Version: 1.0
+ * 拦截器 在同包的 CustomPathMatchingFilterChainResolver拦截器中使用
+ * 作用：
+ *      调用其构造器时，会自动注册默认的拦截器
+ * 默认实现有点小问题：
+ *      DefaultFilterChainManager内部使用Map来管理URL模式-拦截器链的关系；
+ *      也就是说相同的URL模式只能定义一个拦截器链，不能重复定义；
+ *      而且如果多个拦截器链都匹配时是无序的（因为使用map.keySet()获取拦截器链的名字，即URL模式）。
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午3:08
  */
 public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
 
+    //用于存储如ShiroFilterFactoryBean在配置文件中配置的拦截器链定义，即可以认为是默认的静态拦截器链；会自动与数据库中加载的合并；
     private Map<String, String> filterChainDefinitionMap = null;
+    //登录地址
     private String loginUrl;
+    //登录成功后默认跳转地址
     private String successUrl;
+    //未授权跳转地址
     private String unauthorizedUrl;
 
     public CustomDefaultFilterChainManager() {
@@ -44,12 +54,14 @@ public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
         this.filterChainDefinitionMap = filterChainDefinitionMap;
     }
 
+    //注册我们自定义的拦截器；如ShiroFilterFactoryBean的filters属性
     public void setCustomFilters(Map<String, Filter> customFilters) {
         for(Map.Entry<String, Filter> entry : customFilters.entrySet()) {
             addFilter(entry.getKey(), entry.getValue(), false);
         }
     }
 
+    //解析配置文件中传入的字符串拦截器链配置，解析为相应的拦截器链
     public void setDefaultFilterChainDefinitions(String definitions) {
         Ini ini = new Ini();
         ini.load(definitions);
@@ -84,6 +96,11 @@ public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
         this.unauthorizedUrl = unauthorizedUrl;
     }
 
+    /**
+     * 初始化方法，Spring容器启动时会调用，
+     * 首先其会自动给相应的拦截器设置如loginUrl、successUrl、unauthorizedUrl；
+     * 其次根据filterChainDefinitionMap构建默认的拦截器链；
+     */
     @PostConstruct
     public void init() {
         //Apply the acquired and/or configured filters:
@@ -110,11 +127,13 @@ public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
         }
     }
 
+    //此处我们忽略实现initFilter，因为交给spring管理了，所以Filter的相关配置会在Spring配置中完成
     @Override
     protected void initFilter(Filter filter) {
         //ignore
     }
 
+    //组合多个拦截器链为一个生成一个新的FilterChain代理。
     public FilterChain proxy(FilterChain original, List<String> chainNames) {
         NamedFilterList configured = new SimpleNamedFilterList(chainNames.toString());
         for(String chainName : chainNames) {

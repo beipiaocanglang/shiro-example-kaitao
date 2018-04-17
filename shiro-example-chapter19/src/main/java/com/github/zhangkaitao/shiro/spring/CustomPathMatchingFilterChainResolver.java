@@ -10,12 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-25
- * <p>Version: 1.0
+ * 拦截器
+ *
+ * 默认情况下如使用ShiroFilterFactoryBean创建shiroFilter时，默认使用PathMatchingFilterChainResolver进行解析，
+ * 而它默认是根据当前请求的URL获取相应的拦截器链，使用Ant模式进行URL匹配；
+ * 默认使用DefaultFilterChainManager进行拦截器链的管理。
+ *
+ * 默认实现有点小问题：
+ *      如果多个拦截器链都匹配了当前请求URL，那么只返回第一个找到的拦截器链；
+ *      后续我们可以修改此处的代码，将多个匹配的拦截器链合并返回。
+ * author : sunpanhu
+ * createTime : 2018/4/17 下午3:06
  */
 public class CustomPathMatchingFilterChainResolver extends PathMatchingFilterChainResolver {
 
+    //同一个包下的
     private CustomDefaultFilterChainManager customDefaultFilterChainManager;
 
     public void setCustomDefaultFilterChainManager(CustomDefaultFilterChainManager customDefaultFilterChainManager) {
@@ -45,6 +54,10 @@ public class CustomPathMatchingFilterChainResolver extends PathMatchingFilterCha
         if(chainNames.size() == 0) {
             return null;
         }
+
+        //解决类类注释上说的小问题
+        //和默认的PathMatchingFilterChainResolver区别是，此处得到所有匹配的拦截器链，
+        //然后通过调用CustomDefaultFilterChainManager.proxy(originalChain, chainNames)进行合并后代理。
         FilterChain filterChain = customDefaultFilterChainManager.proxy(originalChain, chainNames);
         return filterChain;
     }

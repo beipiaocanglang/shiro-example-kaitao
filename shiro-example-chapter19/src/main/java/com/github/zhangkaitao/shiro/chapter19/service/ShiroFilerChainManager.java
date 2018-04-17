@@ -25,11 +25,21 @@ public class ShiroFilerChainManager {
 
     private Map<String, NamedFilterList> defaultFilterChains;
 
+    /**
+     * Spring容器启动时会调用init方法把在spring配置文件中配置的默认拦截器保存下来，之后会自动与数据库中的配置进行合并
+     * author : sunpanhu
+     * createTime : 2018/4/17 下午3:01
+     */
     @PostConstruct
     public void init() {
         defaultFilterChains = new HashMap<String, NamedFilterList>(filterChainManager.getFilterChains());
     }
 
+    /**
+     * UrlFilterServiceImpl会在Spring容器启动或进行增删改UrlFilter时进行注册URL拦截器到Shiro。
+     * author : sunpanhu
+     * createTime : 2018/4/17 下午3:01
+     */
     public void initFilterChains(List<UrlFilter> urlFilters) {
         //1、首先删除以前老的filter chain并注册默认的
         filterChainManager.getFilterChains().clear();

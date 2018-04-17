@@ -100,6 +100,7 @@
 
     <bean id="sysUserFilter" class="com.github.zhangkaitao.shiro.chapter19.web.shiro.filter.SysUserFilter"/>
 
+    <!--filterChainManager是我们自定义的CustomDefaultFilterChainManager，注册相应的拦截器及默认的拦截器链。-->
     <bean id="filterChainManager" class="com.github.zhangkaitao.shiro.spring.CustomDefaultFilterChainManager">
         <property name="loginUrl" value="/login"/>
         <property name="successUrl" value="/"/>
@@ -121,11 +122,15 @@
         </property>
     </bean>
 
+    <!--filterChainResolver是自定义的CustomPathMatchingFilterChainResolver，使用上边的filterChainManager进行拦截器链的管理。 -->
     <bean id="filterChainResolver" class="com.github.zhangkaitao.shiro.spring.CustomPathMatchingFilterChainResolver">
         <property name="customDefaultFilterChainManager" ref="filterChainManager"/>
     </bean>
 
-    <!-- Shiro的Web过滤器 -->
+    <!--
+        Shiro的Web过滤器
+        shiroFilter不再定义filters及filterChainDefinitions，而是交给了filterChainManager进行完成
+    -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
     </bean>

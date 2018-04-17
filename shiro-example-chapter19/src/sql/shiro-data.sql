@@ -6,6 +6,7 @@ delete from sys_organization;
 delete from sys_url_filter;
 
 insert into sys_user values(1,1,'admin','d3c59d25033dbf980d29554025c23a75','8d78869f470951332959580424d4bf4f', '1', false);
+
 insert into sys_organization values(1, '总公司', 0, '0/', true);
 insert into sys_organization values(2, '分公司1', 1, '0/1/', true);
 insert into sys_organization values(3, '分公司2', 1, '0/1/', true);
@@ -45,3 +46,5 @@ insert into sys_resource values(50, 'URL查看', 'button', '', 46, '0/1/46/', 'u
 
 
 insert into sys_role values(1, 'admin', '超级管理员', '11,21,31,41,46', true);
+
+COMMIT ;
