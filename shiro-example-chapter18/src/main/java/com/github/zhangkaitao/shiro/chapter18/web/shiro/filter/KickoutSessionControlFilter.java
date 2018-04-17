@@ -54,10 +54,21 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
         return false;
     }
 
+    /**
+     * 用于控制并发登录人数的 代码流程 核心代码
+     * 此处使用了Cache缓存用户名—会话id之间的关系；
+     * 如果量比较大可以考虑如持久化到数据库/其他带持久化的Cache中；
+     * 另外此处没有并发控制的同步实现，可以考虑根据用户名获取锁来控制，减少锁的粒度
+     * author : sunpanhu
+     * createTime : 2018/4/17 上午11:30
+     * @return
+     */
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         Subject subject = getSubject(request, response);
-        if(!subject.isAuthenticated() && !subject.isRemembered()) {
+        boolean authenticated = subject.isAuthenticated();
+        boolean remembered = subject.isRemembered();
+        if(!authenticated && !remembered) {
             //如果没有登录，直接进行之后的流程
             return true;
         }
@@ -68,13 +79,15 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 
         //TODO 同步控制
         Deque<Serializable> deque = cache.get(username);
+        //如果缓存中没有数据 则同步到缓存中
         if(deque == null) {
             deque = new LinkedList<Serializable>();
             cache.put(username, deque);
         }
 
         //如果队列里没有此sessionId，且用户没有被踢出；放入队列
-        if(!deque.contains(sessionId) && session.getAttribute("kickout") == null) {
+        Object kickout = session.getAttribute("kickout");
+        if(!deque.contains(sessionId) && kickout == null) {
             deque.push(sessionId);
         }
 
@@ -97,7 +110,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
         }
 
         //如果被踢出了，直接退出，重定向到踢出后的地址
-        if (session.getAttribute("kickout") != null) {
+        if (kickout != null) {
             //会话被踢出了
             try {
                 subject.logout();
@@ -107,7 +120,6 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
             WebUtils.issueRedirect(request, response, kickoutUrl);
             return false;
         }
-
         return true;
     }
 }
