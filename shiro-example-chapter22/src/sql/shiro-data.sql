@@ -37,3 +37,5 @@ insert into sys_resource values(44, '角色删除', 'button', '', 41, '0/1/41/',
 insert into sys_resource values(45, '角色查看', 'button', '', 41, '0/1/41/', 'role:view', true);
 
 insert into sys_role values(1, 'admin', '超级管理员', '11,21,31,41', true);
+
+COMMIT ;

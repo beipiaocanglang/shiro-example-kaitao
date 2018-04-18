@@ -17,13 +17,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
- * 生成验证码
- * <p>User: Zhang Kaitao
- * <p>Date: 13-3-22 下午3:36
- * <p>Version: 1.0
+ * 用于生成验证码图片的过滤器
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午11:27
  */
 public class JCaptchaFilter extends OncePerRequestFilter {
 
+    //最后一步生成验证码
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
@@ -34,6 +34,8 @@ public class JCaptchaFilter extends OncePerRequestFilter {
         response.setContentType("image/jpeg");
 
         String id = request.getRequestedSessionId();
+
+        //使用当前会话ID当作key获取相应的验证码图片；另外需要设置响应内容不进行浏览器端缓存
         BufferedImage bi = JCaptcha.captchaService.getImageChallengeForID(id);
 
         ServletOutputStream out = response.getOutputStream();
@@ -45,6 +47,4 @@ public class JCaptchaFilter extends OncePerRequestFilter {
             out.close();
         }
     }
-
-
 }

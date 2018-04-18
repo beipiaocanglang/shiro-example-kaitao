@@ -51,3 +51,5 @@ create table sys_role (
   constraint pk_sys_role primary key(id)
 ) charset=utf8 ENGINE=InnoDB;
 create index idx_sys_role_resource_ids on sys_role(resource_ids);
+
+COMMIT ;

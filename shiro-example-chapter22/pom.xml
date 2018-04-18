@@ -1,5 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                            http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>shiro-example</artifactId>
         <groupId>com.github.zhangkaitao</groupId>
@@ -10,7 +12,6 @@
     <packaging>war</packaging>
     <name>shiro-example-chapter22</name>
     <url>http://maven.apache.org</url>
-
 
     <dependencies>
         <dependency>
@@ -121,12 +122,24 @@
             <version>1.2</version>
         </dependency>
 
-        <!-- jcaptcha 验证码 -->
+        <!-- jcaptcha 验证码 提供了jcaptcha 核心-->
         <dependency>
             <groupId>com.octo.captcha</groupId>
             <artifactId>jcaptcha</artifactId>
             <version>2.0-alpha-1</version>
         </dependency>
+        <dependency>
+            <groupId>com.octo.captcha</groupId>
+            <artifactId>jcaptcha-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <!--Attribute 'expose-proxy' is not allowed to appear in element 'aop:aspectj-autoproxy，应该是某些依赖冲突，实际上我们只需要jcaptcha-api这个依赖就够了-->
+        <!--<dependency>
+            <groupId>com.octo.captcha</groupId>
+            <artifactId>jcaptcha-all</artifactId>
+            <version>1.0-RC6</version>
+        </dependency>-->
+        <!--提供了与Servlet集成-->
         <!--<dependency>
             <groupId>com.octo.captcha</groupId>
             <artifactId>jcaptcha-integration-simple-servlet</artifactId>
@@ -138,7 +151,6 @@
                 </exclusion>
             </exclusions>
         </dependency>-->
-
     </dependencies>
 
     <build>
@@ -154,8 +166,6 @@
                     </webAppConfig>
                 </configuration>
             </plugin>
-
-
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -163,17 +173,14 @@
                 <configuration>
                     <path>/${project.build.finalName}</path>
                 </configuration>
-
             </plugin>
         </plugins>
     </build>
-
-    <repositories>
+    <!--<repositories>
         <repository>
             <id>oschina Releases</id>
             <name>oschina Releases</name>
             <url>http://maven.oschina.net/content/groups/public</url>
         </repository>
-    </repositories>
-
+    </repositories>-->
 </project>

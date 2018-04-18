@@ -13,17 +13,14 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 验证码过滤器
- * <p>User: Zhang Kaitao
- * <p>Date: 13-3-22 下午4:01
- * <p>Version: 1.0
+ * 用于验证码验证的Shiro过滤器
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午11:17
  */
 public class JCaptchaValidateFilter extends AccessControlFilter {
 
     private boolean jcaptchaEbabled = true;//是否开启验证码支持
-
     private String jcaptchaParam = "jcaptchaCode";//前台提交的验证码参数名
-
     private String failureKeyAttribute = "shiroLoginFailure"; //验证码验证失败后存储到的属性名
 
     public void setJcaptchaEbabled(boolean jcaptchaEbabled) {
@@ -47,8 +44,12 @@ public class JCaptchaValidateFilter extends AccessControlFilter {
             return true;
         }
         //3、此时是表单提交，验证验证码是否正确
-        return JCaptcha.validateResponse(httpServletRequest, httpServletRequest.getParameter(jcaptchaParam));
+        //调用com.github.zhangkaitao.shiro.chapter22.jcaptcha.JCaptcha.validateResponse()
+        boolean b = JCaptcha.validateResponse(httpServletRequest, httpServletRequest.getParameter(jcaptchaParam));
+        return b;
     }
+
+    //用户输入的验证码错误时会执行此方法
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         //如果验证码失败了，存储失败key属性
