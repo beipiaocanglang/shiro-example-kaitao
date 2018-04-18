@@ -17,9 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-27
- * <p>Version: 1.0
+ * 授权并切换用户操作
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午9:58
  */
 @Controller
 @RequestMapping("/runas")
@@ -51,13 +51,10 @@ public class RunAsController {
         return "runas";
     }
 
-
-
     @RequestMapping("/grant/{toUserId}")
-    public String grant(
-            @CurrentUser User loginUser,
-            @PathVariable("toUserId") Long toUserId,
-            RedirectAttributes redirectAttributes) {
+    public String grant(@CurrentUser User loginUser,
+                        @PathVariable("toUserId") Long toUserId,
+                        RedirectAttributes redirectAttributes) {
 
         if(loginUser.getId().equals(toUserId)) {
             redirectAttributes.addFlashAttribute("msg", "自己不能切换到自己的身份");
@@ -68,7 +65,6 @@ public class RunAsController {
         redirectAttributes.addFlashAttribute("msg", "操作成功");
         return "redirect:/runas";
     }
-
 
     @RequestMapping("/revoke/{toUserId}")
     public String revoke(
@@ -81,10 +77,9 @@ public class RunAsController {
     }
 
     @RequestMapping("/switchTo/{switchToUserId}")
-    public String switchTo(
-            @CurrentUser User loginUser,
-            @PathVariable("switchToUserId") Long switchToUserId,
-            RedirectAttributes redirectAttributes) {
+    public String switchTo(@CurrentUser User loginUser,
+                           @PathVariable("switchToUserId") Long switchToUserId,
+                           RedirectAttributes redirectAttributes) {
 
         Subject subject = SecurityUtils.getSubject();
 
@@ -117,5 +112,4 @@ public class RunAsController {
         redirectAttributes.addFlashAttribute("needRefresh", "true");
         return "redirect:/runas";
     }
-
 }

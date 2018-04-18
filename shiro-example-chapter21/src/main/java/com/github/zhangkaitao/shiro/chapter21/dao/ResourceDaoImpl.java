@@ -63,7 +63,6 @@ public class ResourceDaoImpl implements ResourceDao {
         jdbcTemplate.update(deleteDescendantsSql, resource.makeSelfAsParentIds() + "%");
     }
 
-
     @Override
     public Resource findOne(Long resourceId) {
         final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource where id=?";
@@ -79,5 +78,4 @@ public class ResourceDaoImpl implements ResourceDao {
         final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource order by concat(parent_ids, id) asc";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Resource.class));
     }
-
 }

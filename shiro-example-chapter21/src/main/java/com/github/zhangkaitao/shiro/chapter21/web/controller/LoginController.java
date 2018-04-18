@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-15
- * <p>Version: 1.0
+ * 登录类
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午10:00
  */
 @Controller
 public class LoginController {
@@ -30,6 +30,4 @@ public class LoginController {
         model.addAttribute("error", error);
         return "login";
     }
-
-
 }

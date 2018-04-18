@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-14
- * <p>Version: 1.0
+ * 资源操作
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午9:59
  */
 @Controller
 @RequestMapping("/resource")
@@ -80,5 +80,4 @@ public class ResourceController {
         redirectAttributes.addFlashAttribute("msg", "删除成功");
         return "redirect:/resource";
     }
-
 }

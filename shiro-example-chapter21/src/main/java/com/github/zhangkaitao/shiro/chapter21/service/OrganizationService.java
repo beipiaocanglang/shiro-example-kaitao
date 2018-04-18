@@ -10,13 +10,14 @@ import java.util.List;
  * <p>Version: 1.0
  */
 public interface OrganizationService {
+    Organization createOrganization(Organization organization);
 
+    Organization updateOrganization(Organization organization);
 
-    public Organization createOrganization(Organization organization);
-    public Organization updateOrganization(Organization organization);
-    public void deleteOrganization(Long organizationId);
+    void deleteOrganization(Long organizationId);
 
     Organization findOne(Long organizationId);
+
     List<Organization> findAll();
 
     Object findAllWithExclude(Organization excludeOraganization);

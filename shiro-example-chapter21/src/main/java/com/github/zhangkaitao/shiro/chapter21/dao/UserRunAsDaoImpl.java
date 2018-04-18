@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * <p>UserRunAs: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 身份授权及切换身份DAO - 接口实现类
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午10:07
  */
 @Repository
 public class UserRunAsDaoImpl implements UserRunAsDao {

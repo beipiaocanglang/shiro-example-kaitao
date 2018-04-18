@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-14
- * <p>Version: 1.0
+ * 首页类
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午10:00
  */
 @Controller
 public class IndexController {
@@ -38,6 +38,4 @@ public class IndexController {
     public String welcome() {
         return "welcome";
     }
-
-
 }

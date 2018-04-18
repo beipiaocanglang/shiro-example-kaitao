@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-14
- * <p>Version: 1.0
+ * 角色操作
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午9:59
  */
 @Controller
 @RequestMapping("/role")
@@ -88,5 +88,4 @@ public class RoleController {
     private void setCommonData(Model model) {
         model.addAttribute("resourceList", resourceService.findAll());
     }
-
 }

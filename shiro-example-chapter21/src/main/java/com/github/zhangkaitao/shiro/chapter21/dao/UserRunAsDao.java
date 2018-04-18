@@ -3,18 +3,19 @@ package com.github.zhangkaitao.shiro.chapter21.dao;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 身份授权及切换身份DAO - 接口
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午10:07
  */
 public interface UserRunAsDao {
 
-    public void grantRunAs(Long fromUserId, Long toUserId);
-    public void revokeRunAs(Long fromUserId, Long toUserId);
+    void grantRunAs(Long fromUserId, Long toUserId);
 
-    public boolean exists(Long fromUserId, Long toUserId);
+    void revokeRunAs(Long fromUserId, Long toUserId);
 
-    public List<Long> findFromUserIds(Long toUserId);
-    public List<Long> findToUserIds(Long fromUserId);
+    boolean exists(Long fromUserId, Long toUserId);
 
+    List<Long> findFromUserIds(Long toUserId);
+
+    List<Long> findToUserIds(Long fromUserId);
 }

@@ -12,13 +12,15 @@ import java.util.Set;
  */
 public interface RoleService {
 
+    Role createRole(Role role);
 
-    public Role createRole(Role role);
-    public Role updateRole(Role role);
-    public void deleteRole(Long roleId);
+    Role updateRole(Role role);
 
-    public Role findOne(Long roleId);
-    public List<Role> findAll();
+    void deleteRole(Long roleId);
+
+    Role findOne(Long roleId);
+
+    List<Role> findAll();
 
     /**
      * 根据角色编号得到角色标识符列表

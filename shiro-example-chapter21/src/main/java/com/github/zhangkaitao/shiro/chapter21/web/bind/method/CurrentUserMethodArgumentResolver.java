@@ -8,10 +8,9 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 /**
- * <p>用于绑定@FormModel的方法参数解析器
- * <p>User: Zhang Kaitao
- * <p>Date: 13-1-12 下午5:01
- * <p>Version: 1.0
+ * 用于绑定@FormModel的方法参数解析器
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午10:01
  */
 public class CurrentUserMethodArgumentResolver implements HandlerMethodArgumentResolver {
 

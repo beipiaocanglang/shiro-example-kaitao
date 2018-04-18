@@ -21,8 +21,7 @@ public class User implements Serializable {
     private List<Long> roleIds; //拥有的角色列表
     private Boolean locked = Boolean.FALSE;
 
-    public User() {
-    }
+    public User() {}
 
     public User(String username, String password) {
         this.username = username;
@@ -32,7 +31,6 @@ public class User implements Serializable {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -40,7 +38,6 @@ public class User implements Serializable {
     public Long getOrganizationId() {
         return organizationId;
     }
-
     public void setOrganizationId(Long organizationId) {
         this.organizationId = organizationId;
     }
@@ -48,7 +45,6 @@ public class User implements Serializable {
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -56,7 +52,6 @@ public class User implements Serializable {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -64,7 +59,6 @@ public class User implements Serializable {
     public String getSalt() {
         return salt;
     }
-
     public void setSalt(String salt) {
         this.salt = salt;
     }
@@ -83,7 +77,6 @@ public class User implements Serializable {
     public void setRoleIds(List<Long> roleIds) {
         this.roleIds = roleIds;
     }
-
 
     public String getRoleIdsStr() {
         if(CollectionUtils.isEmpty(roleIds)) {

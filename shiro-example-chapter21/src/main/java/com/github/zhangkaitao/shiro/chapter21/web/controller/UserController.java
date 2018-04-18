@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-14
- * <p>Version: 1.0
+ * 用户管理操作
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午9:57
  */
 @Controller
 @RequestMapping("/user")
@@ -87,7 +87,6 @@ public class UserController {
         redirectAttributes.addFlashAttribute("msg", "删除成功");
         return "redirect:/user";
     }
-
 
     @RequiresPermissions("user:update")
     @RequestMapping(value = "/{id}/changePassword", method = RequestMethod.GET)

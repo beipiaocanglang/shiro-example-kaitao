@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-14
- * <p>Version: 1.0
+ * 组织结构操作
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午10:00
  */
 @Controller
 @RequestMapping("/organization")
@@ -80,7 +80,6 @@ public class OrganizationController {
         return "redirect:/organization/success";
     }
 
-
     @RequiresPermissions("organization:update")
     @RequestMapping(value = "/{sourceId}/move", method = RequestMethod.GET)
     public String showMoveForm(@PathVariable("sourceId") Long sourceId, Model model) {
@@ -92,9 +91,7 @@ public class OrganizationController {
 
     @RequiresPermissions("organization:update")
     @RequestMapping(value = "/{sourceId}/move", method = RequestMethod.POST)
-    public String move(
-            @PathVariable("sourceId") Long sourceId,
-            @RequestParam("targetId") Long targetId) {
+    public String move(@PathVariable("sourceId") Long sourceId, @RequestParam("targetId") Long targetId) {
         Organization source = organizationService.findOne(sourceId);
         Organization target = organizationService.findOne(targetId);
         organizationService.move(source, target);
@@ -106,6 +103,4 @@ public class OrganizationController {
     public String success() {
         return "organization/success";
     }
-
-
 }

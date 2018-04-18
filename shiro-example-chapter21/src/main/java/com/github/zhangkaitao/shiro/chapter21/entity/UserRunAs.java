@@ -3,9 +3,9 @@ package com.github.zhangkaitao.shiro.chapter21.entity;
 import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-27
- * <p>Version: 1.0
+ * 授权身份及切换身份pojo
+ * author : sunpanhu
+ * createTime : 2018/4/18 上午10:05
  */
 public class UserRunAs implements Serializable {
     private Long fromUserId;//授予身份帐号
@@ -14,7 +14,6 @@ public class UserRunAs implements Serializable {
     public Long getFromUserId() {
         return fromUserId;
     }
-
     public void setFromUserId(Long fromUserId) {
         this.fromUserId = fromUserId;
     }
@@ -22,7 +21,6 @@ public class UserRunAs implements Serializable {
     public Long getToUserId() {
         return toUserId;
     }
-
     public void setToUserId(Long toUserId) {
         this.toUserId = toUserId;
     }

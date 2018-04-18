@@ -74,5 +74,4 @@ public class RoleDaoImpl implements RoleDao {
         final String sql = "select id, role, description, resource_ids as resourceIdsStr, available from sys_role";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Role.class));
     }
-
 }
