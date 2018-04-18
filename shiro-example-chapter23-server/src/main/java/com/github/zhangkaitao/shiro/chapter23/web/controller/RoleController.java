@@ -88,5 +88,4 @@ public class RoleController {
     private void setCommonData(Model model) {
         model.addAttribute("resourceList", resourceService.findAll());
     }
-
 }

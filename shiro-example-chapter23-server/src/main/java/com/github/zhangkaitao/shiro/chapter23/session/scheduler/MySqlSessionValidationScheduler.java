@@ -17,9 +17,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-9
- * <p>Version: 1.0
+ * 如果使用如Redis之类的有自动过期策略的DB，完全可以不用实现SessionValidationScheduler，直接借助于这些DB的过期策略即可。
  */
 public class MySqlSessionValidationScheduler implements SessionValidationScheduler, Runnable {
 
@@ -59,6 +57,7 @@ public class MySqlSessionValidationScheduler implements SessionValidationSchedul
     }
 
     /**
+     * 使用session验证
      * Creates a single thread {@link java.util.concurrent.ScheduledExecutorService} to validate sessions at fixed intervals
      * and enables this scheduler. The executor is created as a daemon thread to allow JVM to shut down
      */
@@ -110,6 +109,7 @@ public class MySqlSessionValidationScheduler implements SessionValidationSchedul
         }
     }
 
+    //不实用sesion验证
     public void disableSessionValidation() {
         this.service.shutdownNow();
         this.enabled = false;

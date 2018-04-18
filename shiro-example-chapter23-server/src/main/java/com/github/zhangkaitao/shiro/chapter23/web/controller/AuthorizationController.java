@@ -96,6 +96,4 @@ public class AuthorizationController {
         model.addAttribute("roleList", roleService.findAll());
         model.addAttribute("appList", appService.findAll());
     }
-
-
 }

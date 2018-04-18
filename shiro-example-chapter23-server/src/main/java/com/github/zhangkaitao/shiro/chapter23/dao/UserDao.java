@@ -5,20 +5,21 @@ import com.github.zhangkaitao.shiro.chapter23.entity.User;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 用户 dao - 接口
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午2:08
  */
 public interface UserDao {
 
-    public User createUser(User user);
-    public User updateUser(User user);
-    public void deleteUser(Long userId);
+    User createUser(User user);
+
+    User updateUser(User user);
+
+    void deleteUser(Long userId);
 
     User findOne(Long userId);
 
     List<User> findAll();
 
     User findByUsername(String username);
-
 }

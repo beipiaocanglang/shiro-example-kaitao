@@ -7,9 +7,7 @@ import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-3-13
- * <p>Version: 1.0
+ * Session的维护通过远程暴露接口实现，即本地不维护会话。
  */
 public class ClientSessionDAO extends CachingSessionDAO {
 

@@ -36,7 +36,12 @@ public class ClientRealm extends AuthorizingRealm {
         return authorizationInfo;
     }
 
-    //认证
+    /**
+     * 认证
+     * ClientRealm提供身份认证信息和授权信息，此处因为是其他应用依赖客户端，
+     * 而这些应用不会实现身份认证，所以doGetAuthenticationInfo获取身份认证信息直接无须实现。
+     * 另外获取授权信息，是通过远程暴露的服务RemoteServiceInterface获取，提供appKey和用户名获取即可。
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //永远不会被调用

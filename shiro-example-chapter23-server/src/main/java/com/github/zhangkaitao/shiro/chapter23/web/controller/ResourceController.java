@@ -80,6 +80,4 @@ public class ResourceController {
         redirectAttributes.addFlashAttribute("msg", "删除成功");
         return "redirect:/resource";
     }
-
-
 }

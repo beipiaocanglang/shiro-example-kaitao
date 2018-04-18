@@ -5,7 +5,7 @@
                             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
                             version="3.0" metadata-complete="false">
 
-    <!-- Spring配置文件开始  -->
+    <!-- Spring配置文件开始  指定加载客户端Shiro配置，client/spring-client.xml-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>

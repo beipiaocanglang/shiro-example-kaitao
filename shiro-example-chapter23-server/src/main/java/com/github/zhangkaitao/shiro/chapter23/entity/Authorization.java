@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-3-13
- * <p>Version: 1.0
+ * 授权 pojo
+ * 给指定的用户在指定的app下授权，即角色是与用户和app存在关联关系。
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午2:05
  */
 public class  Authorization implements Serializable {
     private Long id;

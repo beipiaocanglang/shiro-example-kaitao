@@ -61,7 +61,6 @@ public class OrganizationDaoImpl implements OrganizationDao {
         jdbcTemplate.update(deleteDescendantsSql, organization.makeSelfAsParentIds() + "%");
     }
 
-
     @Override
     public Organization findOne(Long organizationId) {
         final String sql = "select id, name, parent_id, parent_ids, available from sys_organization where id=?";

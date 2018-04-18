@@ -85,7 +85,6 @@ public class UserController {
         return "redirect:/user";
     }
 
-
     @RequiresPermissions("user:update")
     @RequestMapping(value = "/{id}/changePassword", method = RequestMethod.GET)
     public String showChangePasswordForm(@PathVariable("id") Long id, Model model) {

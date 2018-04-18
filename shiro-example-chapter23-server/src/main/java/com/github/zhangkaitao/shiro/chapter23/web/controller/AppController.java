@@ -82,5 +82,4 @@ public class AppController {
         redirectAttributes.addFlashAttribute("msg", "删除成功");
         return "redirect:/app";
     }
-
 }

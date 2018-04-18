@@ -10,6 +10,7 @@
     <!-- Realm实现 -->
     <bean id="remoteRealm" class="com.github.zhangkaitao.shiro.chapter23.client.ClientRealm">
         <property name="cachingEnabled" value="false"/>
+        <!--appKey：使用${client.app.key}占位符替换，即需要在之前的properties文件中配置-->
         <property name="appKey" value="${client.app.key}"/>
         <property name="remoteService" ref="remoteService"/>
     </bean>
@@ -17,7 +18,7 @@
     <!-- 会话ID生成器 -->
     <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
 
-    <!-- 会话Cookie模板 -->
+    <!-- 会话Cookie模板，cookie名字、域名、路径等都是通过配置文件配置。-->
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <constructor-arg value="${client.session.id}"/>
         <property name="httpOnly" value="true"/>
@@ -42,15 +43,16 @@
         <property name="cookie" ref="rememberMeCookie"/>
     </bean>
 
-    <!-- 会话DAO -->
+    <!-- 会话DAO, SessionDAO的appKey，也是通过${ client.app.key }占位符替换，需要在配置文件配置-->
     <bean id="sessionDAO" class="com.github.zhangkaitao.shiro.chapter23.client.ClientSessionDAO">
         <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
         <property name="appKey" value="${client.app.key}"/>
         <property name="remoteService" ref="remoteService"/>
     </bean>
 
-    <!-- 会话管理器 -->
+    <!-- 会话管理器  -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <!--其他应用无须进行会话过期调度，所以sessionValidationSchedulerEnabled=false-->
         <property name="deleteInvalidSessions" value="false"/>
         <property name="sessionValidationSchedulerEnabled" value="false"/>
         <property name="sessionDAO" ref="sessionDAO"/>
@@ -71,9 +73,16 @@
         <property name="arguments" ref="securityManager"/>
     </bean>
 
+    <!--应用的身份认证使用ClientAuthenticationFilter，即如果没有身份认证，则会重定向到Server模块完成身份认证，身份认证成功后再重定向回来-->
     <bean id="clientAuthenticationFilter" class="com.github.zhangkaitao.shiro.chapter23.client.ClientAuthenticationFilter"/>
 
-    <!-- Shiro的Web过滤器 -->
+    <!--
+        Shiro的Web过滤器
+        ShiroFilter使用我们自定义的ClientShiroFilterFactoryBean，
+        然后loginUrl（登录地址）、successUrl（登录成功后默认的重定向地址）、unauthorizedUrl（未授权重定向到的地址）通过占位符替换方式配置；
+        另外filtersStr和filterChainDefinitionsStr也是使用占位符替换方式配置；
+        这样就可以在各应用进行自定义了
+    -->
     <bean id="shiroFilter" class="com.github.zhangkaitao.shiro.chapter23.client.ClientShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="${client.login.url}"/>

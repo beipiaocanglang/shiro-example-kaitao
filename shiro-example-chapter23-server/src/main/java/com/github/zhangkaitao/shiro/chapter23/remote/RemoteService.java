@@ -6,11 +6,16 @@ import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
+import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-3-13
- * <p>Version: 1.0
+ * 远程调用服务
+ * 将会使用HTTP调用器暴露为远程服务，
+ * 这样其他应用就可以使用相应的客户端调用这些接口进行Session的集中维护及根据AppKey和用户名获取角色/权限字符串集合。
+ * 此处没有实现安全校验功能，如果是局域网内使用可以通过限定IP完成；
+ * 否则需要使用如《第二十章 无状态Web应用集成》中的技术完成安全校验
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午2:10
  */
 public class RemoteService implements RemoteServiceInterface {
 
@@ -42,9 +47,13 @@ public class RemoteService implements RemoteServiceInterface {
 
     @Override
     public PermissionContext getPermissions(String appKey, String username) {
+        Set<String> roles = authorizationService.findRoles(appKey, username);
+        Set<String> permissions = authorizationService.findPermissions(appKey, username);
+
         PermissionContext permissionContext = new PermissionContext();
-        permissionContext.setRoles(authorizationService.findRoles(appKey, username));
-        permissionContext.setPermissions(authorizationService.findPermissions(appKey, username));
+        permissionContext.setRoles(roles);
+        permissionContext.setPermissions(permissions);
+
         return permissionContext;
     }
 }

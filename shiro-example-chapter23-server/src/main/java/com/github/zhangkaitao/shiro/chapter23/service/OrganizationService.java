@@ -11,12 +11,14 @@ import java.util.List;
  */
 public interface OrganizationService {
 
+    Organization createOrganization(Organization organization);
 
-    public Organization createOrganization(Organization organization);
-    public Organization updateOrganization(Organization organization);
-    public void deleteOrganization(Long organizationId);
+    Organization updateOrganization(Organization organization);
+
+    void deleteOrganization(Long organizationId);
 
     Organization findOne(Long organizationId);
+
     List<Organization> findAll();
 
     Object findAllWithExclude(Organization excludeOraganization);

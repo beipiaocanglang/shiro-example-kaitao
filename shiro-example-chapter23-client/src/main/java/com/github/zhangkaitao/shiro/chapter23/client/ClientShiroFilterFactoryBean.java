@@ -20,6 +20,11 @@ public class ClientShiroFilterFactoryBean extends ShiroFilterFactoryBean impleme
         this.applicationContext = applicationContext;
     }
 
+    /**
+     * 设置拦截器，设置格式如“filterName=filterBeanName; filterName=filterBeanName”；多个之间分号分隔；
+     * 然后通过applicationContext获取filterBeanName对应的Bean注册到拦截器Map中；
+     * @param filters
+     */
     public void setFiltersStr(String filters) {
         if(StringUtils.isEmpty(filters)) {
             return;
@@ -31,6 +36,11 @@ public class ClientShiroFilterFactoryBean extends ShiroFilterFactoryBean impleme
         }
     }
 
+    /**
+     * 设置拦截器链，设置格式如“url=filterName1[config],filterName2; url=filterName1[config],filterName2”；
+     * 多个之间分号分隔
+     * @param filterChainDefinitions
+     */
     public void setFilterChainDefinitionsStr(String filterChainDefinitions) {
         if(StringUtils.isEmpty(filterChainDefinitions)) {
             return;

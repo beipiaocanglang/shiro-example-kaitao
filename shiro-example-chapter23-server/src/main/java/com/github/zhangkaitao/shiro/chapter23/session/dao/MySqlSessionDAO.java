@@ -11,9 +11,12 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-8
- * <p>Version: 1.0
+ * 会话dao
+ * 将会话持久化到Mysql数据库；
+ * 此处大家可以将其实现为如存储到Redis/Memcached等，
+ * 实现策略请参考《第十章 会话管理》中的会话存储/持久化章节的MySessionDAO，完全一样。
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午2:15
  */
 public class MySqlSessionDAO extends CachingSessionDAO {
 

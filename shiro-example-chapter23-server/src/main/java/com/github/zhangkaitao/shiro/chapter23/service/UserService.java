@@ -11,23 +11,22 @@ import java.util.Set;
  * <p>Version: 1.0
  */
 public interface UserService {
-
     /**
      * 创建用户
      * @param user
      */
-    public User createUser(User user);
+    User createUser(User user);
 
-    public User updateUser(User user);
+    User updateUser(User user);
 
-    public void deleteUser(Long userId);
+    void deleteUser(Long userId);
 
     /**
      * 修改密码
      * @param userId
      * @param newPassword
      */
-    public void changePassword(Long userId, String newPassword);
+    void changePassword(Long userId, String newPassword);
 
 
     User findOne(Long userId);
@@ -39,7 +38,5 @@ public interface UserService {
      * @param username
      * @return
      */
-    public User findByUsername(String username);
-
-
+    User findByUsername(String username);
 }

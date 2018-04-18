@@ -14,9 +14,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * <p>App: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 集中权限应用 dao - 接口实现类
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午2:06
  */
 @Repository
 public class AppDaoImpl implements AppDao {
@@ -57,7 +57,6 @@ public class AppDaoImpl implements AppDao {
         final String sql = "delete from sys_app where id=?";
         jdbcTemplate.update(sql, appId);
     }
-
 
     @Override
     public App findOne(Long appId) {

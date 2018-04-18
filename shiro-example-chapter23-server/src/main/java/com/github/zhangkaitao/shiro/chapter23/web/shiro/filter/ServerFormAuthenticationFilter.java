@@ -8,9 +8,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-3-16
- * <p>Version: 1.0
+ * 因为是多项目登录，比如如果是从其他应用中重定向过来的，
+ * 首先检查Session中是否有“authc.fallbackUrl”属性，如果有就认为它是默认的重定向地址；
+ * 否则使用Server自己的successUrl作为登录成功后重定向到的地址。
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午4:23
  */
 public class ServerFormAuthenticationFilter extends FormAuthenticationFilter {
 
@@ -22,5 +24,4 @@ public class ServerFormAuthenticationFilter extends FormAuthenticationFilter {
         }
         WebUtils.redirectToSavedRequest(request, response, fallbackUrl);
     }
-
 }

@@ -1,16 +1,14 @@
 package com.github.zhangkaitao.shiro.chapter23.entity;
 
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 用户pojo
+ * 比《第十六章 综合实例》少了role_ids，因为本章是多项目集中权限管理；
+ * 所以授权时需要指定相应的应用；而不是直接给用户授权；
+ * 所以不能在用户中出现role_ids了；
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午2:03
  */
 public class User implements Serializable {
     private Long id; //编号

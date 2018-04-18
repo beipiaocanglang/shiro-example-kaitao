@@ -13,7 +13,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * client端认证拦截器
+ * client端认证拦截器 用于实现身份认证的拦截器（authc），当用户没有身份认证时
  * author : sunpanhu
  * createTime : 2018/4/18 下午1:25
  */
@@ -28,9 +28,13 @@ public class ClientAuthenticationFilter extends AuthenticationFilter {
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         String backUrl = request.getParameter("backUrl");
+        //1、首先得到请求参数backUrl，即登录成功重定向到的地址；
         String defaultBackUrl = getDefaultBackUrl(WebUtils.toHttp(request));
+        //然后保存保存请求到会话，并重定向到登录地址（server模块）
         saveRequest(request, backUrl, defaultBackUrl);
+        //登录成功后，返回地址按照如下顺序获取：backUrl、保存的当前请求地址、defaultBackUrl（即设置的successUrl）
         redirectToLogin(request, response);
+
         return false;
     }
 

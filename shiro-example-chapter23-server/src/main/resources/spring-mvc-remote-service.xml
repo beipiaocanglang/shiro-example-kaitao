@@ -4,6 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!--把服务暴露出去，使其他应用可以访问-->
     <bean id="remoteService" class="com.github.zhangkaitao.shiro.chapter23.remote.RemoteService"/>
 
     <bean name="/remoteService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">

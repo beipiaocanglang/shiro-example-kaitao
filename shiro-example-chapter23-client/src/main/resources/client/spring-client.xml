@@ -6,6 +6,11 @@
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
+    <description>
+        提供给客户端配置的properties属性文件，client/shiro-client-default.properties是客户端提供的默认的配置；
+        classpath:client/shiro-client.properties是用于覆盖客户端默认配置，各应用应该提供该配置文件，
+        然后提供各应用个性配置
+    </description>
 
     <context:property-placeholder location="classpath:client/shiro-client-default.properties,classpath:client/shiro-client.properties"/>
 

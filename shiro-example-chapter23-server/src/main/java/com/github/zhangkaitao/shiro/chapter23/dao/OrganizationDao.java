@@ -10,10 +10,11 @@ import java.util.List;
  * <p>Version: 1.0
  */
 public interface OrganizationDao {
+    Organization createOrganization(Organization organization);
 
-    public Organization createOrganization(Organization organization);
-    public Organization updateOrganization(Organization organization);
-    public void deleteOrganization(Long organizationId);
+    Organization updateOrganization(Organization organization);
+
+    void deleteOrganization(Long organizationId);
 
     Organization findOne(Long organizationId);
     List<Organization> findAll();

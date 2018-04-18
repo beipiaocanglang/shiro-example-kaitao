@@ -14,9 +14,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * <p>Authorization: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 授权 dao - 接口实现类
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午2:06
  */
 @Repository
 public class AuthorizationDaoImpl implements AuthorizationDao {
@@ -58,7 +58,6 @@ public class AuthorizationDaoImpl implements AuthorizationDao {
         jdbcTemplate.update(sql, authorizationId);
     }
 
-
     @Override
     public Authorization findOne(Long authorizationId) {
         final String sql = "select id, user_id, app_id, role_ids as roleIdsStr from sys_user_app_roles where id=?";
@@ -74,7 +73,6 @@ public class AuthorizationDaoImpl implements AuthorizationDao {
         final String sql = "select id, user_id, app_id, role_ids as roleIdsStr from sys_user_app_roles";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Authorization.class));
     }
-
 
     @Override
     public Authorization findByAppUser(Long appId, Long userId) {

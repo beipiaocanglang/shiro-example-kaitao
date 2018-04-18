@@ -14,9 +14,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 用户 dao - 接口实现类
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午2:08
  */
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -74,7 +74,6 @@ public class UserDaoImpl implements UserDao {
         String sql = "select id, organization_id, username, password, salt, locked from sys_user";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class));
     }
-
 
     @Override
     public User findByUsername(String username) {

@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 集中权限应用 service - 接口实现类
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午2:06
  */
 @Service
-
 public class AppServiceImpl implements AppService {
 
     @Autowired

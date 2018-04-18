@@ -80,7 +80,6 @@ public class OrganizationController {
         return "redirect:/organization/success";
     }
 
-
     @RequiresPermissions("organization:update")
     @RequestMapping(value = "/{sourceId}/move", method = RequestMethod.GET)
     public String showMoveForm(@PathVariable("sourceId") Long sourceId, Model model) {
@@ -106,6 +105,4 @@ public class OrganizationController {
     public String success() {
         return "organization/success";
     }
-
-
 }

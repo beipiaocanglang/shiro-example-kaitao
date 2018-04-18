@@ -33,7 +33,6 @@ public class HelloController {
         return "success";
     }
 
-
     @RequiresRoles("role1")
     @RequestMapping("/role1")
     public String role1() {

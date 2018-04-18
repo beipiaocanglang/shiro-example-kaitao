@@ -30,6 +30,4 @@ public class LoginController {
         model.addAttribute("error", error);
         return "login";
     }
-
-
 }

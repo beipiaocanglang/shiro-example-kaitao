@@ -12,10 +12,12 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Set;
+
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 自定义Realm
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午2:10
  */
 public class UserRealm extends AuthorizingRealm {
 
@@ -25,13 +27,18 @@ public class UserRealm extends AuthorizingRealm {
     @Autowired
     private AuthorizationService authorizationService;
 
+    //此处需要调用AuthorizationService的findRoles/findPermissions方法传入AppKey和用户名来获取用户的角色和权限字符串集合
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String)principals.getPrimaryPrincipal();
 
+        Set<String> roles = authorizationService.findRoles(Constants.SERVER_APP_KEY, username);
+        Set<String> permissions = authorizationService.findPermissions(Constants.SERVER_APP_KEY, username);
+
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(authorizationService.findRoles(Constants.SERVER_APP_KEY, username));
-        authorizationInfo.setStringPermissions(authorizationService.findPermissions(Constants.SERVER_APP_KEY, username));
+        authorizationInfo.setRoles(roles);
+        authorizationInfo.setStringPermissions(permissions);
+
         return authorizationInfo;
     }
 
@@ -87,5 +94,4 @@ public class UserRealm extends AuthorizingRealm {
         clearAllCachedAuthenticationInfo();
         clearAllCachedAuthorizationInfo();
     }
-
 }

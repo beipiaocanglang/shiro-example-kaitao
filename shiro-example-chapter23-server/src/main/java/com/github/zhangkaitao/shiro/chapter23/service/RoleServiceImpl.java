@@ -15,7 +15,6 @@ import java.util.Set;
  * <p>Version: 1.0
  */
 @Service
-
 public class RoleServiceImpl implements RoleService {
 
     @Autowired

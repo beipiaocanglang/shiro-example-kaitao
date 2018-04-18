@@ -11,12 +11,11 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 授权 service - 接口实现类
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午2:12
  */
 @Service
-
 public class AuthorizationServiceImpl implements AuthorizationService {
 
     @Autowired
@@ -115,6 +114,4 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         }
         return roleService.findPermissions(authorization.getRoleIds().toArray(new Long[0]));
     }
-
-
 }

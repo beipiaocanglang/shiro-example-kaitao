@@ -6,33 +6,33 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 授权 service - 接口
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午2:12
  */
 public interface AuthorizationService {
 
+    Authorization createAuthorization(Authorization authorization);
 
-    public Authorization createAuthorization(Authorization authorization);
-    public Authorization updateAuthorization(Authorization authorization);
-    public void deleteAuthorization(Long authorizationId);
+    Authorization updateAuthorization(Authorization authorization);
 
-    public Authorization findOne(Long authorizationId);
-    public List<Authorization> findAll();
+    void deleteAuthorization(Long authorizationId);
+
+    Authorization findOne(Long authorizationId);
+
+    List<Authorization> findAll();
 
     /**
      * 根据AppKey和用户名查找其角色
      * @param username
      * @return
      */
-    public Set<String> findRoles(String appKey, String username);
+    Set<String> findRoles(String appKey, String username);
 
     /**
      * 根据AppKey和用户名查找权限字符串
      * @param username
      * @return
      */
-    public Set<String> findPermissions(String appKey, String username);
-
-
+    Set<String> findPermissions(String appKey, String username);
 }
