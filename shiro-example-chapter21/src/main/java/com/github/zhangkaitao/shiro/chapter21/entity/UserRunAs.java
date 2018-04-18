@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * 授权身份及切换身份pojo
+ * 该实体定义了授予身份帐号（A）与被授予身份帐号（B）的关系，意思是B帐号将可以假装为A帐号的身份进行访问。
  * author : sunpanhu
  * createTime : 2018/4/18 上午10:05
  */
