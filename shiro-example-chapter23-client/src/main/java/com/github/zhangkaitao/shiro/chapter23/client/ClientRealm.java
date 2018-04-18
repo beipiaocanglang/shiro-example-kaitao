@@ -11,9 +11,9 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-3-13
- * <p>Version: 1.0
+ * 自定义client端Realm
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午1:25
  */
 public class ClientRealm extends AuthorizingRealm {
     private RemoteServiceInterface remoteService;
@@ -24,6 +24,8 @@ public class ClientRealm extends AuthorizingRealm {
     public void setAppKey(String appKey) {
         this.appKey = appKey;
     }
+
+    //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String) principals.getPrimaryPrincipal();
@@ -34,6 +36,7 @@ public class ClientRealm extends AuthorizingRealm {
         return authorizationInfo;
     }
 
+    //认证
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //永远不会被调用

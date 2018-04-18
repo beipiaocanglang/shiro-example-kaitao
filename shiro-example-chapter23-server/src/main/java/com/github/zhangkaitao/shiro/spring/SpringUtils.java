@@ -89,5 +89,4 @@ public final class SpringUtils implements BeanFactoryPostProcessor {
     public static String[] getAliases(String name) throws NoSuchBeanDefinitionException {
         return beanFactory.getAliases(name);
     }
-
 }

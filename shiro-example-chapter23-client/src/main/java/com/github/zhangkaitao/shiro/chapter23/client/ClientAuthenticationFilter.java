@@ -13,9 +13,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-3-14
- * <p>Version: 1.0
+ * client端认证拦截器
+ * author : sunpanhu
+ * createTime : 2018/4/18 下午1:25
  */
 public class ClientAuthenticationFilter extends AuthenticationFilter {
 
@@ -28,10 +28,12 @@ public class ClientAuthenticationFilter extends AuthenticationFilter {
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         String backUrl = request.getParameter("backUrl");
-        saveRequest(request, backUrl, getDefaultBackUrl(WebUtils.toHttp(request)));
+        String defaultBackUrl = getDefaultBackUrl(WebUtils.toHttp(request));
+        saveRequest(request, backUrl, defaultBackUrl);
         redirectToLogin(request, response);
         return false;
     }
+
     protected void saveRequest(ServletRequest request, String backUrl, String fallbackUrl) {
         Subject subject = SecurityUtils.getSubject();
         Session session = subject.getSession();
@@ -40,6 +42,8 @@ public class ClientAuthenticationFilter extends AuthenticationFilter {
         SavedRequest savedRequest = new ClientSavedRequest(httpRequest, backUrl);
         session.setAttribute(WebUtils.SAVED_REQUEST_KEY, savedRequest);
     }
+
+    //获取默认返回的url
     private String getDefaultBackUrl(HttpServletRequest request) {
         String scheme = request.getScheme();
         String domain = request.getServerName();
@@ -57,5 +61,4 @@ public class ClientAuthenticationFilter extends AuthenticationFilter {
         backUrl.append(getSuccessUrl());
         return backUrl.toString();
     }
-
 }

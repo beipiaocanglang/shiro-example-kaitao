@@ -18,19 +18,18 @@ public class HelloController {
 
     @RequestMapping("/hello")
     public String hello() {
+
         return "success";
     }
 
     @RequestMapping(value = "/attr", method = RequestMethod.POST)
-    public String setAttr(
-            @RequestParam("key") String key, @RequestParam("value") String value) {
+    public String setAttr(@RequestParam("key") String key, @RequestParam("value") String value) {
         SecurityUtils.getSubject().getSession().setAttribute(key, value);
         return "success";
     }
 
     @RequestMapping(value = "/attr", method = RequestMethod.GET)
-    public String getAttr(
-            @RequestParam("key") String key, Model model) {
+    public String getAttr(@RequestParam("key") String key, Model model) {
         model.addAttribute("value", SecurityUtils.getSubject().getSession().getAttribute(key));
         return "success";
     }
@@ -38,6 +37,7 @@ public class HelloController {
     @RequestMapping("/role2")
     @RequiresRoles("role2")
     public String role2() {
+
         return "success";
     }
 }
