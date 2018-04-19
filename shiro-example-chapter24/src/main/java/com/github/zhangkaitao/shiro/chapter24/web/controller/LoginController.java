@@ -28,11 +28,11 @@ public class LoginController {
             error = "其他错误：" + exceptionClassName;
         }
         model.addAttribute("error", error);
+
+        //即如果有请求参数forceLogout表示是管理员强制退出的，在界面上显示相应的信息
         if(req.getParameter("forceLogout") != null) {
             model.addAttribute("error", "您已经被管理员强制退出，请重新登录");
         }
         return "login";
     }
-
-
 }

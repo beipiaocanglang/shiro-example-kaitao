@@ -31,10 +31,10 @@ public class Functions {
     }
 
     public static String principal(Session session) {
-        PrincipalCollection principalCollection =
-                (PrincipalCollection) session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+        PrincipalCollection principalCollection = (PrincipalCollection) session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
 
-        return (String)principalCollection.getPrimaryPrincipal();
+        String primaryPrincipal = (String) principalCollection.getPrimaryPrincipal();
+        return primaryPrincipal;
     }
     public static boolean isForceLogout(Session session) {
         return session.getAttribute(Constants.SESSION_FORCE_LOGOUT_KEY) != null;
