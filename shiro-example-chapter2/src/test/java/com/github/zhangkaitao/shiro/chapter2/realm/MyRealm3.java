@@ -4,9 +4,9 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.realm.Realm;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-25
- * <p>Version: 1.0
+ * 自定义 realm 类
+ * author : sunpanhu
+ * createTime : 2018/4/20 上午11:06
  */
 public class MyRealm3 implements Realm {
     public String getName() {

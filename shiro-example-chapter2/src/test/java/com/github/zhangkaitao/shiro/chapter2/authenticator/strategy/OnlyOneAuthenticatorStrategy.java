@@ -10,16 +10,19 @@ import java.util.Collection;
 
 /**
  * 自定义AuthenticationStrategy
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-25
- * <p>Version: 1.0
+ * 因为每个AuthenticationStrategy实例都是无状态的，所有每次都通过接口将相应的认证信息传入下一次流程；
+ * 通过此自定义的可以进行如合并/返回第一个验证成功的认证信息。
+ * author : sunpanhu
+ * createTime : 2018/4/20 上午11:08
  */
 public class OnlyOneAuthenticatorStrategy extends AbstractAuthenticationStrategy {
 
     //在所有Realm验证之前调用
     @Override
     public AuthenticationInfo beforeAllAttempts(Collection<? extends Realm> realms, AuthenticationToken token) throws AuthenticationException {
-        return new SimpleAuthenticationInfo();//返回一个权限的认证信息
+        //返回一个权限的认证信息
+        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo();
+        return simpleAuthenticationInfo;
     }
 
     //在每个Realm之前调用
@@ -47,8 +50,6 @@ public class OnlyOneAuthenticatorStrategy extends AbstractAuthenticationStrategy
                 }
             }
         }
-
-
         return info;
     }
 

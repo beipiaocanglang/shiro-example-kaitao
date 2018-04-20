@@ -5,9 +5,8 @@ import org.apache.shiro.realm.Realm;
 
 /**
  * 自定义 realm 类
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-25
- * <p>Version: 1.0
+ * author : sunpanhu
+ * createTime : 2018/4/20 上午10:24
  */
 public class MyRealm2 implements Realm {
 
@@ -32,6 +31,8 @@ public class MyRealm2 implements Realm {
         }
 
         //如果身份认证验证成功，返回一个AuthenticationInfo实现；
-        return new SimpleAuthenticationInfo(username, password, getName());
+        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(username, password, getName());
+
+        return simpleAuthenticationInfo;
     }
 }

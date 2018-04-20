@@ -12,16 +12,18 @@ import java.util.Collection;
 
 /**
  * 自定义AuthenticationStrategy
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-25
- * <p>Version: 1.0
+ * 可以进行如合并/返回第一个验证成功的认证信息
+ * author : sunpanhu
+ * createTime : 2018/4/20 上午11:08
  */
 public class AtLeastTwoAuthenticatorStrategy extends AbstractAuthenticationStrategy {
 
     //在所有Realm验证之前调用
     @Override
     public AuthenticationInfo beforeAllAttempts(Collection<? extends Realm> realms, AuthenticationToken token) throws AuthenticationException {
-        return new SimpleAuthenticationInfo();//返回一个权限的认证信息
+        //返回一个权限的认证信息
+        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo();
+        return simpleAuthenticationInfo;
     }
 
     //在每个Realm之前调用
@@ -43,7 +45,6 @@ public class AtLeastTwoAuthenticatorStrategy extends AbstractAuthenticationStrat
                 info = merge(singleRealmInfo, aggregateInfo);
             }
         }
-
         return info;
     }
 

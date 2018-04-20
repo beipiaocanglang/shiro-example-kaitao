@@ -15,18 +15,18 @@ import org.junit.After;
 import org.junit.Test;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-25
- * <p>Version: 1.0
+ * 自定义认证策略
+ * author : sunpanhu
+ * createTime : 2018/4/20 上午11:32
  */
 public class AuthenticatorTest {
-
     /**
      * 所有Realm验证成功才算成功，且返回所有Realm身份验证成功的认证信息，如果有一个失败就失败了。
      * login(String configFile) 此方法中设置了固定的用户名和密码 zhangsan 123
      * org.apache.shiro.authc.pam.AllSuccessfulStrategy
      * MyRealm1 和 MyRealm3配合会返回 zhang,zhang@163.com
-     * MyRealm1 和 任何一个自定义realm配合 结果为null
+     * MyRealm2 和 任何一个自定义realm配合 结果为null
+     *
      * author : sunpanhu
      * createTime : 2018/3/27 下午3:52
      */
@@ -35,7 +35,7 @@ public class AuthenticatorTest {
         login("classpath:shiro-authenticator-all-success.ini");
         Subject subject = SecurityUtils.getSubject();
 
-        //得到一个身份集合，其包含了Realm验证成功的身份信息
+        //得到一个身份集合，其包含了Realm验证成功的身份信息  即PrincipalCollection包含了zhang和zhang@163.com身份信息。
         PrincipalCollection principalCollection = subject.getPrincipals();
 
         //junit的一些断言方法如下
