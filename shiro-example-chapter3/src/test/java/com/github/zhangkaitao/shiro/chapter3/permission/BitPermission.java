@@ -22,10 +22,8 @@ import org.apache.shiro.authz.Permission;
  *      10 = 2 + 8
  *
  *  不考虑一些异常情况
- *
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-26
- * <p>Version: 1.0
+ * author : sunpanhu
+ * createTime : 2018/4/20 下午3:52
  */
 public class BitPermission implements Permission {
 

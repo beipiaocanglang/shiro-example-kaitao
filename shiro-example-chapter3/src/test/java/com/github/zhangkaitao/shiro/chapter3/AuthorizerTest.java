@@ -6,12 +6,10 @@ import org.junit.Test;
 
 /**
  * 授权测试案例
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-26
- * <p>Version: 1.0
+ * author : sunpanhu
+ * createTime : 2018/4/20 下午3:49
  */
 public class AuthorizerTest extends BaseTest {
-
     /**
      * 自定义授权
      * author : sunpanhu

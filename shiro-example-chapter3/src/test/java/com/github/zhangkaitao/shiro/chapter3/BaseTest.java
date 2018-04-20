@@ -12,22 +12,21 @@ import org.junit.After;
 
 /**
  * 基本测试代码
- *    包含：
- *          解除绑定Subject到线程
- *          通用的认证代码
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-26
- * <p>Version: 1.0
+ * 包含：
+ *      解除绑定Subject到线程
+ *      通用的认证代码
+ * author : sunpanhu
+ * createTime : 2018/4/20 下午3:31
  */
 public abstract class BaseTest {
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown(){
         ThreadContext.unbindSubject();//退出时请解除绑定Subject到线程 否则对下次测试造成影响
     }
 
     /**
-     * 通用化的用户认证方法
+     * 通用的用户认证方法
      * author : sunpanhu
      * createTime : 2018/3/27 下午4:49
      */
@@ -56,6 +55,7 @@ public abstract class BaseTest {
      * createTime : 2018/3/27 下午4:50
      */
     public Subject subject() {
-        return SecurityUtils.getSubject();
+        Subject subject = SecurityUtils.getSubject();
+        return subject;
     }
 }

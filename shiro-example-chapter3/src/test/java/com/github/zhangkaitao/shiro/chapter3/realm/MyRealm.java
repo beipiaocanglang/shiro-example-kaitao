@@ -10,9 +10,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 
 /**
  * 自定义realm
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-26
- * <p>Version: 1.0
+ * author : sunpanhu
+ * createTime : 2018/4/20 下午3:50
  */
 public class MyRealm extends AuthorizingRealm {
 
@@ -49,6 +48,7 @@ public class MyRealm extends AuthorizingRealm {
             throw new IncorrectCredentialsException(); //如果密码错误
         }
         //如果身份认证验证成功，返回一个AuthenticationInfo实现；
-        return new SimpleAuthenticationInfo(username, password, getName());
+        SimpleAuthenticationInfo sati = new SimpleAuthenticationInfo(username, password, getName());
+        return sati;
     }
 }
