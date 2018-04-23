@@ -7,6 +7,7 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import java.net.URL;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -15,17 +16,16 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 1小时后可再次重试，如果还是重试失败，可以锁定如1天，
  * 以此类推，防止密码被暴力破解。我们通过继承HashedCredentialsMatcher，
  * 且使用Ehcache记录重试次数和超时时间。
- *
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * author : sunpanhu
+ * createTime : 2018/4/23 下午2:37
  */
 public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher {
 
     private Ehcache passwordRetryCache;
 
     public RetryLimitHashedCredentialsMatcher() {
-        CacheManager cacheManager = CacheManager.newInstance(CacheManager.class.getClassLoader().getResource("ehcache.xml"));
+        URL resource = CacheManager.class.getClassLoader().getResource("ehcache.xml");
+        CacheManager cacheManager = CacheManager.newInstance(resource);
         passwordRetryCache = cacheManager.getCache("passwordRetryCache");
     }
 

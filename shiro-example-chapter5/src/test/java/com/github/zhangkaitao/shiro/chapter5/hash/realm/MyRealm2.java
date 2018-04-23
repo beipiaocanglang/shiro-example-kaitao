@@ -10,9 +10,9 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-27
- * <p>Version: 1.0
+ * 自定义Realm
+ * author : sunpanhu
+ * createTime : 2018/4/23 下午3:01
  */
 public class MyRealm2 extends AuthorizingRealm {
 

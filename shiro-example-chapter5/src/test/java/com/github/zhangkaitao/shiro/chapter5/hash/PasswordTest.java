@@ -9,40 +9,38 @@ import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.junit.Test;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-27
- * <p>Version: 1.0
+ * DefaultPasswordService配合PasswordMatcher实现简单的密码加密与验证服务
+ * author : sunpanhu
+ * createTime : 2018/4/23 下午2:59
  */
 public class PasswordTest extends BaseTest {
 
     /**
-     * DefaultPasswordService配合PasswordMatcher实现简单的密码加密与验证服务
      * 本地测试
      * author : sunpanhu
      * createTime : 2018/4/2 上午10:31
      */
     @Test
     public void testPasswordServiceWithMyRealm() {
+
         login("classpath:shiro-passwordservice.ini", "wu", "123");
     }
 
     /**
-     * DefaultPasswordService配合PasswordMatcher实现简单的密码加密与验证服务
      * 使用数据库数据
      * author : sunpanhu
      * createTime : 2018/4/2 上午10:31
      */
     @Test
     public void testPasswordServiceWithJdbcRealm() {
+
         login("classpath:shiro-jdbc-passwordservice.ini", "zhang", "123");
     }
 
     /**
+     * 生成密码散列值
      * HashedCredentialsMatcher实现密码验证服务
      * 它只用于密码验证，且可以提供自己的盐，而不是随机生成盐，且生成密码散列值的算法需要自己写，因为能提供自己的盐。
-     *
-     * 生成密码散列值
-     *
      * author : sunpanhu
      * createTime : 2018/4/2 上午10:34
      */
@@ -60,7 +58,7 @@ public class PasswordTest extends BaseTest {
         System.out.println(salt2);
 
         int hashIterations = 2;
-
+        //参数1：算法名称、参数2：密码、参数3：盐、参数4：加密次数
         SimpleHash hash = new SimpleHash(algorithmName, password, salt1 + salt2, hashIterations);
 
         ///获取散列的值
@@ -102,7 +100,8 @@ public class PasswordTest extends BaseTest {
     private class EnumConverter extends AbstractConverter {
         @Override
         protected String convertToString(final Object value) throws Throwable {
-            return ((Enum) value).name();
+            String name = ((Enum) value).name();
+            return name;
         }
         @Override
         protected Object convertToType(final Class type, final Object value) throws Throwable {
@@ -113,7 +112,6 @@ public class PasswordTest extends BaseTest {
         protected Class getDefaultType() {
             return null;
         }
-
     }
 
     /**

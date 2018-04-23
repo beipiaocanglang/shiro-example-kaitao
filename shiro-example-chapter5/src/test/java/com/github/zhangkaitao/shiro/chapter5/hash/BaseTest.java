@@ -12,9 +12,8 @@ import org.junit.After;
 
 /**
  * 公共方法提取
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-26
- * <p>Version: 1.0
+ * author : sunpanhu
+ * createTime : 2018/4/23 下午2:57
  */
 public abstract class BaseTest {
 
@@ -56,7 +55,7 @@ public abstract class BaseTest {
      * createTime : 2018/4/2 上午10:21
      */
     public Subject subject() {
-
-        return SecurityUtils.getSubject();
+        Subject subject = SecurityUtils.getSubject();
+        return subject;
     }
 }

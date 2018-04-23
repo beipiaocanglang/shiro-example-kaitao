@@ -12,10 +12,9 @@ import org.junit.Test;
 import java.security.*;
 
 /**
- * 加密/解密测试
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-27
- * <p>Version: 1.0
+ * 编码/解码、散列算法 测试Demo
+ * author : sunpanhu
+ * createTime : 2018/4/23 下午2:58
  */
 public class CodecAndCryptoTest {
 
@@ -52,9 +51,8 @@ public class CodecAndCryptoTest {
     }
 
     /**
+     * byte数组/String之间转换
      * CodecSupport，提供了toBytes(str, "utf-8") / toString(bytes, "utf-8")
-     * 用于在byte数组/String之间转换。
-     *
      * author : sunpanhu
      * createTime : 2018/3/28 下午12:39
      */
@@ -67,7 +65,6 @@ public class CodecAndCryptoTest {
         String str2 = CodecSupport.toString(bytes, "utf-8");
         Assert.assertEquals(str, str2);
     }
-
 
 
     /**
@@ -124,6 +121,7 @@ public class CodecAndCryptoTest {
     }
 
     /**
+     * 散列算法 - 通用的散列算法
      * 通过调用SimpleHash时指定散列算法，其内部使用了Java的MessageDigest实现。
      * author : sunpanhu
      * createTime : 2018/3/28 下午12:51
@@ -142,7 +140,7 @@ public class CodecAndCryptoTest {
     }
 
     /**
-     * 使用shiro提供的HashService，默认提供了DefaultHashService实现。
+     * 散列算法 - shiro默认提供的散列算法HashService，默认的实现类DefaultHashService
      * author : sunpanhu
      * createTime : 2018/3/28 下午12:26
      */
@@ -156,7 +154,7 @@ public class CodecAndCryptoTest {
         hashService.setPrivateSalt(new SimpleByteSource("123")); //私盐，默认无
         //4、可以通过generatePublicSalt属性在用户没有传入公盐的情况下是否生成公盐；
         hashService.setGeneratePublicSalt(true);//是否生成公盐，默认false
-        //5、可以设置randomNumberGenerator用于生成公盐；
+        //5、可以设置randomNumberGenerator用于生成公盐；生成随机数
         hashService.setRandomNumberGenerator(new SecureRandomNumberGenerator());//用于生成公盐。默认就这个
         //6、可以设置hashIterations属性来修改默认加密迭代次数；
         hashService.setHashIterations(1); //生成Hash值的迭代次数
@@ -207,6 +205,11 @@ public class CodecAndCryptoTest {
         Assert.assertEquals(text, text2);
     }
 
+    /**
+     * Blowfish
+     * author : sunpanhu
+     * createTime : 2018/4/23 下午3:19
+     */
     @Test
     public void testBlowfishCipherService() {
         BlowfishCipherService blowfishCipherService = new BlowfishCipherService();
