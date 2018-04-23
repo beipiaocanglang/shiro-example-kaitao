@@ -1,11 +1,13 @@
 package com.github.zhangkaitao.shiro.chapter3;
 
 import junit.framework.Assert;
-import org.apache.shiro.subject.Subject;
 import org.junit.Test;
 
 /**
- * 授权测试案例
+ * 自定义授权测试案例
+ * 因为不支持hasAnyRole/isPermittedAny这种方式的授权，
+ * 可以参考我的一篇《简单shiro扩展实现NOT、AND、OR权限验证 》进行简单的扩展完成这个需求，
+ * 在这篇文章中通过重写AuthorizingRealm里的验证逻辑实现的。
  * author : sunpanhu
  * createTime : 2018/4/20 下午3:49
  */

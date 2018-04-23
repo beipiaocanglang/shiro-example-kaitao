@@ -10,6 +10,12 @@ import org.apache.shiro.subject.PrincipalCollection;
 
 /**
  * 自定义realm
+ * 此时我们继承AuthorizingRealm而不是实现Realm接口；
+ * 推荐使用AuthorizingRealm，
+ * 因为：
+ *      AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)：表示获取身份验证信息；
+ *      AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals)：表示根据用户身份获取授权信息。
+ * 这种方式的好处是当只需要身份验证 和 获取身份授权时。
  * author : sunpanhu
  * createTime : 2018/4/20 下午3:50
  */
