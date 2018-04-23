@@ -8,9 +8,10 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-27
- * <p>Version: 1.0
+ * 自定义多Realm认证 继承ModularRealmAuthenticator
+ * 获取ini配置文件中的 集合注入的值
+ * author : sunpanhu
+ * createTime : 2018/4/23 下午1:47
  */
 public class MyAuthenticator extends ModularRealmAuthenticator {
 

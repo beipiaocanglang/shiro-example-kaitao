@@ -10,22 +10,21 @@ import org.apache.shiro.util.Factory;
 import org.junit.Test;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-27
- * <p>Version: 1.0
+ * 初始化 ini 配置文件的main
+ * author : sunpanhu
+ * createTime : 2018/4/23 下午1:48
  */
 public class IniMainTest {
 
     @Test
     public void test() {
-
+        //创建Factory
         Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-config-main.ini");
-
+        //创建SecurityManager对象 创建时会调用ModularRealmAuthenticator 参照 com.github.zhangkaitao.shiro.chapter4.authenticator.MyAuthenticator
         SecurityManager securityManager = factory.getInstance();
-
         //将SecurityManager设置到SecurityUtils 方便全局使用
         SecurityUtils.setSecurityManager(securityManager);
-
+        //获取Subject对象
         Subject subject = SecurityUtils.getSubject();
 
         UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");
