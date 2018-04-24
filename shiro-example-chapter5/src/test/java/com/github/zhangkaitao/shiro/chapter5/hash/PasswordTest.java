@@ -68,6 +68,7 @@ public class PasswordTest extends BaseTest {
 
     /**
      * 和上面的 testGeneratePassword  方法 生成的散列值 进行对比
+     * 和上面的方法无关 只是把上面的结果 拿出来用而已
      * author : sunpanhu
      * createTime : 2018/4/2 上午11:03
      */
@@ -79,6 +80,7 @@ public class PasswordTest extends BaseTest {
 
     /**
      * 使用数据库  和上面的 testGeneratePassword  方法 生成的散列值 进行对比
+     * 和上面的方法无关 只是把上面的结果 拿出来用而已
      * author : sunpanhu
      * createTime : 2018/4/2 上午11:03
      */

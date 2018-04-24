@@ -24,6 +24,7 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
     private Ehcache passwordRetryCache;
 
     public RetryLimitHashedCredentialsMatcher() {
+        //获取ehcache.xml配置文件的本地磁盘路径
         URL resource = CacheManager.class.getClassLoader().getResource("ehcache.xml");
         CacheManager cacheManager = CacheManager.newInstance(resource);
         passwordRetryCache = cacheManager.getCache("passwordRetryCache");

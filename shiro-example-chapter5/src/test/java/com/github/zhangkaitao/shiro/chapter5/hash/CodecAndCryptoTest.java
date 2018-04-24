@@ -137,6 +137,8 @@ public class CodecAndCryptoTest {
         //MD5算法
         String simpleHash1 = new SimpleHash("MD5", str, salt).toString();//86fcb4c0551ea48ede7df5ed9626eee7
         System.out.println(simpleHash1);
+        String md5 = new Md5Hash(str, salt).toString();
+        Assert.assertEquals(simpleHash, md5);
     }
 
     /**
@@ -176,9 +178,9 @@ public class CodecAndCryptoTest {
     @Test
     public void testRandom() {
         //生成随机数
-        SecureRandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
-        randomNumberGenerator.setSeed("123".getBytes());
-        String randNum = randomNumberGenerator.nextBytes().toHex();
+        SecureRandomNumberGenerator randomNum = new SecureRandomNumberGenerator();
+        randomNum.setSeed("123".getBytes());
+        String randNum = randomNum.nextBytes().toHex();
         System.out.println(randNum);
     }
 
