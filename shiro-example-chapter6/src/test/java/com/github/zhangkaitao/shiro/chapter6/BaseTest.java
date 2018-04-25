@@ -82,7 +82,8 @@ public abstract class BaseTest {
 
     @After
     public void tearDown() throws Exception {
-        ThreadContext.unbindSubject();//退出时请解除绑定Subject到线程 否则对下次测试造成影响
+        //退出时请解除绑定Subject到线程 否则对下次测试造成影响
+        ThreadContext.unbindSubject();
     }
 
     protected void login(String configFile, String username, String password) {

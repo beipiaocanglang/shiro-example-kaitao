@@ -79,7 +79,6 @@ public class UserDaoImpl implements UserDao {
         return jdbcTemplate.queryForObject(sql, Integer.class, userId, roleId) != 0;
     }
 
-
     public User findOne(Long userId) {
         String sql = "select id, username, password, salt, locked from sys_users where id=?";
         List<User> userList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class), userId);

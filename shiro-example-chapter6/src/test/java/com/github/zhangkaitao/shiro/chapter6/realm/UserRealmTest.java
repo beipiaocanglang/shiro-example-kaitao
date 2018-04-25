@@ -19,6 +19,8 @@ public class UserRealmTest extends BaseTest {
      */
     @Test
     public void testLoginSuccess() {
+        //先执行BaseTest.java中的setUp()方法初始化数据库
+        //再执行login();
         login("classpath:shiro.ini", u1.getUsername(), password);
         Assert.assertTrue(subject().isAuthenticated());
     }
@@ -30,6 +32,7 @@ public class UserRealmTest extends BaseTest {
      */
     @Test(expected = UnknownAccountException.class)
     public void testLoginFailWithUnknownUsername() {
+        //先执行BaseTest.java中的setUp()方法初始化数据库
         login("classpath:shiro.ini", u1.getUsername() + "1", password);
     }
 
@@ -78,7 +81,8 @@ public class UserRealmTest extends BaseTest {
     @Test
     public void testHasRole() {
         login("classpath:shiro.ini", u1.getUsername(), password );
-        Assert.assertTrue(subject().hasRole("admin"));
+        boolean adminRole = subject().hasRole("admin");
+        Assert.assertTrue(adminRole);
     }
 
     /**
@@ -89,7 +93,8 @@ public class UserRealmTest extends BaseTest {
     @Test
     public void testNoRole() {
         login("classpath:shiro.ini", u2.getUsername(), password);
-        Assert.assertFalse(subject().hasRole("admin"));
+        boolean noAdminRole = subject().hasRole("admin");
+        Assert.assertFalse(noAdminRole);
     }
 
     /**
@@ -100,17 +105,19 @@ public class UserRealmTest extends BaseTest {
     @Test
     public void testHasPermission() {
         login("classpath:shiro.ini", u1.getUsername(), password);
-        Assert.assertTrue(subject().isPermittedAll("user:create", "menu:create"));
+        boolean permittedAll = subject().isPermittedAll("user:create", "menu:create");
+        Assert.assertTrue(permittedAll);
     }
 
     /**
-     * 测试用户灭幼"user:create"权限
+     * 测试用户没有"user:create"权限
      * author : sunpanhu
      * createTime : 2018/4/2 下午2:02
      */
     @Test
     public void testNoPermission() {
         login("classpath:shiro.ini", u2.getUsername(), password);
-        Assert.assertFalse(subject().isPermitted("user:create"));
+        boolean permitted = subject().isPermitted("user:create");
+        Assert.assertFalse(permitted);
     }
 }

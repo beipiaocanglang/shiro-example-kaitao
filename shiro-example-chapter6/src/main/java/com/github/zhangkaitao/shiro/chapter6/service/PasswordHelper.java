@@ -20,14 +20,19 @@ public class PasswordHelper {
 
     public void encryptPassword(User user) {
 
-        user.setSalt(randomNumberGenerator.nextBytes().toHex());
+        //获取随机数 设置盐
+        String salt = randomNumberGenerator.nextBytes().toHex();
+        user.setSalt(salt);
 
+        //使用MD5迭代两次 再转成16进制
+        //user.getCredentialsSalt() 用户名加盐
         String newPassword = new SimpleHash(
                 algorithmName,
                 user.getPassword(),
                 ByteSource.Util.bytes(user.getCredentialsSalt()),
                 hashIterations).toHex();
 
+        //设置密码
         user.setPassword(newPassword);
     }
 }

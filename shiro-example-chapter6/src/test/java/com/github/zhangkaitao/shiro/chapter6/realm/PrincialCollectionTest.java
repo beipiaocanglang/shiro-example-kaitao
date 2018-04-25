@@ -22,7 +22,7 @@ public class PrincialCollectionTest extends BaseTest {
         login("classpath:shiro-multirealm.ini", "zhang", "123");
         Subject subject = subject();
 
-        //如果结果是true 则说明是通过记住我功能登录的 不是通过login登录 与下面isAuthenticated 想法
+        //如果结果是true 则说明是通过记住我功能登录的 不是通过login登录 与下面isAuthenticated 相反
         boolean remembered = subject.isRemembered();
         System.out.println(remembered);
         boolean authenticated = subject.isAuthenticated();
@@ -35,7 +35,6 @@ public class PrincialCollectionTest extends BaseTest {
 
         //但是因为多个Realm都返回了Principal，所以此处到底是哪个是不确定的
         Assert.assertEquals(primaryPrincipal1, primaryPrincipal2);
-
 
         //获取所有身份验证成功的Realm名字  返回 a b c
         Set<String> realmNames = princialCollection.getRealmNames();

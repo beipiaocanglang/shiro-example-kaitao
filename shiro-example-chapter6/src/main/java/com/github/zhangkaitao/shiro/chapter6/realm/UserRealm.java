@@ -10,10 +10,13 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
+import java.util.Set;
+
 /**
  * 用户认证  授权 Realm
  * AuthorizingRealm将获取Subject相关信息分成两步：
- *      获取身份验证信息（doGetAuthenticationInfo）及授权信息（doGetAuthorizationInfo）
+ *      获取身份验证信息（doGetAuthenticationInfo）
+ *      获取授权信息（doGetAuthorizationInfo）
  */
 public class UserRealm extends AuthorizingRealm {
 
@@ -32,9 +35,12 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String)principals.getPrimaryPrincipal();
 
+        Set<String> roles = userService.findRoles(username);
+        Set<String> permissions = userService.findPermissions(username);
+
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userService.findRoles(username));
-        authorizationInfo.setStringPermissions(userService.findPermissions(username));
+        authorizationInfo.setRoles(roles);
+        authorizationInfo.setStringPermissions(permissions);
 
         return authorizationInfo;
     }
@@ -77,7 +83,7 @@ public class UserRealm extends AuthorizingRealm {
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUsername(), //用户名
-                user.getPassword(), //密码
+                user.getPassword(), //加密后的密码
                 ByteSource.Util.bytes(user.getCredentialsSalt()),//salt=username+salt
                 getName()  //realm name
         );

@@ -4,27 +4,28 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.realm.Realm;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-29
- * <p>Version: 1.0
+ * 自定义Realm - Realm2
+ * author : sunpanhu
+ * createTime : 2018/4/25 下午1:14
  */
 public class MyRealm2 implements Realm {
 
     public String getName() {
-
-        return "b"; //realm name 为 “b”
+        //realm name 为 “b”
+        return "b";
     }
 
     public boolean supports(AuthenticationToken token) {
-
-        return token instanceof UsernamePasswordToken;
+        boolean ins = token instanceof UsernamePasswordToken;
+        return ins;
     }
 
     public AuthenticationInfo getAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        return new SimpleAuthenticationInfo(
+        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
                 "zhang", //身份 字符串类型
                 "123",   //凭据
                 getName() //Realm Name
         );
+        return simpleAuthenticationInfo;
     }
 }

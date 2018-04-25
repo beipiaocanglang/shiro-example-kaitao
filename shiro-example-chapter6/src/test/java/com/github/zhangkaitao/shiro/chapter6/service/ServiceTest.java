@@ -29,13 +29,11 @@ public class ServiceTest extends BaseTest {
         permissions = userService.findPermissions(u2.getUsername());
         Assert.assertEquals(0, permissions.size());
 
-
         //解除 admin-menu:update关联
         roleService.uncorrelationPermissions(r1.getId(), p3.getId());
         permissions = userService.findPermissions(u1.getUsername());
         Assert.assertEquals(2, permissions.size());
         Assert.assertFalse(permissions.contains(p3.getPermission()));
-
 
         //删除一个permission
         permissionService.deletePermission(p2.getId());
