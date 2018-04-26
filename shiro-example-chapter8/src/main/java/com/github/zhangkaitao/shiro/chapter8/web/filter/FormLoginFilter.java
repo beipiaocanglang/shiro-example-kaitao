@@ -31,20 +31,32 @@ public class FormLoginFilter extends PathMatchingFilter {
      */
     @Override
     protected boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
-        if(SecurityUtils.getSubject().isAuthenticated()) {
+        //验证用户是否登录
+        boolean authenticated = SecurityUtils.getSubject().isAuthenticated();
+        if(authenticated) {
             return true;//已经登录过
         }
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-        if(isLoginRequest(req)) {
-            if("post".equalsIgnoreCase(req.getMethod())) {//form表单提交
-                boolean loginSuccess = login(req); //登录
+
+        //调用下面的isLoginRequest方法
+        boolean loginRequest = isLoginRequest(req);
+
+        if(loginRequest) {
+            String method = req.getMethod();
+            if("post".equalsIgnoreCase(method)) {//form表单提交
+                //登录  调用下面的login方法
+                boolean loginSuccess = login(req);
+
                 if(loginSuccess) {
-                    return redirectToSuccessUrl(req, resp);
+                    //调用下面的重定向到成功页面的url方法
+                    boolean redirectToSuccessUrl = redirectToSuccessUrl(req, resp);
+                    return redirectToSuccessUrl;
                 }
             }
             return true;//继续过滤器链
-        } else {//保存当前地址并重定向到登录界面
+        } else {
+            //保存当前地址并重定向到登录界面  调用下面的方法
             saveRequestAndRedirectToLogin(req, resp);
             return false;
         }
@@ -77,6 +89,7 @@ public class FormLoginFilter extends PathMatchingFilter {
 
     //是否是登陆请求
     private boolean isLoginRequest(HttpServletRequest req) {
-        return pathsMatch(loginUrl, WebUtils.getPathWithinApplication(req));
+        boolean b = pathsMatch(loginUrl, WebUtils.getPathWithinApplication(req));
+        return b;
     }
 }

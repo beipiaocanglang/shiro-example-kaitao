@@ -41,6 +41,7 @@ public class MyIniWebEnvironment extends IniWebEnvironment {
         rolesFilter.setUnauthorizedUrl("/unauthorized.jsp");
 
         filterChainResolver.setFilterChainManager(filterChainManager);
+
         return filterChainResolver;
         //return super.createFilterChainResolver();
     }

@@ -36,4 +36,11 @@ public class MyAccessControlFilter extends AccessControlFilter {
      * author : sunpanhu
      * createTime : 2018/4/2 下午5:20
      */
+    @Override
+    public boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
+        boolean accessAllowed = isAccessAllowed(request, response, mappedValue);
+        boolean onAccessDenied = onAccessDenied(request, response, mappedValue);
+        boolean a = accessAllowed || onAccessDenied;
+        return a;
+    }
 }
