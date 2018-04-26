@@ -17,12 +17,13 @@ import java.io.IOException;
 public class AuthenticatedServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Subject subject = SecurityUtils.getSubject();
         if(subject.isAuthenticated()) {
-            req.getRequestDispatcher("/WEB-INF/jsp/authenticated.jsp").forward(req, resp);
+            request.setAttribute("subject", subject);
+            request.getRequestDispatcher("/WEB-INF/jsp/authenticated.jsp").forward(request, response);
         } else {
-            req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
+            request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
         }
     }
 }

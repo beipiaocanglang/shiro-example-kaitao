@@ -6,8 +6,8 @@
             color: red;
         }</style>
     </head>
-
     <body>
+        <%--获取登录失败时的错误信息--%>
         <div class="error">${error}</div>
         <form action="${pageContext.request.contextPath}/login" method="post">
             用户名：<input type="text" name="username"><br/>

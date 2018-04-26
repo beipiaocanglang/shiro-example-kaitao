@@ -33,17 +33,18 @@ public class FormFilterLoginServlet extends HttpServlet {
      * createTime : 2018/4/2 下午4:31
      */
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String errorClassName = (String)req.getAttribute("shiroLoginFailure");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //获取request中的错误信息 在这一步之前会根据用户输入的用户名和密码在ini配置中校验用户名和密码是否正确
+        String errorClassName = (String)request.getAttribute("shiroLoginFailure");
 
         if(UnknownAccountException.class.getName().equals(errorClassName)) {
-            req.setAttribute("error", "用户名/密码错误");
+            request.setAttribute("error", "用户名/密码错误");
         } else if(IncorrectCredentialsException.class.getName().equals(errorClassName)) {
-            req.setAttribute("error", "用户名/密码错误");
+            request.setAttribute("error", "用户名/密码错误");
         } else if(errorClassName != null) {
-            req.setAttribute("error", "未知错误：" + errorClassName);
+            request.setAttribute("error", "未知错误：" + errorClassName);
         }
 
-        req.getRequestDispatcher("/WEB-INF/jsp/formfilterlogin.jsp").forward(req, resp);
+        request.getRequestDispatcher("/WEB-INF/jsp/formfilterlogin.jsp").forward(request, response);
     }
 }
