@@ -2,7 +2,6 @@ package com.github.zhangkaitao.shiro.chapter10.session.scheduler;
 
 import com.github.zhangkaitao.shiro.chapter10.JdbcTemplateUtils;
 import com.github.zhangkaitao.shiro.chapter10.SerializableUtils;
-import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.*;
 import org.slf4j.Logger;
@@ -18,20 +17,22 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-9
- * <p>Version: 1.0
+ * 自定义会话认证调度器
+ * author : sunpanhu
+ * createTime : 2018/4/27 下午3:24
  */
 public class MySessionValidationScheduler implements SessionValidationScheduler, Runnable {
 
     private JdbcTemplate jdbcTemplate = JdbcTemplateUtils.jdbcTemplate();
 
-    /** Private internal log instance. */
     private static final Logger log = LoggerFactory.getLogger(MySessionValidationScheduler.class);
 
     ValidatingSessionManager sessionManager;
+
     private ScheduledExecutorService service;
+
     private long interval = DefaultSessionManager.DEFAULT_SESSION_VALIDATION_INTERVAL;
+
     private boolean enabled = false;
 
     public MySessionValidationScheduler() {
@@ -56,12 +57,6 @@ public class MySessionValidationScheduler implements SessionValidationScheduler,
         return this.enabled;
     }
 
-    /**
-     * Creates a single thread {@link ScheduledExecutorService} to validate sessions at fixed intervals
-     * and enables this scheduler. The executor is created as a daemon thread to allow JVM to shut down
-     */
-    //TODO Implement an integration test to test for jvm exit as part of the standalone example
-    // (so we don't have to change the unit test execution model for the core module)
     public void enableSessionValidation() {
         if (this.interval > 0l) {
             this.service = Executors.newSingleThreadScheduledExecutor(new ThreadFactory() {

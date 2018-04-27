@@ -12,11 +12,13 @@ public class JdbcTemplateUtils {
 
     public static JdbcTemplate jdbcTemplate() {
         if(jdbcTemplate == null) {
+            //调用下面的方法创建 jdbcTemplate 模板
             jdbcTemplate = createJdbcTemplate();
         }
         return jdbcTemplate;
     }
 
+    //创建 jdbcTemplate 模板
     private static JdbcTemplate createJdbcTemplate() {
 
         DruidDataSource ds = new DruidDataSource();
@@ -25,6 +27,7 @@ public class JdbcTemplateUtils {
         ds.setUsername("root");
         ds.setPassword("root");
 
-        return new JdbcTemplate(ds);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(ds);
+        return jdbcTemplate;
     }
 }

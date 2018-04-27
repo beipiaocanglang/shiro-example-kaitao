@@ -3,14 +3,11 @@ package com.github.zhangkaitao.shiro.chapter10.session.dao;
 import com.github.zhangkaitao.shiro.chapter10.JdbcTemplateUtils;
 import com.github.zhangkaitao.shiro.chapter10.SerializableUtils;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
-import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 
 /**

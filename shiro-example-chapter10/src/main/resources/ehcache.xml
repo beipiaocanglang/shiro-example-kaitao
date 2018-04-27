@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ehcache name="es">
-
+    <!--本地存储目录 可以更改-->
     <diskStore path="java.io.tmpdir"/>
-
+    <!--session会话管理缓存-->
     <cache name="shiro-activeSessionCache"
            maxEntriesLocalHeap="10000"
            overflowToDisk="false"

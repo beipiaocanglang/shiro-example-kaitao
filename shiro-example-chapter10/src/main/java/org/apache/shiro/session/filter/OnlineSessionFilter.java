@@ -16,11 +16,12 @@ import org.apache.shiro.web.util.WebUtils;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 13-3-20 下午3:17
- * <p>Version: 1.0
+ * 自定义sessionFactory拦截器
+ * author : sunpanhu
+ * createTime : 2018/4/27 下午3:53
  */
 public class OnlineSessionFilter extends AccessControlFilter {
 
@@ -34,7 +35,6 @@ public class OnlineSessionFilter extends AccessControlFilter {
     public String getForceLogoutUrl() {
         return forceLogoutUrl;
     }
-
     public void setForceLogoutUrl(String forceLogoutUrl) {
         this.forceLogoutUrl = forceLogoutUrl;
     }
@@ -46,12 +46,19 @@ public class OnlineSessionFilter extends AccessControlFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         Subject subject = getSubject(request, response);
-        if (subject == null || subject.getSession(false) == null) {
+        Session session1 = subject.getSession(false);
+
+        if (subject == null || session1 == null) {
             return true;
         }
-        Session session = sessionDAO.readSession(subject.getSession().getId());
+
+        Serializable id = subject.getSession().getId();
+        Session session = sessionDAO.readSession(id);
+
         if (session != null && session instanceof OnlineSession) {
+
             OnlineSession onlineSession = (OnlineSession) session;
+
             request.setAttribute(ShiroConstants.ONLINE_SESSION, onlineSession);
 
             if (onlineSession.getStatus() == OnlineSession.OnlineStatus.force_logout) {

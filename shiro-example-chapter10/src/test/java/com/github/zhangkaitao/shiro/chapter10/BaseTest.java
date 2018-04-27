@@ -1,6 +1,7 @@
 package com.github.zhangkaitao.shiro.chapter10;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.mgt.SecurityManager;
@@ -11,9 +12,9 @@ import org.junit.After;
 import org.junit.Before;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-26
- * <p>Version: 1.0
+ * session会话测试通用基本类
+ * author : sunpanhu
+ * createTime : 2018/4/27 下午1:45
  */
 public abstract class BaseTest {
 
@@ -23,10 +24,16 @@ public abstract class BaseTest {
     }
 
     @After
-    public void tearDown() throws Exception {
-        ThreadContext.unbindSubject();//退出时请解除绑定Subject到线程 否则对下次测试造成影响
+    public void tearDown() {
+        //退出时请解除绑定Subject到线程 否则对下次测试造成影响
+        ThreadContext.unbindSubject();
     }
 
+    /**
+     * 通用的登录方法
+     * author : sunpanhu
+     * createTime : 2018/4/27 下午1:22
+     */
     protected void login(String configFile, String username, String password) {
         //1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager
         Factory<SecurityManager> factory = new IniSecurityManagerFactory(configFile);
@@ -39,9 +46,17 @@ public abstract class BaseTest {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         token.setHost("10.83.1.1");
-        subject.login(token);
+
+        try {
+            subject.login(token);
+            System.out.println("登录成功——————————————————————————————");
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            System.out.println("认证失败—————————————————————————————");
+        }
     }
 
+    //获取subject对象
     public Subject subject() {
         return SecurityUtils.getSubject();
     }

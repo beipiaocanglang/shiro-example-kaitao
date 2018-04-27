@@ -19,7 +19,8 @@ public class SerializableUtils {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(bos);
             oos.writeObject(session);
-            return Base64.encodeToString(bos.toByteArray());
+            String base64Str = Base64.encodeToString(bos.toByteArray());
+            return base64Str;
         } catch (Exception e) {
             throw new RuntimeException("serialize session error", e);
         }
@@ -29,7 +30,8 @@ public class SerializableUtils {
         try {
             ByteArrayInputStream bis = new ByteArrayInputStream(Base64.decode(sessionStr));
             ObjectInputStream ois = new ObjectInputStream(bis);
-            return (Session)ois.readObject();
+            Session session = (Session)ois.readObject();
+            return session;
         } catch (Exception e) {
             throw new RuntimeException("deserialize session error", e);
         }
