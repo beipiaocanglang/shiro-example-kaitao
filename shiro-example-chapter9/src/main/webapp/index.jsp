@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--导入标签库--%>
+<%--导入标签库  标签库定义在shiro-web.jar包下的META-INF/shiro.tld中定义--%>
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%--导入自定义标签库 --%>
 <%@taglib prefix="zhang" tagdir="/WEB-INF/tags" %>
