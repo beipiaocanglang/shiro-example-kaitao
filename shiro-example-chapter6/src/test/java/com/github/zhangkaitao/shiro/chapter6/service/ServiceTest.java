@@ -1,15 +1,28 @@
 package com.github.zhangkaitao.shiro.chapter6.service;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import com.github.zhangkaitao.shiro.chapter6.BaseTest;
+import com.github.zhangkaitao.shiro.chapter6.entity.LuoPan;
 import junit.framework.Assert;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Set;
 
 /**
  * service层的测试案例
  */
 public class ServiceTest extends BaseTest {
+
+    private LuoPanService luoPanService = new LuoPanServiceImpl();
+
+    @Test
+    public void findAll(){
+        List<LuoPan> all = luoPanService.findAll();
+
+        System.out.println(JSONUtils.toJSONString(all.get(0)));
+
+    }
 
     @Test
     public void testUserRolePermissionRelation() {
