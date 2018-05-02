@@ -68,7 +68,8 @@ public class UserRealmTest extends BaseTest {
     }
 
     /**
-     * 同时调用clearCachedAuthenticationInfo和clearCachedAuthorizationInfo，清空AuthenticationInfo和AuthorizationInfo。
+     * 同时调用clearCachedAuthenticationInfo和clearCachedAuthorizationInfo，
+     * 清空AuthenticationInfo和AuthorizationInfo。
      * author : sunpanhu
      * createTime : 2018/4/4 下午3:02
      */
