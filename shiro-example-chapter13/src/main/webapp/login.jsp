@@ -3,9 +3,11 @@
 <html>
     <head>
         <title>登录</title>
-        <style>.error {
-            color: red;
-        }</style>
+        <style>
+            .error {
+                color: red;
+            }
+        </style>
     </head>
     <body>
         <div class="error">${error}</div>

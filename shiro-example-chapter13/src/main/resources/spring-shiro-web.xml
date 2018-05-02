@@ -42,7 +42,7 @@
         <property name="maxAge" value="-1"/>
     </bean>
 
-    <!--记住我 的cookie模板 存储时间-->
+    <!--记住我 的cookie模板 保存时长30天-->
     <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <constructor-arg value="rememberMe"/>
         <property name="httpOnly" value="true"/>
@@ -87,6 +87,7 @@
         <property name="realm" ref="userRealm"/>
         <property name="sessionManager" ref="sessionManager"/>
         <property name="cacheManager" ref="cacheManager"/>
+        <!-- 设置securityManager安全管理器的rememberMeManage -->
         <property name="rememberMeManager" ref="rememberMeManager"/>
     </bean>
 
@@ -100,6 +101,7 @@
     <bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
         <property name="usernameParam" value="username"/>
         <property name="passwordParam" value="password"/>
+        <!--rememberMeParam，即rememberMe请求参数名，请求参数是boolean类型，true表示rememberMe。 -->
         <property name="rememberMeParam" value="rememberMe"/>
         <property name="loginUrl" value="/login.jsp"/>
     </bean>
