@@ -25,14 +25,15 @@
         <property name="userService" ref="userService"/>
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
         <property name="cachingEnabled" value="true"/>
+        <!--开启认证缓存-->
         <property name="authenticationCachingEnabled" value="true"/>
+        <!--认证缓存的名字-->
         <property name="authenticationCacheName" value="authenticationCache"/>
+        <!--开启授权缓存-->
         <property name="authorizationCachingEnabled" value="true"/>
+        <!--授权缓存的名字-->
         <property name="authorizationCacheName" value="authorizationCache"/>
     </bean>
-
-    <!-- 会话ID生成器 -->
-    <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
 
     <!-- 会话Cookie模板 -->
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
@@ -41,6 +42,8 @@
         <property name="maxAge" value="180000"/>
     </bean>
 
+    <!-- 会话ID生成器 -->
+    <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
     <!-- 会话DAO -->
     <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
         <property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>

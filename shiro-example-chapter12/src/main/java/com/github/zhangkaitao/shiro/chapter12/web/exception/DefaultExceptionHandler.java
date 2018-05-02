@@ -9,9 +9,9 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-12
- * <p>Version: 1.0
+ * 自定义全局异常信息处理
+ * author : sunpanhu
+ * createTime : 2018/5/2 下午1:45
  */
 @ControllerAdvice
 public class DefaultExceptionHandler {

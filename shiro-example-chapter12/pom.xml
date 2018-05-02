@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>shiro-example</artifactId>
         <groupId>com.github.zhangkaitao</groupId>
@@ -86,7 +87,6 @@
             <version>1.2</version>
         </dependency>
 
-
         <!-- aspectj相关jar包-->
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -144,7 +144,6 @@
                     </webAppConfig>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>

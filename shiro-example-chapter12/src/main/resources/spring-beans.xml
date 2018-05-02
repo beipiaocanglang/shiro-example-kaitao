@@ -31,6 +31,7 @@
         <property name="roleDao" ref="roleDao"/>
     </bean>
 
+    <!--设置密码错误5次的提醒 以及密码的加密和解密-->
     <bean id="passwordHelper" class="com.github.zhangkaitao.shiro.chapter12.service.PasswordHelper">
         <property name="algorithmName" value="md5"/>
         <property name="hashIterations" value="2"/>

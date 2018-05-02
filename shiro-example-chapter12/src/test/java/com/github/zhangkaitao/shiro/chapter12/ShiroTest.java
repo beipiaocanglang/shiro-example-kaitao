@@ -38,11 +38,11 @@ public class ShiroTest {
     protected UserService userService;
     @Autowired
     private UserRealm userRealm;
-    protected JdbcTemplate jdbcTemplate;
     @Autowired
     private void setDataSource(DataSource ds) {
-        jdbcTemplate = new JdbcTemplate(ds);    
+        jdbcTemplate = new JdbcTemplate(ds);
     }
+    protected JdbcTemplate jdbcTemplate;
 
     protected String password = "123";
 

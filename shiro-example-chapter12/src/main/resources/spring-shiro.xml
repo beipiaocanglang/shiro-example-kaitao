@@ -4,7 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <description> 整合spring后将原来 .ini 文件中的配置翻译成spring配置文件 </description>
+    <description>
+        spring-shiro.xml提供了普通JavaSE独立应用的Spring配置，
+        整合spring后 将原来 .ini 文件中的配置翻译成spring配置文件
+    </description>
 
     <!-- 缓存管理器 使用Ehcache实现 -->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
@@ -14,48 +17,63 @@
 
     <!-- 凭证匹配器 输入密码错误5次 -->
     <bean id="credentialsMatcher" class="com.github.zhangkaitao.shiro.chapter12.credentials.RetryLimitHashedCredentialsMatcher">
+        <!--凭证使用缓存-->
         <constructor-arg ref="cacheManager"/>
         <!--加密/解密算法名称-->
         <property name="hashAlgorithmName" value="md5"/>
         <!--加密次数-->
         <property name="hashIterations" value="2"/>
+        <!--表示是否存储散列后的密码为16进制，需要和生成密码时的一样，默认是base64-->
         <property name="storedCredentialsHexEncoded" value="true"/>
     </bean>
 
     <!-- Realm实现 自定义Realm-->
     <bean id="userRealm" class="com.github.zhangkaitao.shiro.chapter12.realm.UserRealm">
         <property name="userService" ref="userService"/>
+        <!--是用密码凭证-->
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
+        <!--开启缓存-->
         <property name="cachingEnabled" value="true"/>
+        <!--开启认证缓存-->
         <property name="authenticationCachingEnabled" value="true"/>
+        <!--认证缓存的名字-->
         <property name="authenticationCacheName" value="authenticationCache"/>
+        <!--开启授权缓存-->
         <property name="authorizationCachingEnabled" value="true"/>
+        <!--授权缓存的名字-->
         <property name="authorizationCacheName" value="authorizationCache"/>
     </bean>
 
     <!-- 会话ID生成器 -->
     <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
-
     <!-- 会话DAO session存储 和 持久化-->
     <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+        <!--设置 DAO session会话缓存的名字 默认：shiro-activeSessionCache"-->
         <property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>
+        <!--使用session的id生成器-->
         <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
     </bean>
+
     <!-- 会话验证调度器 -->
     <bean id="sessionValidationScheduler" class="org.apache.shiro.session.mgt.quartz.QuartzSessionValidationScheduler">
         <!--设置session过期时间 -->
         <property name="sessionValidationInterval" value="1800000"/>
         <property name="sessionManager" ref="sessionManager"/>
     </bean>
+
     <!-- 会话管理器 -->
     <bean id="sessionManager" class="org.apache.shiro.session.mgt.DefaultSessionManager">
         <!--、设置全局会话超时时间，默认30分钟，即如果30分钟内没有访问会话将过期； -->
         <property name="globalSessionTimeout" value="1800000"/>
+        <!--删除过期session-->
         <property name="deleteInvalidSessions" value="true"/>
+        <!--是否开启会话验证器，默认是开启的-->
         <property name="sessionValidationSchedulerEnabled" value="true"/>
+        <!-- 设置会话验证调度器，默认就是使用ExecutorServiceSessionValidationScheduler 现在使用自定义的-->
         <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
         <property name="sessionDAO" ref="sessionDAO"/>
     </bean>
+
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.mgt.DefaultSecurityManager">
         <property name="realms">
@@ -67,6 +85,7 @@
         <!--使用缓存-->
         <property name="cacheManager" ref="cacheManager"/>
     </bean>
+
     <!-- 相当于调用SecurityUtils.setSecurityManager(securityManager) -->
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>

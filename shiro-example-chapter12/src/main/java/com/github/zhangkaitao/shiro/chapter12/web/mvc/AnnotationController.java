@@ -6,9 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-12
- * <p>Version: 1.0
+ * 测试 权限注解的 controller
+ * author : sunpanhu
+ * createTime : 2018/5/2 下午2:50
  */
 @Controller
 public class AnnotationController {
@@ -19,6 +19,12 @@ public class AnnotationController {
         return "success";
     }
 
+    /**
+     * 必须拥有 admin 角色的用户才能访问
+     * 当验证失败，其会抛出UnauthorizedException异常，
+     * 此时可以使用Spring的ExceptionHandler（DefaultExceptionHandler）来进行拦截处理：
+     * @return
+     */
     @RequiresRoles("admin")
     @RequestMapping("/hello2")
     public String hello2() {

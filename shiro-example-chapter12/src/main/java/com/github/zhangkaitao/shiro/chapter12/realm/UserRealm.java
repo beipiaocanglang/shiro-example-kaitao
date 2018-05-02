@@ -11,6 +11,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
 import javax.annotation.Resource;
+import java.util.Set;
 
 /**
  * 缓存的 自定义realm
@@ -29,9 +30,12 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String)principals.getPrimaryPrincipal();
 
+        Set<String> roles = userService.findRoles(username);
+        Set<String> permissions = userService.findPermissions(username);
+
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userService.findRoles(username));
-        authorizationInfo.setStringPermissions(userService.findPermissions(username));
+        authorizationInfo.setRoles(roles);
+        authorizationInfo.setStringPermissions(permissions);
         return authorizationInfo;
     }
 
