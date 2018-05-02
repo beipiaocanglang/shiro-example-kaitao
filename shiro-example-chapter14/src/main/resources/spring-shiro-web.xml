@@ -102,6 +102,7 @@
 
     <!--SSL拦截时用到的端口-->
     <bean id="sslFilter" class="org.apache.shiro.web.filter.authz.SslFilter">
+        <!--SslFilter默认端口是443，此处使用了8443-->
         <property name="port" value="8443"/>
     </bean>
 
