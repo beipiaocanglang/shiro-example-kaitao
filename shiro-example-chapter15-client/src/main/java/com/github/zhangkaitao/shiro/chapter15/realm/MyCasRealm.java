@@ -8,6 +8,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 
 /**
  * 自定义Realm
+ * CasRealm根据CAS服务器端返回的用户身份获取相应的角色/权限信息
  */
 public class MyCasRealm extends CasRealm {
 

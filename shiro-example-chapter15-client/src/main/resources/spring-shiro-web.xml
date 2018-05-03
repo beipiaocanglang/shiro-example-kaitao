@@ -58,8 +58,6 @@
         <!--<property name="casService" value="https://localhost:9443/chapter14-client/cas"/>-->
     <!--</bean>-->
 
-
-
     <!-- 会话ID生成器 -->
     <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
 
@@ -125,6 +123,7 @@
 
     <!--CasFilter类似于FormAuthenticationFilter，只不过其验证服务器端返回的CAS Service Ticket-->
     <bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
+        <!--配置登录失败时跳转的页面-->
         <property name="failureUrl" value="/casFailure.jsp"/>
     </bean>
 
