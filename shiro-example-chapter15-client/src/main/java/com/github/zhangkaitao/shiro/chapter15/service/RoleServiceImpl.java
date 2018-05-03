@@ -4,9 +4,9 @@ import com.github.zhangkaitao.shiro.chapter15.dao.RoleDao;
 import com.github.zhangkaitao.shiro.chapter15.entity.Role;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 角色接口 实现类
+ * author : sunpanhu
+ * createTime : 2018/5/3 下午1:10
  */
 public class RoleServiceImpl implements RoleService {
 
@@ -45,5 +45,4 @@ public class RoleServiceImpl implements RoleService {
     public void uncorrelationPermissions(Long roleId, Long... permissionIds) {
         roleDao.uncorrelationPermissions(roleId, permissionIds);
     }
-
 }

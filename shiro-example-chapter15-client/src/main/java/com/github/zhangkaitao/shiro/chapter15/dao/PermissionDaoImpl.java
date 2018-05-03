@@ -10,9 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 权限DAO接口 实现类
+ * author : sunpanhu
+ * createTime : 2018/5/3 下午1:15
  */
 public class PermissionDaoImpl extends JdbcDaoSupport implements PermissionDao {
 
@@ -43,5 +43,4 @@ public class PermissionDaoImpl extends JdbcDaoSupport implements PermissionDao {
         sql = "delete from sys_permissions where id=?";
         getJdbcTemplate().update(sql, permissionId);
     }
-
 }

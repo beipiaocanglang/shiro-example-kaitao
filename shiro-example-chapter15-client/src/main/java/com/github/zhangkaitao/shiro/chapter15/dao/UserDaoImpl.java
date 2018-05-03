@@ -14,9 +14,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 用户DAO接口 实现类
+ * author : sunpanhu
+ * createTime : 2018/5/3 下午1:14
  */
 public class UserDaoImpl extends JdbcDaoSupport implements UserDao {
 

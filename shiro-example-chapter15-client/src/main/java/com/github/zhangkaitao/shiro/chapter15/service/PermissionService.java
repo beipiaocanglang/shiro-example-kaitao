@@ -3,11 +3,13 @@ package com.github.zhangkaitao.shiro.chapter15.service;
 import com.github.zhangkaitao.shiro.chapter15.entity.Permission;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 权限接口
+ * author : sunpanhu
+ * createTime : 2018/5/3 下午1:11
  */
 public interface PermissionService {
-    public Permission createPermission(Permission permission);
-    public void deletePermission(Long permissionId);
+
+    Permission createPermission(Permission permission);
+
+    void deletePermission(Long permissionId);
 }

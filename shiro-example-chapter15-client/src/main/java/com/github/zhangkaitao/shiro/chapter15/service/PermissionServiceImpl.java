@@ -4,9 +4,9 @@ import com.github.zhangkaitao.shiro.chapter15.dao.PermissionDao;
 import com.github.zhangkaitao.shiro.chapter15.entity.Permission;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 权限接口 实现类
+ * author : sunpanhu
+ * createTime : 2018/5/3 下午1:11
  */
 public class PermissionServiceImpl implements PermissionService {
 

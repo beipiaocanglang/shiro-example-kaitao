@@ -3,7 +3,7 @@ package com.github.zhangkaitao.shiro.chapter15.entity;
 import java.io.Serializable;
 
 /**
- * 用户角色关系
+ * 权限角色关系
  * <p>User: Zhang Kaitao
  * <p>Date: 14-1-28
  * <p>Version: 1.0

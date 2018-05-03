@@ -10,9 +10,9 @@ import org.apache.shiro.cache.CacheManager;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 凭证工具类  密码解密 密码输入错误次数控制
+ * author : sunpanhu
+ * createTime : 2018/5/3 下午1:16
  */
 public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher {
 

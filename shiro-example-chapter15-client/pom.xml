@@ -145,8 +145,6 @@
             <artifactId>spring-webmvc</artifactId>
             <version>4.0.0.RELEASE</version>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -175,8 +173,6 @@
                     </connectors>
                 </configuration>
             </plugin>
-
-
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -184,6 +180,14 @@
                 <configuration>
                     <path>/${project.build.finalName}</path>
                     <httpPort>9080</httpPort>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
         </plugins>

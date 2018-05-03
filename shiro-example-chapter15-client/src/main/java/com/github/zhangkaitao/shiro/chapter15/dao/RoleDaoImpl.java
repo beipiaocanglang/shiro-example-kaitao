@@ -10,9 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-1-28
- * <p>Version: 1.0
+ * 角色DAO接口 实现类
+ * author : sunpanhu
+ * createTime : 2018/5/3 下午1:15
  */
 public class RoleDaoImpl extends JdbcDaoSupport implements RoleDao {
 
