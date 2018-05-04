@@ -10,7 +10,7 @@
                             http://www.springframework.org/schema/aop
                             http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <!-- 缓存管理器 -->
+    <!-- 整合spring后使用自定义的 缓存管理器 -->
     <bean id="cacheManager" class="com.github.zhangkaitao.shiro.spring.SpringCacheManagerWrapper">
         <property name="cacheManager" ref="springCacheManager"/>
     </bean>
@@ -20,13 +20,20 @@
         <constructor-arg ref="cacheManager"/>
         <property name="hashAlgorithmName" value="md5"/>
         <property name="hashIterations" value="2"/>
+        <!--表示是否存储散列后的密码为16进制，需要和生成密码时的一样，默认是base64-->
         <property name="storedCredentialsHexEncoded" value="true"/>
     </bean>
 
     <!-- Realm实现 -->
     <bean id="userRealm" class="com.github.zhangkaitao.shiro.chapter16.realm.UserRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
+        <!--
+            userRealm组件禁用掉了cache，
+            可以参考https://github.com/zhangkaitao/es/tree/master/web/src/main/java/com/sishuok/es/extra/aop实现自己的cache切面；
+            否则需要在修改如资源/角色等信息时清理掉缓存。
+        -->
         <property name="cachingEnabled" value="false"/>
+        <!--以下四行是 开启认证和授权的缓存-->
         <!--<property name="authenticationCachingEnabled" value="true"/>-->
         <!--<property name="authenticationCacheName" value="authenticationCache"/>-->
         <!--<property name="authorizationCachingEnabled" value="true"/>-->
@@ -42,11 +49,11 @@
         <property name="httpOnly" value="true"/>
         <property name="maxAge" value="-1"/>
     </bean>
-
     <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <constructor-arg value="rememberMe"/>
         <property name="httpOnly" value="true"/>
-        <property name="maxAge" value="10"/><!-- 30天 -->
+        <!-- 30天 -->
+        <property name="maxAge" value="2592000"/>
     </bean>
 
     <!-- rememberMe管理器 -->
@@ -97,10 +104,12 @@
     <bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
         <property name="usernameParam" value="username"/>
         <property name="passwordParam" value="password"/>
+        <!--设置 rememberMe 参数 rememberMe 应该为true-->
         <property name="rememberMeParam" value="rememberMe"/>
         <property name="loginUrl" value="/login"/>
     </bean>
 
+    <!--根据当前登录用户身份获取User信息放入request；然后就可以通过request获取User。-->
     <bean id="sysUserFilter" class="com.github.zhangkaitao.shiro.chapter16.web.shiro.filter.SysUserFilter"/>
 
     <!-- Shiro的Web过滤器 -->

@@ -19,6 +19,7 @@
         <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
 
+    <!--此处注册了一个@CurrentUser参数解析器。如之前的IndexController，从request获取shiro sysUser拦截器放入的当前登录User对象。-->
     <mvc:annotation-driven>
         <mvc:argument-resolvers>
             <bean class="com.github.zhangkaitao.shiro.chapter16.web.bind.method.CurrentUserMethodArgumentResolver"/>
@@ -32,8 +33,7 @@
     <mvc:resources mapping="/static/**" location="/WEB-INF/static/"/>
 
     <!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
-    <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-          p:order="1">
+    <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="1">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
         <property name="contentType" value="text/html"/>
         <property name="prefix" value="/WEB-INF/jsp/"/>

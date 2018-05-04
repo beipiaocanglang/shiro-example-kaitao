@@ -4,7 +4,7 @@
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
     <head>
-        <title>组织结构 做右侧 节点详情页</title>
+        <title>组织结构 最右侧 节点详情页</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/css.css">
     </head>
     <body>
@@ -26,7 +26,7 @@
             <%--拥有相对应权限的可以删除--%>
             <shiro:hasPermission name="organization:delete">
                 <c:if test="${not organization.rootNode}">
-                <form:button id="deleteBtn">删除</form:button>
+                    <form:button id="deleteBtn">删除</form:button>
                 </c:if>
             </shiro:hasPermission>
             <%--拥有相对应权限的可以添加子节点--%>

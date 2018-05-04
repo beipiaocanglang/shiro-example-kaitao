@@ -26,6 +26,7 @@
                 };
 
                 var zNodes =[
+                    /*循环遍历列表信息 o.rootNode=true 节点打开状态*/
                     <c:forEach items="${organizationList}" var="o">
                         { id:${o.id}, pId:${o.parentId}, name:"${o.name}", open:${o.rootNode}},
                     </c:forEach>

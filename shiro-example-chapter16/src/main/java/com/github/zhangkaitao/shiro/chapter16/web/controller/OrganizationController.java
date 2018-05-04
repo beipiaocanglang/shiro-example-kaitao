@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 /**
  * 关于组织机构的操作
  */
@@ -42,7 +44,8 @@ public class OrganizationController {
     @RequiresPermissions("organization:view")
     @RequestMapping(value = "/tree", method = RequestMethod.GET)
     public String showTree(Model model) {
-        model.addAttribute("organizationList", organizationService.findAll());
+        List<Organization> all = organizationService.findAll();
+        model.addAttribute("organizationList", all);
         return "organization/tree";
     }
 
@@ -56,7 +59,8 @@ public class OrganizationController {
     @RequiresPermissions("organization:update")
     @RequestMapping(value = "/{id}/maintain", method = RequestMethod.GET)
     public String showMaintainForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("organization", organizationService.findOne(id));
+        Organization one = organizationService.findOne(id);
+        model.addAttribute("organization", one);
         return "organization/maintain";
     }
 
@@ -69,7 +73,7 @@ public class OrganizationController {
     @RequiresPermissions("organization:create")
     @RequestMapping(value = "/{parentId}/appendChild", method = RequestMethod.GET)
     public String showAppendChildForm(@PathVariable("parentId") Long parentId, Model model) {
-        //根据当前节点的父节点id查询节点信息
+        //根据当前节点id查询节点信息
         Organization parent = organizationService.findOne(parentId);
         model.addAttribute("parent", parent);
 
@@ -140,7 +144,8 @@ public class OrganizationController {
         Organization source = organizationService.findOne(sourceId);
         model.addAttribute("source", source);
         //查询所有不包含当前组织信息的其他所有组织信息 用于在move页面中回显要移动到的节点
-        model.addAttribute("targetList", organizationService.findAllWithExclude(source));
+        Object allWithExclude = organizationService.findAllWithExclude(source);
+        model.addAttribute("targetList", allWithExclude);
         return "organization/move";
     }
     /**

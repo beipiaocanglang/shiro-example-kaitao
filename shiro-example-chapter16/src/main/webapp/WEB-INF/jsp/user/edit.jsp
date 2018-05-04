@@ -4,10 +4,9 @@
 <%@taglib prefix="zhangfn" uri="http://github.com/zhangkaitao/tags/zhang-functions" %>
 <html>
     <head>
-        <title></title>
+        <title>编辑用户</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/css.css">
-        <link rel="stylesheet"
-              href="${pageContext.request.contextPath}/static/JQuery zTree v3.5.15/css/zTreeStyle/zTreeStyle.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/JQuery zTree v3.5.15/css/zTreeStyle/zTreeStyle.css">
         <style>
             ul.ztree {
                 margin-top: 10px;
@@ -100,8 +99,12 @@
                         id += nodes[i].id + ",";
                         name += nodes[i].name + ",";
                     }
-                    if (id.length > 0) id = id.substring(0, id.length - 1);
-                    if (name.length > 0) name = name.substring(0, name.length - 1);
+                    if (id.length > 0) {
+                        id = id.substring(0, id.length - 1)
+                    };
+                    if (name.length > 0) {
+                        name = name.substring(0, name.length - 1)
+                    };
                     $("#organizationId").val(id);
                     $("#organizationName").val(name);
                     hideMenu();

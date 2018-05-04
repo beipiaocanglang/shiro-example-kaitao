@@ -8,7 +8,7 @@
         <property name="cacheManager" ref="ehcacheManager"/>
     </bean>
 
-    <!--ehcache-->
+    <!--配置缓存 加载ehcache配置文件-->
     <bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:ehcache/ehcache.xml"/>
     </bean>

@@ -74,8 +74,12 @@
                         id += nodes[i].id + ",";
                         name += nodes[i].name + ",";
                     }
-                    if (id.length > 0) id = id.substring(0, id.length - 1);
-                    if (name.length > 0) name = name.substring(0, name.length - 1);
+                    if (id.length > 0) {
+                        id = id.substring(0, id.length - 1)
+                    };
+                    if (name.length > 0) {
+                        name = name.substring(0, name.length - 1)
+                    };
                     $("#targetId").val(id);
                     $("#targetName").val(name);
                     hideMenu();

@@ -71,6 +71,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
         Organization organization = findOne(organizationId);
         final String deleteSelfSql = "delete from sys_organization where id=?";
         jdbcTemplate.update(deleteSelfSql, organizationId);
+        //以下删除操作 是 如果要上的节点有子节点就将当前节点和子节点一起删除
         final String deleteDescendantsSql = "delete from sys_organization where parent_ids like ?";
         jdbcTemplate.update(deleteDescendantsSql, organization.makeSelfAsParentIds() + "%");
     }

@@ -10,8 +10,11 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Set;
+
 /**
  * 自定义Realm
+ * 过UserService获取帐号及角色/权限信息。
  */
 public class UserRealm extends AuthorizingRealm {
 
@@ -20,6 +23,7 @@ public class UserRealm extends AuthorizingRealm {
 
     /**
      * 授权
+     * 页面使用的 权限控制标签会调用对应的次数<shiro:hasPermission name="organization:create">
      * author : sunpanhu
      * createTime : 2018/4/8 下午5:05
      */
@@ -27,9 +31,12 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String)principals.getPrimaryPrincipal();
 
+        Set<String> roles = userService.findRoles(username);
+        Set<String> permissions = userService.findPermissions(username);
+
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userService.findRoles(username));
-        authorizationInfo.setStringPermissions(userService.findPermissions(username));
+        authorizationInfo.setRoles(roles);
+        authorizationInfo.setStringPermissions(permissions);
         return authorizationInfo;
     }
 

@@ -15,6 +15,7 @@ import java.util.Set;
 
 /**
  * 跳转到首页或欢迎页请求
+ * 查询菜单在前台界面显示
  */
 @Controller
 public class IndexController {

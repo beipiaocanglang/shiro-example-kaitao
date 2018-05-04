@@ -1,5 +1,7 @@
 package com.github.zhangkaitao.shiro.chapter16.web.controller;
 
+import com.github.zhangkaitao.shiro.chapter16.entity.Organization;
+import com.github.zhangkaitao.shiro.chapter16.entity.Role;
 import com.github.zhangkaitao.shiro.chapter16.entity.User;
 import com.github.zhangkaitao.shiro.chapter16.service.OrganizationService;
 import com.github.zhangkaitao.shiro.chapter16.service.RoleService;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 /**
  * 关于用户操作
@@ -41,7 +45,8 @@ public class UserController {
     @RequiresPermissions("user:view")
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("userList", userService.findAll());
+        List<User> userList = userService.findAll();
+        model.addAttribute("userList", userList);
         return "user/list";
     }
 
@@ -85,8 +90,9 @@ public class UserController {
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         //查询所有组织结构 和 所有角色列表
+        User user = userService.findOne(id);
         setCommonData(model);
-        model.addAttribute("user", userService.findOne(id));
+        model.addAttribute("user", user);
         model.addAttribute("op", "修改");
         return "user/edit";
     }
@@ -115,8 +121,9 @@ public class UserController {
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public String showDeleteForm(@PathVariable("id") Long id, Model model) {
         //查询所有组织结构 和 所有角色列表
+        User user = userService.findOne(id);
         setCommonData(model);
-        model.addAttribute("user", userService.findOne(id));
+        model.addAttribute("user", user);
         model.addAttribute("op", "删除");
         return "user/edit";
     }
@@ -144,7 +151,8 @@ public class UserController {
     @RequiresPermissions("user:update")
     @RequestMapping(value = "/{id}/changePassword", method = RequestMethod.GET)
     public String showChangePasswordForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.findOne(id));
+        User user = userService.findOne(id);
+        model.addAttribute("user", user);
         model.addAttribute("op", "修改密码");
         return "user/changePassword";
     }
@@ -165,7 +173,9 @@ public class UserController {
 
     //查询所有组织结构 和 所有角色列表
     private void setCommonData(Model model) {
-        model.addAttribute("organizationList", organizationService.findAll());
-        model.addAttribute("roleList", roleService.findAll());
+        List<Organization> organizationList = organizationService.findAll();
+        List<Role> roleList = roleService.findAll();
+        model.addAttribute("organizationList", organizationList);
+        model.addAttribute("roleList", roleList);
     }
 }

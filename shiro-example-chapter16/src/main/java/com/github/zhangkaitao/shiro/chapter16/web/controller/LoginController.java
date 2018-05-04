@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 登录操作
+ * 用于显示登录表单页面，其中shiro authc拦截器进行登录，
+ * 登录失败的话会把错误存到shiroLoginFailure属性中，
+ * 在该控制器中获取后来显示相应的错误信息
  */
 @Controller
 public class LoginController {
