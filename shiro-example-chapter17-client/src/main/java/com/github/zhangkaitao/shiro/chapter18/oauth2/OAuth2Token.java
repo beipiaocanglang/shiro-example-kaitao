@@ -3,7 +3,8 @@ package com.github.zhangkaitao.shiro.chapter18.oauth2;
 import org.apache.shiro.authc.AuthenticationToken;
 
 /**
- * 类似于UsernamePasswordToken和CasToken；用于存储oauth2服务端返回的auth code。
+ * 类似于UsernamePasswordToken和CasToken；
+ * 用于存储oauth2服务端返回的auth code。
  * 在自定义Realm中会用到这个
  * author : sunpanhu
  * createTime : 2018/4/16 下午2:30

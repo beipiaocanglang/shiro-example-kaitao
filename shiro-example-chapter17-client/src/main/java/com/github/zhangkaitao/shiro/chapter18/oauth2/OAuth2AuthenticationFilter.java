@@ -60,7 +60,8 @@ public class OAuth2AuthenticationFilter extends AuthenticatingFilter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         //获取code
         String code = httpRequest.getParameter(authcCodeParam);
-        return new OAuth2Token(code);
+        OAuth2Token oAuth2Token = new OAuth2Token(code);
+        return oAuth2Token;
     }
 
     /**
@@ -87,6 +88,7 @@ public class OAuth2AuthenticationFilter extends AuthenticatingFilter {
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         String error = request.getParameter("error");
         String errorDescription = request.getParameter("error_description");
+
         //如果服务端返回了错误
         if(!StringUtils.isEmpty(error)) {
             WebUtils.issueRedirect(request, response, failureUrl + "?error=" + error + "error_description=" + errorDescription);

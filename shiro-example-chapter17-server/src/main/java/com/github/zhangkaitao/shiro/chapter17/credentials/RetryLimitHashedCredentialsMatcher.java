@@ -10,7 +10,7 @@ import org.apache.shiro.cache.CacheManager;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 校验密码 加密密码
+ * 校验密码、密码输入指定次数的错误后的提示
  * author : sunpanhu
  * createTime : 2018/4/16 下午4:49
  */

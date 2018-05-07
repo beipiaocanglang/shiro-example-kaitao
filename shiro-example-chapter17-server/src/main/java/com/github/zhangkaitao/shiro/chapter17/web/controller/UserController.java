@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 /**
  * 后端数据维护控制器 - 用户端操作
  * author : sunpanhu
@@ -30,7 +32,8 @@ public class UserController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("userList", userService.findAll());
+        List<User> userList = userService.findAll();
+        model.addAttribute("userList", userList);
         return "user/list";
     }
 
@@ -68,7 +71,8 @@ public class UserController {
      */
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.findOne(id));
+        User user = userService.findOne(id);
+        model.addAttribute("user", user);
         model.addAttribute("op", "修改");
         return "user/edit";
     }
@@ -94,7 +98,8 @@ public class UserController {
      */
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public String showDeleteForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.findOne(id));
+        User user = userService.findOne(id);
+        model.addAttribute("user", user);
         model.addAttribute("op", "删除");
         return "user/edit";
     }
@@ -120,7 +125,8 @@ public class UserController {
      */
     @RequestMapping(value = "/{id}/changePassword", method = RequestMethod.GET)
     public String showChangePasswordForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.findOne(id));
+        User user = userService.findOne(id);
+        model.addAttribute("user", user);
         model.addAttribute("op", "修改密码");
         return "user/changePassword";
     }

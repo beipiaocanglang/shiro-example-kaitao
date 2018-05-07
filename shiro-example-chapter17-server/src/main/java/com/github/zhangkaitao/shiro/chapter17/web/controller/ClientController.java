@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 /**
  * 后端数据维护控制器 - 客户端操作
  * author : sunpanhu
@@ -30,7 +32,8 @@ public class ClientController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("clientList", clientService.findAll());
+        List<Client> clientList = clientService.findAll();
+        model.addAttribute("clientList", clientList);
         return "client/list";
     }
 
@@ -61,14 +64,15 @@ public class ClientController {
     }
 
     /**
-     * 修改客户端 迪娜几客户端列表后面的 修改 跳转到修改页面 同时获取客户端信息
+     * 修改客户端 点击客户端列表后面的 修改 跳转到修改页面 同时获取客户端信息
      * author : sunpanhu
      * createTime : 2018/4/16 下午5:32
      * @return
      */
     @RequestMapping(value = "/{id}/update", method = RequestMethod.GET)
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("client", clientService.findOne(id));
+        Client client = clientService.findOne(id);
+        model.addAttribute("client", client);
         model.addAttribute("op", "修改");
         return "client/edit";
     }
@@ -94,7 +98,8 @@ public class ClientController {
      */
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public String showDeleteForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("client", clientService.findOne(id));
+        Client client = clientService.findOne(id);
+        model.addAttribute("client", client);
         model.addAttribute("op", "删除");
         return "client/edit";
     }

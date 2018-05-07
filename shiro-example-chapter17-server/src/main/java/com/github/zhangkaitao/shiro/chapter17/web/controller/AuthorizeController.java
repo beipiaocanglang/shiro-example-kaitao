@@ -1,6 +1,7 @@
 package com.github.zhangkaitao.shiro.chapter17.web.controller;
 
 import com.github.zhangkaitao.shiro.chapter17.Constants;
+import com.github.zhangkaitao.shiro.chapter17.entity.Client;
 import com.github.zhangkaitao.shiro.chapter17.service.ClientService;
 import com.github.zhangkaitao.shiro.chapter17.service.OAuthService;
 import org.apache.oltu.oauth2.as.issuer.MD5Generator;
@@ -37,7 +38,8 @@ import java.net.URISyntaxException;
  *      1、首先通过如http://localhost:8080/chapter17-server/authorize?client_id=c1ebe466-1cdc-4bd3-ab69-77c3561b9dee&response_type=code&redirect_uri=http://localhost:9080/chapter17-client/oauth2-login访问授权页面；
  *      2、该控制器首先检查clientId是否正确；如果错误将返回相应的错误信息；
  *      3、然后判断用户是否登录了，如果没有登录首先到登录页面登录；
- *      4、登录成功后生成相应的auth code即授权码，然后重定向到客户端地址，如http://localhost:9080/chapter17-client/oauth2-login?code=52b1832f5dff68122f4f00ae995da0ed；在重定向到的地址中会带上code参数（授权码），接着客户端可以根据授权码去换取access token。
+ *      4、登录成功后生成相应的auth code即授权码，然后重定向到客户端地址，如http://localhost:9080/chapter17-client/oauth2-login?code=52b1832f5dff68122f4f00ae995da0ed；
+ *      5、在重定向到的地址中会带上code参数（授权码），接着客户端可以根据授权码去换取access token。
  * author : sunpanhu
  * createTime : 2018/4/16 下午2:22
  */
@@ -82,11 +84,15 @@ public class AuthorizeController {
             Subject subject = SecurityUtils.getSubject();
             //获取用户认证信息
             boolean isAuthenticated = subject.isAuthenticated();
+
             if(!isAuthenticated) {
                 boolean isLogin = login(subject, request);
+
                 if(!isLogin) {
                     //如果用户 认证失败 且 登录失败时跳转到登陆页面
-                    model.addAttribute("client", clientService.findByClientId(oauthRequest.getClientId()));
+                    Client client = clientService.findByClientId(oauthRequest.getClientId());
+                    model.addAttribute("client", client);
+
                     return "oauth2login";
                 }
             }
@@ -96,6 +102,7 @@ public class AuthorizeController {
             String authorizationCode = null;
             //responseType目前仅支持CODE，另外还有TOKEN
             String responseType = oauthRequest.getParam(OAuth.OAUTH_RESPONSE_TYPE);
+
             if (responseType.equals(ResponseType.CODE.toString())) {
                 OAuthIssuerImpl oauthIssuerImpl = new OAuthIssuerImpl(new MD5Generator());
                 authorizationCode = oauthIssuerImpl.authorizationCode();
@@ -116,6 +123,7 @@ public class AuthorizeController {
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(new URI(response.getLocationUri()));
             ResponseEntity responseEntity = new ResponseEntity(headers, HttpStatus.valueOf(response.getResponseStatus()));
+
             return responseEntity;
         } catch (OAuthProblemException e) {
             //出错处理
@@ -130,6 +138,7 @@ public class AuthorizeController {
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(new URI(response.getLocationUri()));
             ResponseEntity responseEntity = new ResponseEntity(headers, HttpStatus.valueOf(response.getResponseStatus()));
+
             return responseEntity;
         }
     }
@@ -139,6 +148,7 @@ public class AuthorizeController {
         if("get".equalsIgnoreCase(request.getMethod())) {
             return false;
         }
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 

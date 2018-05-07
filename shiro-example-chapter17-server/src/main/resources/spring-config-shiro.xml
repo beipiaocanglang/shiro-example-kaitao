@@ -112,11 +112,9 @@
                 / = anon
                 /login = authc
                 /logout = logout
-                <!--可访问的-->
                 /authorize=anon
                 /accessToken=anon
                 /userInfo=anon
-
                 /** = user
             </value>
         </property>

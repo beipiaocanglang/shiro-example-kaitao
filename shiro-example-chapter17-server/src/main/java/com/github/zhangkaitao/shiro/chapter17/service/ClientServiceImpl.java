@@ -27,7 +27,8 @@ public class ClientServiceImpl implements ClientService {
     }
     
     public Client updateClient(Client client) {
-        return clientDao.updateClient(client);
+        Client updateClient = clientDao.updateClient(client);
+        return updateClient;
     }
 
     public void deleteClient(Long clientId) {
@@ -35,18 +36,22 @@ public class ClientServiceImpl implements ClientService {
     }
     
     public Client findOne(Long clientId) {
-        return clientDao.findOne(clientId);
+        Client client = clientDao.findOne(clientId);
+        return client;
     }
 
     public List<Client> findAll() {
-        return clientDao.findAll();
+        List<Client> clientList = clientDao.findAll();
+        return clientList;
     }
     
     public Client findByClientId(String clientId) {
-        return clientDao.findByClientId(clientId);
+        Client client = clientDao.findByClientId(clientId);
+        return client;
     }
     
     public Client findByClientSecret(String clientSecret) {
-        return clientDao.findByClientSecret(clientSecret);
+        Client client = clientDao.findByClientSecret(clientSecret);
+        return client;
     }
 }

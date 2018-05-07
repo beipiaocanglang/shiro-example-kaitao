@@ -62,25 +62,31 @@ public class AccessTokenController {
                                 .setError(OAuthError.TokenResponse.INVALID_CLIENT)
                                 .setErrorDescription(Constants.INVALID_CLIENT_DESCRIPTION)
                                 .buildJSONMessage();
+
                 ResponseEntity responseEntity = new ResponseEntity(response.getBody(), HttpStatus.valueOf(response.getResponseStatus()));
+
                 return responseEntity;
             }
 
             String clientSecret = oauthRequest.getClientSecret();
             // 检查客户端安全KEY是否正确
             boolean isYouXiao = oAuthService.checkClientSecret(clientSecret);
+
             if (!isYouXiao) {
                 OAuthResponse response = OAuthASResponse.errorResponse(HttpServletResponse.SC_UNAUTHORIZED)
                                 .setError(OAuthError.TokenResponse.UNAUTHORIZED_CLIENT)
                                 .setErrorDescription(Constants.INVALID_CLIENT_DESCRIPTION)
                                 .buildJSONMessage();
                 ResponseEntity responseEntity = new ResponseEntity(response.getBody(), HttpStatus.valueOf(response.getResponseStatus()));
+
                 return responseEntity;
             }
 
             String authCode = oauthRequest.getParam(OAuth.OAUTH_CODE);
             // 检查验证类型，此处只检查AUTHORIZATION_CODE类型，其他的还有PASSWORD或REFRESH_TOKEN
-            if (oauthRequest.getParam(OAuth.OAUTH_GRANT_TYPE).equals(GrantType.AUTHORIZATION_CODE.toString())) {
+            String param = oauthRequest.getParam(OAuth.OAUTH_GRANT_TYPE);
+            String param1 = GrantType.AUTHORIZATION_CODE.toString();
+            if (param.equals(param1)) {
                 //验证auth code是否有效
                 boolean oAuth = oAuthService.checkAuthCode(authCode);
                 if (!oAuth) {
@@ -101,7 +107,8 @@ public class AccessTokenController {
             //添加AccessToken
             oAuthService.addAccessToken(accessToken, usernameByAuthCode);
             //设置过期时间3600L
-            String expireIn = String.valueOf(oAuthService.getExpireIn());
+            long expireIn1 = oAuthService.getExpireIn();
+            String expireIn = String.valueOf(expireIn1);
             //生成OAuth响应
             OAuthResponse response = OAuthASResponse.tokenResponse(HttpServletResponse.SC_OK)
                     .setAccessToken(accessToken)

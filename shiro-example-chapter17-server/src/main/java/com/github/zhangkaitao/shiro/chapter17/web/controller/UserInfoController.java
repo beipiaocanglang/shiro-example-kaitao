@@ -52,7 +52,8 @@ public class UserInfoController {
             String accessToken = oauthRequest.getAccessToken();
 
             //验证Access Token
-            if (!oAuthService.checkAccessToken(accessToken)) {
+            boolean token = oAuthService.checkAccessToken(accessToken);
+            if (!token) {
                 // 如果不存在/过期了，返回未验证错误，需重新验证
                 OAuthResponse oauthResponse = OAuthRSResponse
                         .errorResponse(HttpServletResponse.SC_UNAUTHORIZED)
@@ -62,16 +63,20 @@ public class UserInfoController {
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.add(OAuth.HeaderType.WWW_AUTHENTICATE, oauthResponse.getHeader(OAuth.HeaderType.WWW_AUTHENTICATE));
+
                 ResponseEntity responseEntity = new ResponseEntity(headers, HttpStatus.UNAUTHORIZED);
+
                 return responseEntity;
             }
             //返回用户名
             String username = oAuthService.getUsernameByAccessToken(accessToken);
             ResponseEntity responseEntity = new ResponseEntity(username, HttpStatus.OK);
+
             return responseEntity;
         } catch (OAuthProblemException e) {
             //检查是否设置了错误码
             String errorCode = e.getError();
+
             if (OAuthUtils.isEmpty(errorCode)) {
                 OAuthResponse oauthResponse = OAuthRSResponse
                         .errorResponse(HttpServletResponse.SC_UNAUTHORIZED)
@@ -81,6 +86,7 @@ public class UserInfoController {
                 HttpHeaders headers = new HttpHeaders();
                 headers.add(OAuth.HeaderType.WWW_AUTHENTICATE, oauthResponse.getHeader(OAuth.HeaderType.WWW_AUTHENTICATE));
                 ResponseEntity responseEntity = new ResponseEntity(headers, HttpStatus.UNAUTHORIZED);
+
                 return responseEntity;
             }
 
@@ -95,6 +101,7 @@ public class UserInfoController {
             HttpHeaders headers = new HttpHeaders();
             headers.add(OAuth.HeaderType.WWW_AUTHENTICATE, oauthResponse.getHeader(OAuth.HeaderType.WWW_AUTHENTICATE));
             ResponseEntity responseEntity = new ResponseEntity(HttpStatus.BAD_REQUEST);
+
             return responseEntity;
         }
     }

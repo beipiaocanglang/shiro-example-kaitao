@@ -28,7 +28,8 @@ public class UserServiceImpl implements UserService {
     public User createUser(User user) {
         //加密密码
         passwordHelper.encryptPassword(user);
-        return userDao.createUser(user);
+        User resultUser = userDao.createUser(user);
+        return resultUser;
     }
     /**
      * 修改用户信息
@@ -36,7 +37,8 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public User updateUser(User user) {
-        return userDao.updateUser(user);
+        User resultUser = userDao.updateUser(user);
+        return resultUser;
     }
     /**
      * 删除用户
@@ -53,6 +55,7 @@ public class UserServiceImpl implements UserService {
     public void changePassword(Long userId, String newPassword) {
         User user =userDao.findOne(userId);
         user.setPassword(newPassword);
+
         passwordHelper.encryptPassword(user);
         userDao.updateUser(user);
     }
@@ -62,14 +65,16 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public User findOne(Long userId) {
-        return userDao.findOne(userId);
+        User user = userDao.findOne(userId);
+        return user;
     }
     /**
      * 查询所有用户列表
      * @return
      */
     public List<User> findAll() {
-        return userDao.findAll();
+        List<User> userList = userDao.findAll();
+        return userList;
     }
     /**
      * 根据用户名查找用户
@@ -77,6 +82,7 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     public User findByUsername(String username) {
-        return userDao.findByUsername(username);
+        User user = userDao.findByUsername(username);
+        return user;
     }
 }

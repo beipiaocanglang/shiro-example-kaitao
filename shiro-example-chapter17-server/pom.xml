@@ -1,5 +1,7 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>shiro-example</artifactId>
         <groupId>com.github.zhangkaitao</groupId>
@@ -10,6 +12,7 @@
     <packaging>war</packaging>
     <name>shiro-example-chapter17-server</name>
     <url>http://maven.apache.org</url>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -35,7 +38,6 @@
             <artifactId>org.apache.oltu.oauth2.resourceserver</artifactId>
             <version>0.31</version>
         </dependency>
-
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -81,7 +83,6 @@
             <version>1.2.2</version>
         </dependency>
 
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -92,7 +93,6 @@
             <artifactId>druid</artifactId>
             <version>0.2.23</version>
         </dependency>
-
 
         <!-- aspectj相关jar包-->
         <dependency>
@@ -151,7 +151,6 @@
                     </webAppConfig>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>

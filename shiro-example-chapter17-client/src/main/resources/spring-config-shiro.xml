@@ -106,7 +106,7 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <!--
-            此处设置loginUrl 其会自动设置到所有的AccessControlFilter，如oAuth2AuthenticationFilter；
+            此处设置loginUrl value的值 其会自动设置到所有的AccessControlFilter，如oAuth2AuthenticationFilter；
             点击 "点击登录" 如果用户没有身份验证，且没有auth code，则重定向到服务端以下地址进行授权
         -->
         <property name="loginUrl" value="http://localhost:8080/chapter17-server/authorize?client_id=c1ebe466-1cdc-4bd3-ab69-77c3561b9dee&amp;response_type=code&amp;redirect_uri=http://localhost:9080/chapter17-client/oauth2-login"/>

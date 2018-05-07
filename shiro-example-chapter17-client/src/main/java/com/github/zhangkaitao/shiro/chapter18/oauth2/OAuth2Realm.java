@@ -35,19 +35,15 @@ public class OAuth2Realm extends AuthorizingRealm {
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
-
     public void setClientSecret(String clientSecret) {
         this.clientSecret = clientSecret;
     }
-
     public void setAccessTokenUrl(String accessTokenUrl) {
         this.accessTokenUrl = accessTokenUrl;
     }
-
     public void setUserInfoUrl(String userInfoUrl) {
         this.userInfoUrl = userInfoUrl;
     }
-
     public void setRedirectUrl(String redirectUrl) {
         this.redirectUrl = redirectUrl;
     }
@@ -97,6 +93,7 @@ public class OAuth2Realm extends AuthorizingRealm {
             //获取用户信息 执行 com.github.zhangkaitao.shiro.chapter17.web.controller.UserInfoController
             OAuthResourceResponse resourceResponse = oAuthClient.resource(userInfoRequest, OAuth.HttpMethod.GET, OAuthResourceResponse.class);
             String username = resourceResponse.getBody();
+
             return username;
         } catch (Exception e) {
             e.printStackTrace();
