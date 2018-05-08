@@ -1,6 +1,7 @@
 package com.github.zhangkaitao.shiro.chapter18.web.shiro.filter;
 
 import com.github.zhangkaitao.shiro.chapter18.Constants;
+import com.github.zhangkaitao.shiro.chapter18.entity.User;
 import com.github.zhangkaitao.shiro.chapter18.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.web.filter.PathMatchingFilter;
@@ -23,7 +24,8 @@ public class SysUserFilter extends PathMatchingFilter {
     protected boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
 
         String username = (String)SecurityUtils.getSubject().getPrincipal();
-        request.setAttribute(Constants.CURRENT_USER, userService.findByUsername(username));
+        User user = userService.findByUsername(username);
+        request.setAttribute(Constants.CURRENT_USER, user);
         return true;
     }
 }

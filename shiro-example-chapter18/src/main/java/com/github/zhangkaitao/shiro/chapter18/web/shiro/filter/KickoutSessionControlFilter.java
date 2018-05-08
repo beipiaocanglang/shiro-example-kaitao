@@ -32,19 +32,15 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
     public void setKickoutUrl(String kickoutUrl) {
         this.kickoutUrl = kickoutUrl;
     }
-
     public void setKickoutAfter(boolean kickoutAfter) {
         this.kickoutAfter = kickoutAfter;
     }
-
     public void setMaxSession(int maxSession) {
         this.maxSession = maxSession;
     }
-
     public void setSessionManager(SessionManager sessionManager) {
         this.sessionManager = sessionManager;
     }
-
     public void setCacheManager(CacheManager cacheManager) {
         this.cache = cacheManager.getCache("shiro-kickout-session");
     }
@@ -66,6 +62,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
     @Override
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         Subject subject = getSubject(request, response);
+
         boolean authenticated = subject.isAuthenticated();
         boolean remembered = subject.isRemembered();
         if(!authenticated && !remembered) {

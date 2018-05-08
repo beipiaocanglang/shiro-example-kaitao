@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:util="http://www.springframework.org/schema/util"
-       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
-       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util
+                           http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!-- 缓存管理器 -->
     <bean id="cacheManager" class="com.github.zhangkaitao.shiro.spring.SpringCacheManagerWrapper">
@@ -106,7 +105,6 @@
         <property name="cacheManager" ref="cacheManager"/>
         <!--用于根据会话ID，获取会话进行踢出操作的；-->
         <property name="sessionManager" ref="sessionManager"/>
-
         <!--是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户；-->
         <property name="kickoutAfter" value="false"/>
         <!--同一个用户最大的会话数，默认1；比如2的意思是同一个用户允许最多同时两个人登录；-->
@@ -134,6 +132,7 @@
                 /login = authc
                 /logout = logout
                 /authenticated = authc
+                <!--除了登录等之外的地址都走kickout拦截器进行并发登录控制-->
                 /** = kickout,user,sysUser
             </value>
         </property>
@@ -141,7 +140,4 @@
 
     <!-- Shiro生命周期处理器-->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-
-
-
 </beans>

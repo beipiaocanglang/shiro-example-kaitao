@@ -8,8 +8,8 @@
     </head>
     <body>
         <div class="error">
-        <c:if test="${not empty param.kickout}">您被踢出登录。</c:if>
-        ${error}
+            <c:if test="${not empty param.kickout}">您被踢出登录。</c:if>
+            ${error}
         </div>
         <form action="" method="post">
             用户名：<input type="text" name="username" value="<shiro:principal/>"><br/>
