@@ -18,7 +18,7 @@ import java.util.List;
  *
  * 默认实现有点小问题：
  *      如果多个拦截器链都匹配了当前请求URL，那么只返回第一个找到的拦截器链；
- *      后续我们可以修改此处的代码，将多个匹配的拦截器链合并返回。
+ *      默认的PathMatchingFilterChainResolver和DefaultFilterChainManager不能满足我们的需求，下面时扩展的代码
  * author : sunpanhu
  * createTime : 2018/4/17 下午3:06
  */
@@ -32,6 +32,7 @@ public class CustomPathMatchingFilterChainResolver extends PathMatchingFilterCha
         setFilterChainManager(customDefaultFilterChainManager);
     }
 
+    //默认流程
     public FilterChain getChain(ServletRequest request, ServletResponse response, FilterChain originalChain) {
         FilterChainManager filterChainManager = getFilterChainManager();
         if (!filterChainManager.hasChains()) {
@@ -55,7 +56,7 @@ public class CustomPathMatchingFilterChainResolver extends PathMatchingFilterCha
             return null;
         }
 
-        //解决类类注释上说的小问题
+        //解决类注释上说的小问题
         //和默认的PathMatchingFilterChainResolver区别是，此处得到所有匹配的拦截器链，
         //然后通过调用CustomDefaultFilterChainManager.proxy(originalChain, chainNames)进行合并后代理。
         FilterChain filterChain = customDefaultFilterChainManager.proxy(originalChain, chainNames);

@@ -13,9 +13,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-25
- * <p>Version: 1.0
+ * 初始化Shiro的URL拦截器链
+ * 在 com.github.zhangkaitao.shiro.chapter19.service.UrlFilterServiceImpl.initFilterChain()方法中会调用
+ * author : sunpanhu
+ * createTime : 2018/5/9 下午2:47
  */
 @Service
 public class ShiroFilerChainManager {

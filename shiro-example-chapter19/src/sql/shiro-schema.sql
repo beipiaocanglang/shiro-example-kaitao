@@ -4,6 +4,7 @@ drop table if exists sys_resource;
 drop table if exists sys_role;
 drop table if exists sys_url_filter;
 
+-- 用户表
 create table sys_user (
   id bigint auto_increment,
   organization_id bigint,
@@ -17,6 +18,7 @@ create table sys_user (
 create unique index idx_sys_user_username on sys_user(username);
 create index idx_sys_user_organization_id on sys_user(organization_id);
 
+-- 组织机构表
 create table sys_organization (
   id bigint auto_increment,
   name varchar(100),
@@ -28,7 +30,7 @@ create table sys_organization (
 create index idx_sys_organization_parent_id on sys_organization(parent_id);
 create index idx_sys_organization_parent_ids on sys_organization(parent_ids);
 
-
+-- 资源表
 create table sys_resource (
   id bigint auto_increment,
   name varchar(100),
@@ -43,6 +45,7 @@ create table sys_resource (
 create index idx_sys_resource_parent_id on sys_resource(parent_id);
 create index idx_sys_resource_parent_ids on sys_resource(parent_ids);
 
+-- 角色表
 create table sys_role (
   id bigint auto_increment,
   role varchar(100),
@@ -53,7 +56,7 @@ create table sys_role (
 ) charset=utf8 ENGINE=InnoDB;
 create index idx_sys_role_resource_ids on sys_role(resource_ids);
 
-
+-- 动态url拦截表
 create table sys_url_filter (
   id bigint auto_increment,
   name varchar(100),

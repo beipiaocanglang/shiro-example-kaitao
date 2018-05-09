@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 /**
  * url动态权限 pojo
+ * 表示拦截的URL和角色/权限之间的关系，
+ * 多个角色/权限之间通过逗号分隔，此处还可以扩展其他的关系，
+ * 另外可以加如available属性表示是否开启该拦截。
  * author : sunpanhu
  * createTime : 2018/4/17 下午2:06
  */

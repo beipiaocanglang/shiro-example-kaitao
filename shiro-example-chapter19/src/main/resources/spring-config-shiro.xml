@@ -122,7 +122,10 @@
         </property>
     </bean>
 
-    <!--filterChainResolver是自定义的CustomPathMatchingFilterChainResolver，使用上边的filterChainManager进行拦截器链的管理。 -->
+    <!--
+        配置初始化自定义的 CustomPathMatchingFilterChainResolver
+        filterChainResolver是自定义的CustomPathMatchingFilterChainResolver，使用上边的filterChainManager进行拦截器链的管理
+    -->
     <bean id="filterChainResolver" class="com.github.zhangkaitao.shiro.spring.CustomPathMatchingFilterChainResolver">
         <property name="customDefaultFilterChainManager" ref="filterChainManager"/>
     </bean>
@@ -135,6 +138,7 @@
         <property name="securityManager" ref="securityManager"/>
     </bean>
 
+    <!--最后把filterChainResolver注册给shiroFilter，其使用它进行动态URL权限控制-->
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="targetObject" ref="shiroFilter"/>
         <property name="targetMethod" value="setFilterChainResolver"/>

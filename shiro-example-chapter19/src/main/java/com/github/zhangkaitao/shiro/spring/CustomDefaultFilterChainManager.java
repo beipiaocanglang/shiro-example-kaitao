@@ -27,6 +27,16 @@ import java.util.Map;
  *      DefaultFilterChainManager内部使用Map来管理URL模式-拦截器链的关系；
  *      也就是说相同的URL模式只能定义一个拦截器链，不能重复定义；
  *      而且如果多个拦截器链都匹配时是无序的（因为使用map.keySet()获取拦截器链的名字，即URL模式）。
+ *
+ * 解释：
+ *      1、CustomDefaultFilterChainManager：调用其构造器时，会自动注册默认的拦截器；
+ *      2、loginUrl、successUrl、unauthorizedUrl：分别对应登录地址、登录成功后默认跳转地址、未授权跳转地址，用于给相应拦截器的；
+ *      3、filterChainDefinitionMap：用于存储如ShiroFilterFactoryBean在配置文件中配置的拦截器链定义，即可以认为是默认的静态拦截器链；会自动与数据库中加载的合并；
+ *      4、setDefaultFilterChainDefinitions：解析配置文件中传入的字符串拦截器链配置，解析为相应的拦截器链；
+ *      5、setCustomFilters：注册我们自定义的拦截器；如ShiroFilterFactoryBean的filters属性；
+ *      6、init：初始化方法，Spring容器启动时会调用，首先其会自动给相应的拦截器设置如loginUrl、successUrl、unauthorizedUrl；其次根据filterChainDefinitionMap构建默认的拦截器链；
+ *      7、initFilter：此处我们忽略实现initFilter，因为交给spring管理了，所以Filter的相关配置会在Spring配置中完成；
+ *      8、proxy：组合多个拦截器链为一个生成一个新的FilterChain代理。
  * author : sunpanhu
  * createTime : 2018/4/17 下午3:08
  */
@@ -41,6 +51,7 @@ public class CustomDefaultFilterChainManager extends DefaultFilterChainManager {
     //未授权跳转地址
     private String unauthorizedUrl;
 
+    //调用其构造器时，会自动注册默认的拦截器
     public CustomDefaultFilterChainManager() {
         setFilters(new LinkedHashMap<String, Filter>());
         setFilterChains(new LinkedHashMap<String, NamedFilterList>());
