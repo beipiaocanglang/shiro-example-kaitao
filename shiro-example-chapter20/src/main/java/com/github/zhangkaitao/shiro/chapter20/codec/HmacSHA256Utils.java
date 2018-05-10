@@ -16,23 +16,6 @@ import java.util.Map;
  */
 public class HmacSHA256Utils {
 
-    public static String digest(String key, String content) {
-        try {
-            Mac mac = Mac.getInstance("HmacSHA256");
-            byte[] secretByte = key.getBytes("utf-8");
-            byte[] dataBytes = content.getBytes("utf-8");
-
-            SecretKey secret = new SecretKeySpec(secretByte, "HMACSHA256");
-            mac.init(secret);
-
-            byte[] doFinal = mac.doFinal(dataBytes);
-            byte[] hexB = new Hex().encode(doFinal);
-            return new String(hexB, "utf-8");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static String digest(String key, Map<String, ?> map) {
         StringBuilder s = new StringBuilder();
         for(Object values : map.values()) {
@@ -48,8 +31,28 @@ public class HmacSHA256Utils {
                 s.append(values);
             }
         }
-        //调用上面的方法
+        //调用下面的方法
         String digest = digest(key, s.toString());
         return digest;
+    }
+
+    public static String digest(String key, String content) {
+        try {
+            Mac mac = Mac.getInstance("HmacSHA256");
+            byte[] secretByte = key.getBytes("utf-8");
+            byte[] dataBytes = content.getBytes("utf-8");
+
+            SecretKey secret = new SecretKeySpec(secretByte, "HMACSHA256");
+            mac.init(secret);
+
+            byte[] doFinal = mac.doFinal(dataBytes);
+            byte[] hexB = new Hex().encode(doFinal);
+
+            String p = new String(hexB, "utf-8");
+
+            return p;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

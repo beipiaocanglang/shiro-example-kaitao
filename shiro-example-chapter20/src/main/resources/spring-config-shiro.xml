@@ -18,7 +18,7 @@
     <!-- 会话管理器 -->
     <bean id="sessionManager" class="org.apache.shiro.session.mgt.DefaultSessionManager">
         <!--
-            sessionManager通过sessionValidationSchedulerEnabled禁用掉会话调度器，
+            代码中sessionManager通过sessionValidationSchedulerEnabled禁用掉会话调度器，
             因为我们禁用掉了会话，所以没必要再定期过期会话了。
         -->
         <property name="sessionValidationSchedulerEnabled" value="false"/>
@@ -38,7 +38,7 @@
         <property name="arguments" ref="securityManager"/>
     </bean>
 
-    <!--自定义拦截器  在下面会使用-->
+    <!--自定义拦截器 每次请求进行认证的拦截器。  在下面会使用-->
     <bean id="statelessAuthcFilter" class="com.github.zhangkaitao.shiro.chapter20.filter.StatelessAuthcFilter"/>
 
     <!-- Shiro的Web过滤器 -->

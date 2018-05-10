@@ -14,7 +14,8 @@ import java.util.Map;
 /**
  * 类似于FormAuthenticationFilter，但是根据当前请求上下文信息每次请求时都要登录的认证过滤器。
  *
- * 获取客户端传入的用户名、请求参数、消息摘要，生成StatelessToken；然后交给相应的Realm进行认证
+ * 获取客户端传入的用户名、请求参数、消息摘要，生成StatelessToken；
+ * 然后交给相应的Realm进行认证
  * author : sunpanhu
  * createTime : 2018/4/17 下午4:42
  */

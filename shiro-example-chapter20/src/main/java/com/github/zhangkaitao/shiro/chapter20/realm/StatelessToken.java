@@ -28,14 +28,12 @@ public class StatelessToken implements AuthenticationToken {
     public void setUsername(String username) {
         this.username = username;
     }
-
     public  Map<String, ?> getParams() {
         return params;
     }
     public void setParams( Map<String, ?> params) {
         this.params = params;
     }
-
     public String getClientDigest() {
         return clientDigest;
     }

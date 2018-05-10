@@ -7,7 +7,7 @@ import org.apache.shiro.web.mgt.DefaultWebSubjectFactory;
 /**
  * Subject工厂
  * 通过调用context.setSessionCreationEnabled(false)表示不创建会话；
- * 如果之后调用Subject.getSession()将抛出DisabledSessionException异常。
+ * 如果之后再调用Subject.getSession()将会抛出DisabledSessionException异常。
  * author : sunpanhu
  * createTime : 2018/4/17 下午4:41
  */

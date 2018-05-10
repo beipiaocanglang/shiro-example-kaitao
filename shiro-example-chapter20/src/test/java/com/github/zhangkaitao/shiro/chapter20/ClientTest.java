@@ -16,14 +16,15 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-26
- * <p>Version: 1.0
+ * 客户端测试类
+ * author : sunpanhu
+ * createTime : 2018/5/10 上午9:45
  */
 public class ClientTest {
     private static Server server;
     private RestTemplate restTemplate = new RestTemplate();
 
+    //为了方便 ，使用内嵌jetty服务器启动服务端：
     //在整个测试开始之前开启服务器，整个测试结束时关闭服务器
     @BeforeClass
     public static void beforeClass() throws Exception {
@@ -53,7 +54,9 @@ public class ClientTest {
         String param12 = "param12";
         String param2 = "param2";
         String key = "dadadswdewq2ewdwqdwadsadasd";
+
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+        //注意参数顺序
         params.add(Constants.PARAM_USERNAME, username);
         params.add("param1", param11);
         params.add("param1", param12);
@@ -63,9 +66,9 @@ public class ClientTest {
         String url = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/chapter20/hello").queryParams(params).build().toUriString();
 
         ResponseEntity responseEntity = restTemplate.getForEntity(url, String.class);
-        String a = "hello" + param11 + param12 + param2;
-        Object body = responseEntity.getBody();
-        Assert.assertEquals("hello" + param11 + param12 + param2, responseEntity.getBody());
+        String param = "hello" + param11 + param12 + param2;
+        Object returnParam = responseEntity.getBody();
+        Assert.assertEquals(param, returnParam);
     }
 
     /**
@@ -81,6 +84,7 @@ public class ClientTest {
         String param12 = "param12";
         String param2 = "param2";
         String key = "dadadswdewq2ewdwqdwadsadasd";
+
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add(Constants.PARAM_USERNAME, username);
         params.add("param1", param11);
@@ -92,7 +96,7 @@ public class ClientTest {
         String url = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/chapter20/hello").queryParams(params).build().toUriString();
 
         try {
-            ResponseEntity responseEntity = restTemplate.getForEntity(url, String.class);
+            restTemplate.getForEntity(url, String.class);
         } catch (HttpClientErrorException e) {
             Assert.assertEquals(HttpStatus.UNAUTHORIZED, e.getStatusCode());
             Assert.assertEquals("login error", e.getResponseBodyAsString());
