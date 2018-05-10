@@ -1,8 +1,3 @@
-/**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
 package com.github.zhangkaitao.shiro.spring;
 
 import net.sf.ehcache.Ehcache;
@@ -16,9 +11,8 @@ import java.util.*;
 
 /**
  * 包装Spring cache抽象
- * <p>User: Zhang Kaitao
- * <p>Date: 13-3-23 上午8:26
- * <p>Version: 1.0
+ * author : sunpanhu
+ * createTime : 2018/5/10 下午2:42
  */
 public class SpringCacheManagerWrapper implements CacheManager {
 

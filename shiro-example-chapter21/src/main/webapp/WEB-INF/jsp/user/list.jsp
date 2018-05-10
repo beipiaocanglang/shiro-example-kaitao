@@ -4,7 +4,7 @@
 <%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
     <head>
-        <title></title>
+        <title>用户列表</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/css.css">
     </head>
     <body>

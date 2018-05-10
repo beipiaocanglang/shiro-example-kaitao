@@ -4,7 +4,7 @@
 <%@taglib prefix="zhangfn" uri="http://github.com/zhangkaitao/tags/zhang-functions" %>
 <html>
     <head>
-        <title></title>
+        <title>角色编辑</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/css.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/JQuery zTree v3.5.15/css/zTreeStyle/zTreeStyle.css">
         <style>
@@ -97,7 +97,7 @@
                     if (name.length > 0 ) name = name.substring(0, name.length-1);
                     $("#resourceIds").val(id);
                     $("#resourceName").val(name);
-    //                hideMenu();
+                    //hideMenu();
                 }
 
                 function showMenu() {

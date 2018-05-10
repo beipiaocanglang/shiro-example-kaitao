@@ -52,10 +52,10 @@ public class RunAsController {
         model.addAttribute("allUsers", allUsers);
 
         Subject subject = SecurityUtils.getSubject();
-        //表示当前用户是否是RunAs用户，即已经切换身份了
+        //表示当前用户是否是RunAs过的用户，即已经切换身份了
         boolean runAs = subject.isRunAs();
         model.addAttribute("isRunas", runAs);
-        if(subject.isRunAs()) {
+        if(runAs) {
             //得到切换身份之前的身份，一个用户可以切换很多次身份，之前的身份使用栈数据结构来存储；
             String previousUsername = (String)subject.getPreviousPrincipals().getPrimaryPrincipal();
             model.addAttribute("previousUsername", previousUsername);
@@ -123,7 +123,7 @@ public class RunAsController {
             redirectAttributes.addFlashAttribute("msg", "自己不能切换到自己的身份");
             return "redirect:/runas";
         }
-
+        //查看当前用户和要切换到的用户之间是否存在可切换关系
         boolean exists = userRunAsService.exists(switchToUserId, loginUser.getId());
         if(switchToUser == null || !exists) {
             redirectAttributes.addFlashAttribute("msg", "对方没有授予您身份，不能切换");
@@ -132,6 +132,7 @@ public class RunAsController {
 
         //3、通过Subject.runAs()切换到该身份
         subject.runAs(new SimplePrincipalCollection(switchToUser.getUsername(), ""));
+
         redirectAttributes.addFlashAttribute("msg", "操作成功");
         redirectAttributes.addFlashAttribute("needRefresh", "true");
         return "redirect:/runas";
@@ -141,9 +142,9 @@ public class RunAsController {
      * 切换到上一个身份
      * 注意：
      *      此处注意的是我们可以切换多次身份，如A切换到B，然后再切换到C；
-     *      那么需要调用两次Subject. releaseRunAs()才能切换会A；
+     *      那么需要调用两次 Subject.releaseRunAs() 才能切换会A；
      *      即内部使用栈数据结构存储着切换过的用户；
-     *      Subject. getPreviousPrincipals()得到上一次切换到的身份，比如当前是C；
+     *      Subject.getPreviousPrincipals() 得到上一次切换到的身份，比如当前是C；
      *      那么调用该API将得到B的身份。
      * author : sunpanhu
      * createTime : 2018/4/18 上午10:27

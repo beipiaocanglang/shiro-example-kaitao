@@ -4,7 +4,7 @@
 <%@taglib prefix="zhangfn" uri="http://github.com/zhangkaitao/tags/zhang-functions" %>
 <html>
     <head>
-        <title></title>
+        <title>用户编辑</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/css.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/JQuery zTree v3.5.15/css/zTreeStyle/zTreeStyle.css">
         <style>

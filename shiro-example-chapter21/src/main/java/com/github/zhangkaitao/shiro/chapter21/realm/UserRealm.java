@@ -10,6 +10,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Set;
+
 /**
  * 自定义Realm
  * author : sunpanhu
@@ -20,16 +22,22 @@ public class UserRealm extends AuthorizingRealm {
     @Autowired
     private UserService userService;
 
+    //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String)principals.getPrimaryPrincipal();
 
+        Set<String> roles = userService.findRoles(username);
+        Set<String> permissions = userService.findPermissions(username);
+
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userService.findRoles(username));
-        authorizationInfo.setStringPermissions(userService.findPermissions(username));
+        authorizationInfo.setRoles(roles);
+        authorizationInfo.setStringPermissions(permissions);
+
         return authorizationInfo;
     }
 
+    //认证
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
@@ -52,6 +60,7 @@ public class UserRealm extends AuthorizingRealm {
                 ByteSource.Util.bytes(user.getCredentialsSalt()),//salt=username+salt
                 getName()  //realm name
         );
+
         return authenticationInfo;
     }
 
