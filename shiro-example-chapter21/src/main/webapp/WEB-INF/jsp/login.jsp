@@ -12,9 +12,11 @@
     <body>
         <div class="error">${error}</div>
         <form action="" method="post">
-            用户名：<input type="text" name="username" value="<shiro:principal/>"><br/>
-            密码：<input type="password" name="password"><br/>
+            用户名：<input type="text" name="username" value="<shiro:principal/>"><br/><br/>
+            密码：<input type="password" name="password"><br/><br/>
             自动登录：<input type="checkbox" name="rememberMe" value="true"><br/>
+            <br>
+            <hr>
             <input type="submit" value="登录">
         </form>
     </body>
