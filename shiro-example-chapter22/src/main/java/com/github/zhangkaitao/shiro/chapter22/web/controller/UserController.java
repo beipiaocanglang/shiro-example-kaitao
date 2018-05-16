@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-14
- * <p>Version: 1.0
+ * 关于用户操作的controller
+ * author : sunpanhu
+ * createTime : 2018/5/16 上午10:12
  */
 @Controller
 @RequestMapping("/user")

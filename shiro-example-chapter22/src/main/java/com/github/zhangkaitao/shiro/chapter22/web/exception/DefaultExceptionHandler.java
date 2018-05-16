@@ -9,16 +9,14 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-12
- * <p>Version: 1.0
+ * 全局异常处理类
+ * author : sunpanhu
+ * createTime : 2018/5/16 上午10:11
  */
 @ControllerAdvice
 public class DefaultExceptionHandler {
     /**
      * 没有权限 异常
-     * <p/>
-     * 后续根据不同的需求定制即可
      */
     @ExceptionHandler({UnauthorizedException.class})
     @ResponseStatus(HttpStatus.UNAUTHORIZED)

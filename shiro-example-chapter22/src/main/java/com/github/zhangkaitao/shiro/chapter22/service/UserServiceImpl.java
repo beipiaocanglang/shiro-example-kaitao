@@ -98,5 +98,4 @@ public class UserServiceImpl implements UserService {
         }
         return roleService.findPermissions(user.getRoleIds().toArray(new Long[0]));
     }
-
 }

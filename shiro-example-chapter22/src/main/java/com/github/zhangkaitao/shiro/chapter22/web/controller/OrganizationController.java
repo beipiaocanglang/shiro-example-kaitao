@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-14
- * <p>Version: 1.0
+ * 关于组织机构操作的controller
+ * author : sunpanhu
+ * createTime : 2018/5/16 上午10:14
  */
 @Controller
 @RequestMapping("/organization")

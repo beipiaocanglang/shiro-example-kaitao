@@ -10,9 +10,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-15
- * <p>Version: 1.0
+ * author : sunpanhu
+ * createTime : 2018/5/16 上午10:11
  */
 public class SysUserFilter extends PathMatchingFilter {
 
