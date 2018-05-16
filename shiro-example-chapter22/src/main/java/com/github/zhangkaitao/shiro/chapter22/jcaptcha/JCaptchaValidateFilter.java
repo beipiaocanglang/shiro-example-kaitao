@@ -1,8 +1,3 @@
-/**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
 package com.github.zhangkaitao.shiro.chapter22.jcaptcha;
 
 import org.apache.shiro.web.filter.AccessControlFilter;
@@ -44,8 +39,11 @@ public class JCaptchaValidateFilter extends AccessControlFilter {
             return true;
         }
         //3、此时是表单提交，验证验证码是否正确
+        //TODO 可以完善 忽略大小写的操作
+        //获取用户输入的验证码
+        String parameter = httpServletRequest.getParameter(jcaptchaParam);
         //调用com.github.zhangkaitao.shiro.chapter22.jcaptcha.JCaptcha.validateResponse()
-        boolean b = JCaptcha.validateResponse(httpServletRequest, httpServletRequest.getParameter(jcaptchaParam));
+        boolean b = JCaptcha.validateResponse(httpServletRequest, parameter);
         return b;
     }
 

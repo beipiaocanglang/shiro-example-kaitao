@@ -1,8 +1,3 @@
-/**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
 package com.github.zhangkaitao.shiro.chapter22.jcaptcha;
 
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -35,7 +30,8 @@ public class JCaptchaFilter extends OncePerRequestFilter {
 
         String id = request.getRequestedSessionId();
 
-        //使用当前会话ID当作key获取相应的验证码图片；另外需要设置响应内容不进行浏览器端缓存
+        // 使用当前会话ID当作key获取相应的验证码图片；
+        // 另外需要设置响应内容不进行浏览器端缓存
         BufferedImage bi = JCaptcha.captchaService.getImageChallengeForID(id);
 
         ServletOutputStream out = response.getOutputStream();

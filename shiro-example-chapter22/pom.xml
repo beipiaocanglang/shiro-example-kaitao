@@ -139,7 +139,7 @@
             <artifactId>jcaptcha-all</artifactId>
             <version>1.0-RC6</version>
         </dependency>-->
-        <!--提供了与Servlet集成-->
+        <!--captcha-integration-simple-servlet 提供了与Servlet集成-->
         <!--<dependency>
             <groupId>com.octo.captcha</groupId>
             <artifactId>jcaptcha-integration-simple-servlet</artifactId>

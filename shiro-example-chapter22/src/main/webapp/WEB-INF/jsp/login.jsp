@@ -11,7 +11,11 @@
         <form action="" method="post">
             用户名：<input type="text" name="username" value="<shiro:principal/>"><br/><br/>
             密码：<input type="password" name="password"><br/><br/>
-            <%-- jcaptchaEbabled 在JCaptchaValidateFilter设置 --%>
+
+            <%--
+                根据jcaptchaEbabled来显示验证码图片
+                jcaptchaEbabled 在JCaptchaValidateFilter设置
+            --%>
             <c:if test="${jcaptchaEbabled}">
                 验证码：
                 <input type="text" name="jcaptchaCode">
@@ -19,6 +23,7 @@
                 <a class="jcaptcha-btn" href="javascript:;">换一张</a>
                 <br/><br/>
             </c:if>
+
             自动登录：<input type="checkbox" name="rememberMe" value="true"><br/>
             <hr>
             <input type="submit" value="登录">
