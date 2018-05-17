@@ -45,8 +45,6 @@ create table sys_user_app_roles (
 create unique index sys_user_app_roles_user_id_app_id on sys_user_app_roles(user_id, app_id);
 
 
-
-
 create table sys_organization (
   id bigint auto_increment,
   name varchar(100),
@@ -57,7 +55,6 @@ create table sys_organization (
 ) charset=utf8 ENGINE=InnoDB;
 create index idx_sys_organization_parent_id on sys_organization(parent_id);
 create index idx_sys_organization_parent_ids on sys_organization(parent_ids);
-
 
 create table sys_resource (
   id bigint auto_increment,

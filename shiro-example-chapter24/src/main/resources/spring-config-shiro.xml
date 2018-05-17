@@ -110,6 +110,7 @@
             <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
                 <entry key="sysUser" value-ref="sysUserFilter"/>
+                <!--和之前的唯一区别是在shiroFilter中的filterChainDefinitions拦截器链定义中添加了forceLogout拦截器： -->
                 <entry key="forceLogout" value-ref="forceLogoutFilter"/>
             </util:map>
         </property>

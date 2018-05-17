@@ -33,7 +33,6 @@ public class ClientSessionDAO extends CachingSessionDAO {
         remoteService.updateSession(appKey, session);
     }
 
-
     @Override
     protected Serializable doCreate(Session session) {
         Serializable sessionId = remoteService.createSession(session);

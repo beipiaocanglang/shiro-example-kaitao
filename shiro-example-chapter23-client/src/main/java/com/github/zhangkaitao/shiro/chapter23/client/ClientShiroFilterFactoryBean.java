@@ -8,9 +8,8 @@ import org.springframework.util.StringUtils;
 import javax.servlet.Filter;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-3-13
- * <p>Version: 1.0
+ * author : sunpanhu
+ * createTime : 2018/5/17 下午1:41
  */
 public class ClientShiroFilterFactoryBean extends ShiroFilterFactoryBean implements ApplicationContextAware {
 

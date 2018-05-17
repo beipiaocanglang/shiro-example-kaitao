@@ -17,8 +17,7 @@ import javax.servlet.ServletResponse;
 public class ServerFormAuthenticationFilter extends FormAuthenticationFilter {
 
     protected void issueSuccessRedirect(ServletRequest request, ServletResponse response) throws Exception {
-        String fallbackUrl = (String) getSubject(request, response)
-                .getSession().getAttribute("authc.fallbackUrl");
+        String fallbackUrl = (String) getSubject(request, response).getSession().getAttribute("authc.fallbackUrl");
         if(StringUtils.isEmpty(fallbackUrl)) {
             fallbackUrl = getSuccessUrl();
         }

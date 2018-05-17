@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-2-15
- * <p>Version: 1.0
+ * 登录拦截器
+ * 在LoginController类的showLoginForm方法中最后添加如下代码
+ * author : sunpanhu
+ * createTime : 2018/5/17 下午3:46
  */
 @Controller
 public class LoginController {

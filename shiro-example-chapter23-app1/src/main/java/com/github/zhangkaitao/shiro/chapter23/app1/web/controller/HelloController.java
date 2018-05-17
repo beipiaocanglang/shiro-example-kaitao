@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * <p>User: Zhang Kaitao
- * <p>Date: 14-3-13
- * <p>Version: 1.0
+ * author : sunpanhu
+ * createTime : 2018/5/17 下午1:53
  */
 @Controller
 public class HelloController {

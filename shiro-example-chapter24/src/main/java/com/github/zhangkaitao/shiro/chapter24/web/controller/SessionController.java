@@ -20,7 +20,7 @@ import java.util.Collection;
  */
 @RequiresPermissions("session:*")
 @Controller
-@RequestMapping("/sessions")
+@RequestMapping("sessions")
 public class SessionController {
     @Autowired
     private SessionDAO sessionDAO;

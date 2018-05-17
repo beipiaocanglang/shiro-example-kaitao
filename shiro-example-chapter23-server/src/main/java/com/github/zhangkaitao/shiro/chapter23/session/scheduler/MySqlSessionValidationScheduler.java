@@ -39,7 +39,6 @@ public class MySqlSessionValidationScheduler implements SessionValidationSchedul
     public ValidatingSessionManager getSessionManager() {
         return sessionManager;
     }
-
     public void setSessionManager(ValidatingSessionManager sessionManager) {
         this.sessionManager = sessionManager;
     }
@@ -47,7 +46,6 @@ public class MySqlSessionValidationScheduler implements SessionValidationSchedul
     public long getInterval() {
         return interval;
     }
-
     public void setInterval(long interval) {
         this.interval = interval;
     }
